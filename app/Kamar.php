@@ -28,10 +28,9 @@ class Kamar extends Model
 
 
 
-    public function category()
+    public function categories()
     {
-    	return $this->belongsTo(Category::class, 'id');
+    	return $this->belongsTo(CategoryKamar::class, 'category_id');
     }
 }
 
-// "/storage/no-thumbnail.jpg"

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Tamu,User};
-class ProfileTamuController extends Controller
+
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProfileTamuController extends Controller
     public function index()
     {
        $profile = auth()->user()->tamu;
-       $tamu = auth()->user();
-       return view('site.profile.profile', compact('profile', 'tamu'));
+       $admin = auth()->user();
+       return view('dashboard.profile.profile', compact('profile', 'admin'));
     }
 
     /**
@@ -58,12 +58,8 @@ class ProfileTamuController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $profile = auth()->user()->tamu;
-        
-        return view('site.profile.edit', compact('user', 'profile'));
-
-        }
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -74,42 +70,7 @@ class ProfileTamuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'no_telpon' =>  'numeric',
-            'gambar' => 'image|mimes:png,jpg,jpeg,svg|max:1048',
-        ]);
-
-        $user = User::find($id);
-        User::where('id',$user->id)
-                ->update([
-                    'name' => $request->name,
-                ]);
-        $tamu = Tamu::where('user_id', $user->id)->first();
-         
-         if ($request->file('gambar')) {
-            
-         \Storage::delete($tamu->gambar);
-        $gambar = $request->file('gambar');
-        $gambarUrl = $gambar->storeAs("images/profile", "{$user->name}.{$gambar->extension()}");
-
-       }else{
-
-        $gambarUrl = $tamu->gambar;
-
-       }        
-      
-
-        Tamu::where('user_id', $user->id)
-                ->update([
-                    'alamat' => $request->alamat,
-                     'no_telpon' => $request->no_telpon,
-                     'jenis_kelamin' => $request->jenis_kelamin,
-                     'negara' => $request->negara,
-                    'gambar' => $gambarUrl,
-                ]);
-
-        return redirect('/profile');
+        //
     }
 
     /**

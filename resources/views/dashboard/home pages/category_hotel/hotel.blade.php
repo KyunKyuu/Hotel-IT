@@ -1,16 +1,16 @@
 @extends('layouts.dashboard.main')
-@section('title', 'Daftar Kamar')
+@section('title', 'Daftar Category Hotel')
 @section('content')
 <div class="container-fluid">
 <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Kamar</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Category HOtel</h6>
            
             
           </div>
           
             <div class="card-body">
-            	<a href="{{route('create_kamar')}}" class="btn btn-primary btn-icon-split btn-sm">
+            	<a href="{{route('create_category_hotel')}}" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-100">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -21,38 +21,33 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Category Kamar</th>
-                      <th>Kode Kamar</th>
-                      <th>Status Kamar</th>
+                      <th>Negara</th>
+                    
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>No</th>
-                      <th>Category Kamar</th>
-                      <th>Kode Kamar</th>
-                      <th>Status Kamar</th>
+                       <th>No</th>
+                      <th>Negara</th>
+                    
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  	 @foreach($kamar as $tm)
+                  	 @foreach($hotel as $ht)
                     <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$tm->categories->nama_category}} </td>
-                      <td>{{$tm->kode_kamar}}</td>
-                      <td>{{$tm->status_kamar}}</td>
+                      <td>{{$ht->negara}}</td>
+                   
                       <td>
-                      	 <a href="{{route('edit_kamar', $tm->id)}}" class="btn btn-info btn-circle btn-sm">
+                    <a href="{{route('edit_category_hotel', $ht->id)}}" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-pen"></i>
 					         	</a> 
 
-                     <a href="{{route('show_kamar', $tm->id)}}" class="btn btn-success btn-circle btn-sm">
-                    <i class="fas fa-eye"></i>
-                    </a>
+                     
                       	 
-                  		<form action="{{route('destroy_kamar', $tm->id)}}" method="post">
+                  		<form action="{{route('destroy_category_hotel', $ht->id)}}" method="post">
                   			@csrf
                   			@method('delete')
                   		<button type="submit" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin Dihapus?')">
@@ -66,11 +61,10 @@
                 </table>
               </div>
             </div>
-            <div class="card-footer py-3">
-              {{$kamar->links()}}
+              <div class="card-footer py-3">
+              {{$hotel->links()}}
             
           </div>
-          
           </div>
       </div>
 

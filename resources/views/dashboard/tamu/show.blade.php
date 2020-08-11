@@ -1,5 +1,5 @@
 @extends('layouts.dashboard.main')
-@section('title', 'Edit Data Tamu')
+@section('title', 'Informasi  Tamu')
 @section('content')
 <div class="container-fluid">
 	<div class="card shadow mb-4">

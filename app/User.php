@@ -6,17 +6,18 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+   const UPDATED_AT = 'last_login';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password','role','no_telpon','alamat',
+    protected $guarded = [
+        'id','created_at'
     ];
 
     /**
@@ -25,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password','remember_token'
     ];
 
     /**
@@ -43,8 +44,8 @@ class User extends Authenticatable
         return $this->hasOne(Tamu::class);
     }
 
-    public function gambar()
+   public function not_verified()
    {
-        return !$this->gambar ? asset('no-profile.jpg') : 'storage/' .  $this->gambar;
+     return  $this->email_verified_at == null ? true : false;
    }
 }

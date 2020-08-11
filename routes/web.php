@@ -12,31 +12,65 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes([ 'verify' => true ]);
 Route::get('/', 'SiteController@home')->name('home');
-Route::get('/site/kamar', 'SiteController@kamar')->name('kamar');
-Route::get('/site/kamar/{slug:slug}', 'SiteController@detail_kamar')->name('detail_kamar');
+Route::get('/site/hotel', 'SiteController@hotel')->name('hotel');
+Route::get('/site/hotel/{slug:slug}', 'SiteController@detail_hotel')->name('detail_hotel');
 
 
-Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
+
+
+Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function(){
 
 	// Dashboard
 	Route::get('/dasboard', 'DashboardController@index')->name('dashboard');
+	
+	// Dashboard Profile
+	Route::get('/dasboard/profile', 'ProfileAdminController@index')->name('profile_admin');
+
 	// Dashboard Tamu
-	Route::get('/dasboard/tamu/lengkap', 'TamuController@index')->name('daftar_tamu');
-	Route::get('/dasboard/tamu/show/{id}', 'TamuController@show')->name('show_tamu');
+	Route::get('/dasboard/tamu/', 'TamuController@index')->name('daftar_tamu');
+	Route::get('/dasboard/tamu/{id}', 'TamuController@show')->name('show_tamu');
 	Route::delete('/dasboard/tamu/{id}', 'TamuController@destroy')->name('delete_tamu');
+	
+	// Dashboard Category Hotel
+	Route::get('/dasboard/category_hotel', 'CategoryHotelController@index')->name('dashboard_category_hotel');
+	Route::get('/dasboard/category_hotel/create', 'CategoryHotelController@create')->name('create_category_hotel');
+	Route::post('/dasboard/category_hotel/store', 'CategoryHotelController@store')->name('store_category_hotel');
+	Route::get('/dasboard/category_hotel/{id}', 'CategoryHotelController@edit')->name('edit_category_hotel');
+	Route::patch('/dasboard/category_hotel/{id}', 'CategoryHotelController@update')->name('update_category_hotel');
+	Route::delete('/dasboard/category_hotel/{id}', 'CategoryHotelController@destroy')->name('destroy_category_hotel');
+
+	// Dashboard Hotel
+	Route::get('/dasboard/hotel', 'HotelController@index')->name('dashboard_hotel');
+	Route::get('/dasboard/hotel/create', 'HotelController@create')->name('create_hotel');
+	Route::post('/dasboard/hotel/store', 'HotelController@store')->name('store_hotel');
+	Route::get('/dasboard/hotel/{id}', 'HotelController@edit')->name('edit_hotel');
+	Route::patch('/dasboard/hotel/{id}', 'HotelController@update')->name('update_hotel');
+	Route::delete('/dasboard/hotel/{id}', 'HotelController@destroy')->name('destroy_hotel');
+	Route::get('/dasboard/hotel/show/{id}', 'HotelController@show')->name('show_hotel');
+
+
+	// Dashboard Category Kamar
+	Route::get('/dasboard/category_kamar', 'CategoryKamarController@index')->name('dashboard_category_kamar');
+	Route::get('/dasboard/category_kamar/create', 'CategoryKamarController@create')->name('create_category_kamar');
+	Route::post('/dasboard/category_kamar/store', 'CategoryKamarController@store')->name('store_category_kamar');
+	Route::get('/dasboard/category_kamar/{id}', 'CategoryKamarController@edit')->name('edit_category_kamar');
+	Route::patch('/dasboard/category_kamar/{id}', 'CategoryKamarController@update')->name('update_category_kamar');
+	Route::delete('/dasboard/category_kamar/{id}', 'CategoryKamarController@destroy')->name('destroy_category_kamar');
+
 	// Dashboard Kamar
 	Route::get('/dasboard/kamar', 'KamarController@index')->name('dashboard_kamar');
 	Route::get('/dasboard/kamar/create', 'KamarController@create')->name('create_kamar');
 	Route::post('/dasboard/kamar/store', 'KamarController@store')->name('store_kamar');
-	Route::get('/dasboard/kamar/edit/{id}', 'KamarController@edit')->name('edit_kamar');
-	Route::patch('/dasboard/kamar/update/{id}', 'KamarController@update')->name('update_kamar');
-	Route::delete('/dasboard/kamar/destroy/{id}', 'KamarController@destroy')->name('destroy_kamar');
+	Route::get('/dasboard/kamar/{id}', 'KamarController@edit')->name('edit_kamar');
+	Route::patch('/dasboard/kamar/{id}', 'KamarController@update')->name('update_kamar');
+	Route::delete('/dasboard/kamar/{id}', 'KamarController@destroy')->name('destroy_kamar');
+	Route::get('/dasboard/kamar/show/{id}', 'KamarController@show')->name('show_kamar');
 
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:tamu']], function(){
+Route::group(['middleware' => ['auth', 'checkRole:tamu', 'verified']], function(){
 	
 	// Profile
 	Route::get('/profile', 'ProfileTamuController@index')->name('profile_tamu');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\{User,Tamu};
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,13 +29,13 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::LOGIN;
-
+  
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    protected $redirectTo = RouteServiceProvider::LOGIN;
     public function __construct()
     {
         $this->middleware('guest');
@@ -52,8 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'no_telpon' => ['required', 'integer', 'min:10'],
-           
+            'no_telpon' => ['numeric'],
             'password' => ['required', 'string', 'min:8'],
         ]);
     }
@@ -66,13 +65,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'role' => "tamu",
-            'email' => $data['email'],
+        $user = User::create([
+                'name' => $data['name'],
+                'role' => "tamu",
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        $user->save();
+
+       $tamu = Tamu::create([
+            'user_id' => $user->id,
             'no_telpon' => $data['no_telpon'],
-          
-            'password' => Hash::make($data['password']),
-        ]);
+            ]);
+       $tamu->save();
+
+       return redirect('/login');
+        
+
+
+
+
+
     }
 }

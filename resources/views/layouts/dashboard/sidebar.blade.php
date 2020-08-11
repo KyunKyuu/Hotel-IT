@@ -13,10 +13,20 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Nav Item - Profile -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('profile_admin')}}">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Profile Saya</span></a>
       </li>
 
       <!-- Divider -->
@@ -61,9 +71,15 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+
+            <h6 class="collapse-header">Hotel:</h6>
+            <a class="collapse-item" href="{{route('dashboard_category_hotel')}}">Category Hotel</a>
+            <a class="collapse-item" href="{{route('dashboard_hotel')}}">Hotel</a>
+           <hr class="sidebar-divider">
+
             <h6 class="collapse-header">Kamar:</h6>
+            <a class="collapse-item" href="{{route('dashboard_category_kamar')}}">Category Kamar</a>
             <a class="collapse-item" href="{{route('dashboard_kamar')}}">Kamar</a>
-            <a class="collapse-item" href="register.html">Category Kamar</a>
            
           </div>
         </div>

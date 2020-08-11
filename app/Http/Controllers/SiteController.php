@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kamar;
+use App\{Kamar,Hotel,CategoryHotel,CategoryKamar};
 class SiteController extends Controller
 {
    public function home()
    {
-   	return view('site.home');
+      $negara = CategoryHotel::get();
+      $hotel = Hotel::get();
+   	return view('site.home', compact('negara', 'hotel'));
    }
 
-   public function kamar()
+   public function hotel()
    {
-   	$kamar = Kamar::latest()->paginate(6);
-   	return view('site.kamar', compact('kamar'));
+   	$hotel = Hotel::latest()->paginate(6);
+   	return view('site.hotel', compact('hotel'));
    }
    
-   public function detail_kamar($slug)
+   public function detail_hotel($slug)
    {
-   	$detail = Kamar::where('slug', $slug)->first();
-       return view('site.detail_kamar', compact('detail'));
+   	 $hotel = Hotel::where('slug', $slug)->first();
+       $category = CategoryKamar::where('hotel_id', $hotel->id)->get();
+       $kamar = Kamar::where('category_id', $category->id)->get();
+       dd($kamar);
+       // return view('site.detail_hotel', compact('hotel', 'category_kamar', 'kamar'));
    }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Kamar, Category};
+use App\{Kamar, CategoryKamar};
 class KamarController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class KamarController extends Controller
     public function index()
     {
         $kamar = Kamar::latest()->paginate(7);
-        $categories = Category::get();
+        $categories = CategoryKamar::get();
         return view('dashboard.home pages.kamar.kamar', compact('kamar', 'categories'));
     }
 
@@ -27,7 +27,7 @@ class KamarController extends Controller
     {
         return view('dashboard.home pages.kamar.create',[
             'kamar' => new Kamar(),
-            'categories' => Category::get(),
+            'categories' => CategoryKamar::get(),
         ]);
     }
 
@@ -41,13 +41,13 @@ class KamarController extends Controller
     {
         
 
-         $request->validate([
+        $request->validate([
             'kode_kamar' => 'required',
-            'harga_kamar' => 'required',
-            'gambar_kamar' => 'image|mimes:png,jpg,jpeg,svg|max:2048',
+            'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
             'fasilitas_kamar' => 'required',
             'status_kamar' => 'required',
-            'category_id' => 'required',
+            'kapasitas_kamar' => 'required',
+            'category_id' => 'required|int',
             'content' => 'required',
         ]);
 
@@ -56,7 +56,6 @@ class KamarController extends Controller
 
         $gambar = $request->file('gambar_kamar');
         $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
-        $attr['category_id'] = $request('category_id');
         $attr['gambar_kamar'] = $gambarUrl;
         $attr['slug'] = $slug;
 
@@ -72,9 +71,11 @@ class KamarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-       // 
+       $kamar = Kamar::find($id);
+
+       return view('dashboard.home pages.kamar.show' , compact('kamar'));
 
     }
 
@@ -87,7 +88,7 @@ class KamarController extends Controller
     public function edit($id)
     {
         $kamar = Kamar::find($id);
-        $categories = Category::get();
+        $categories = CategoryKamar::get();
         return view('dashboard.home pages.kamar.edit', compact('kamar', 'categories'));
     }
 
@@ -118,6 +119,7 @@ class KamarController extends Controller
         $attr = $request->all();
     
         $attr['gambar_kamar'] = $gambarUrl;
+        $attr['slug'] = $slug;
         $kamar->update($attr);
 
         return redirect('/dasboard/kamar');

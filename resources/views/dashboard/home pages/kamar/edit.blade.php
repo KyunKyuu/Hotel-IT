@@ -20,11 +20,11 @@
          </div>
      <div class="col-md">
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-7">
             <form action="{{route('update_kamar', $kamar->id)}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('patch')
+        <div class="row">
+          <div class="col-md-7">
         <div class="form-group">
             <label for="content">Deskrisi Kamar</label>
             <textarea name="content" class="form-control" id="content">{{$kamar->content}}</textarea>
@@ -39,11 +39,25 @@
           </div>
           <div class="col-md-5">
             <div class="form-group">
-               <label for="kode_kamar">Upload Gambar Thumbnail</label>
-           <input type="file" class="form-control" name="gambar_kamar" id="gambar_kamar">
+               <label for="gambar_kamar">Upload Gambar Thumbnail</label>
+           <input type="file" class="form-control" name="gambar_kamar" id="gambar_kamar" value="{{$kamar->gambar_kamar}}">
+           @error('gambar_kamar')
+            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+          @enderror
              </div>
 
-          
+          <div class="form-group">
+          <label for="category_id">Category Kamar</label>
+          <select  class="form-control" id="category_id" name="category_id" >
+            <option disabled selected="">{{$kamar->categories->nama_category}}</option>
+            @foreach($categories as $category)
+              <option value="{{$category->id}}">{{$category->nama_category}}</option>
+            @endforeach
+          </select>
+          @error('category_id')
+            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+          @enderror
+          </div>
 
           <div class="form-group">
           <label for="kode_kamar">Kode kamar</label>
@@ -53,13 +67,7 @@
           @enderror
           </div>
 
-           <div class="form-group">
-          <label for="harga_kamar">Harga kamar</label>
-          <input type="number" class="form-control @error('harga_kamar') is-invalid @enderror"  name="harga_kamar" placeholder="Masukan Harga Kamar" value="{{$kamar->harga_kamar}}">
-          @error('harga_kamar')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
-          @enderror
-          </div>
+        
 
            <div class="form-group">
           <label for="fasilitas_kamar">Fasilitas Kamar </label>
@@ -69,15 +77,11 @@
           @enderror
           </div>
 
+
           <div class="form-group">
-          <label for="category_id">Category Kamar</label>
-          <select  class="form-control" id="category_id" name="category_id" >
-            <option disabled selected="">{{$kamar->category->nama_category}}</option>
-            @foreach($categories as $category)
-              <option value="{{$category->id}}">{{$category->nama_category}}</option>
-            @endforeach
-          </select>
-          @error('category_id')
+          <label for="kapasitas_kamar">Kapasitas Kamar</label>
+          <input type="number" class="form-control @error('kapasitas_kamar') is-invalid @enderror"  name="kapasitas_kamar" placeholder="Masukan Harga Kamar" value="{{$kamar->kapasitas_kamar}}">
+          @error('kapasitas_kamar')
             <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
           @enderror
           </div>
@@ -105,8 +109,7 @@
   </div>
 </div>
 </div>
-</div>
-</div>
+
         
 
 @endsection

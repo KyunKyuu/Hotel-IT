@@ -19,7 +19,36 @@
   <div class="form-group">
     <label for="nama">Nama</label>
     <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="name" placeholder="Masukan Nama" value="{{$user->name}}">
-   
+  </div>
+
+   <div class="form-group">
+    <label>Negara</label>
+    <select class="form-control" name="negara">
+    @if($profile->negara == false)
+      <option disabled selected="">Pilih Negara</option>
+    @else
+      <option value="{{$profile->negara}}" selected="">{{$profile->negara}}</option>   
+    @endif
+      <option value="indonesia">Indonesia</option>
+      <option value="belanda">Belanda</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Jenis Kelamin</label>
+    <select class="form-control" name="jenis_kelamin">
+    @if($profile->jenis_kelamin == false )
+      <option disabled selected="">Pilih Jenis Kelamin</option>
+    @else
+      <option  selected="" value="{{$profile->jenis_kelamin}}">{{$profile->jenis_kelamin}}</option>
+    @endif
+      <option value="pria">Pria</option>
+      <option value="wanita">Wania</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="no">Nomor Telepon</label>
+    <input type="text" class="form-control" id="no" aria-describedby="emailHelp" name="no_telpon" placeholder="Masukan nomor telepon" value="{{$profile->no_telpon}}">
   </div>
   <div class="form-group">
     <label for="alamat">Alamat</label>

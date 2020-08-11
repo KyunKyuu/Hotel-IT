@@ -50,6 +50,10 @@
                 </table>
               </div>
             </div>
+              <div class="card-footer py-3">
+              {{$tamu->links()}}
+            
+          </div>
           </div>
       </div>
 

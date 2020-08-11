@@ -11,8 +11,8 @@
             <div class="row h-100 align-items-end">
                 <div class="col-12">
                     <div class="breadcrumb-content d-flex align-items-center justify-content-between pb-5">
-                        <h2 class="room-title">{{$detail->kode_kamar}}</h2>
-                        <h2 class="room-price">Rp. {{$detail->harga_kamar}} <span>/ Per Night</span></h2>
+                        <h2 class="room-title">{{$kamar->categories->nama_category}}</h2>
+                        <h2 class="room-price">Rp. {{$kamar->categories->harga}} <span>/ Per Night</span></h2>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                             <div id="room-thumbnail--slide" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="{{$detail->gambar_kamar()}}" class="d-block w-100" alt="">
+                                        <img src="{{$kamar->gambar_kamar()}}" class="d-block w-100" alt="">
                                     </div>
                                     
                                 </div>
@@ -61,11 +61,11 @@
                         <div class="room-features-area d-flex flex-wrap mb-50">
                             <h6>Size: <span>350-425sqf</span></h6>
                             <h6>Capacity: <span>Max persion 5</span></h6>
-                            <h6>Status: <span>{{$detail->status_kamar}}</span></h6>
-                            <h6>Fasilitas: <span>{{$detail->fasilitas_kamar}}</span></h6>
+                            <h6>Status: <span>{{$kamar->status_kamar}}</span></h6>
+                            <h6>Fasilitas: <span>{{$kamar->fasilitas_kamar}}</span></h6>
                         </div>
 
-                        <p>{{$detail->content}}</p>
+                        <p>{{$kamar->content}}</p>
                     </div>
 
                     <!-- Room Service -->

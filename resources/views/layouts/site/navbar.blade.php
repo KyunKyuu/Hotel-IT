@@ -63,28 +63,10 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a href="{{route('home')}}">Home</a></li>
-                                    <li><a href="{{route('kamar')}}">Kamar</a></li>
+                                    <li><a href="{{route('hotel')}}">Hotel</a></li>
                                     <li><a href="./about.html">About Us</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="./index.html">- Home</a></li>
-                                            <li><a href="{{route('kamar')}}">- Kamar</a></li>
-                                            <li><a href="./single-room.html">- Single Rooms</a></li>
-                                            <li><a href="./about.html">- About Us</a></li>
-                                            <li><a href="./blog.html">- Blog</a></li>
-                                            <li><a href="./single-blog.html">- Single Blog</a></li>
-                                            <li><a href="./contact.html">- Contact</a></li>
-                                            <li><a href="#">- Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="./blog.html">News</a></li>
+                                
+                                    
                                     <li><a href="./contact.html">Contact</a></li>
 
                                 <!-- Search -->
@@ -115,34 +97,35 @@
                                     </ul>
                                 </li>
 
-                                </ul>
+                               
                         @elseif(auth()->user()->role == 'admin')
 
-                                <div class="book-now-btn ml-3 ml-lg-5">
-                                <a href="{{ route('dashboard') }}">Dashboard <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                             </div>
-                               <div class="book-now-btn ml-3 ml-lg-5">
-                                    <i class="fa fa-sign-out" aria-hidden="true">
+                                
+                                <li><a href="{{ route('dashboard') }}">Dashboard <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                             
+                        
+                                   <li> 
                                         <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true">
+                                        {{ __('Logout') }}</i>
                                          </a>
-                                    </i>
+                                    </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                              </div>
+                              
+                          
 
                         @endif
                         @endauth
 
                         @guest
-                                     <div class="book-now-btn ml-3 ml-lg-5">
-                                      <a href="{{ route('login') }}">Login To Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>  
-                                    </div>
+                                     
+                                     <li> <a href="{{ route('login') }}">Login To Book Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> </li> 
+                                  
                         @endguest             
-                        
+                        </ul>
                         
                         
                       
@@ -156,5 +139,13 @@
                 </div>
             </div>
         </div>
+        @auth
+            @if(auth()->user()->not_verified())
+                 <div class="alert alert-danger" role="alert">
+                    Akun Anda Belum di aktifasi, Silahkan cek email untuk aktifasi
+                </div>
+            @endif
+        @endauth
     </header>
     <!-- Header Area End -->
+   
