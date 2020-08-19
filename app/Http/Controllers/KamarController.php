@@ -13,9 +13,9 @@ class KamarController extends Controller
      */
     public function index()
     {
-        $kamar = Kamar::latest()->paginate(7);
-        $categories = CategoryKamar::get();
-        return view('dashboard.home pages.kamar.kamar', compact('kamar', 'categories'));
+        $kamar = CategoryKamar::latest()->paginate(7);
+       
+        return view('dashboard.home pages.kamar.kamar', compact('kamar'));
     }
 
     /**
@@ -25,10 +25,10 @@ class KamarController extends Controller
      */
     public function create()
     {
-        return view('dashboard.home pages.kamar.create',[
-            'kamar' => new Kamar(),
-            'categories' => CategoryKamar::get(),
-        ]);
+        // return view('dashboard.home pages.kamar.create',[
+        //     'kamar' => new Kamar(),
+        //     'categories' => CategoryKamar::get(),
+        // ]);
     }
 
     /**
@@ -41,28 +41,29 @@ class KamarController extends Controller
     {
         
 
-        $request->validate([
-            'kode_kamar' => 'required',
-            'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
-            'fasilitas_kamar' => 'required',
-            'status_kamar' => 'required',
-            'kapasitas_kamar' => 'required',
-            'category_id' => 'required|int',
-            'content' => 'required',
-        ]);
+        // $request->validate([
+        //     'kode_kamar' => 'required',
+        //     'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+        //     'fasilitas_kamar' => 'required',
+        //     'status_kamar' => 'required',
+        //     'kapasitas_kamar' => 'required',
+        //     'jumlah_kamar' => 'required',
+        //     'category_id' => 'required|int',
+        //     'content' => 'required',
+        // ]);
 
-        $attr = $request->all(); 
-        $slug = \Str::slug(request('kode_kamar'));
+        // $attr = $request->all(); 
+        // $slug = \Str::slug(request('kode_kamar'));
 
-        $gambar = $request->file('gambar_kamar');
-        $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
-        $attr['gambar_kamar'] = $gambarUrl;
-        $attr['slug'] = $slug;
+        // $gambar = $request->file('gambar_kamar');
+        // $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
+        // $attr['gambar_kamar'] = $gambarUrl;
+        // $attr['slug'] = $slug;
 
-        Kamar::create($attr);
+        // Kamar::create($attr);
         
 
-        return redirect('/dasboard/kamar');
+        // return redirect('/dasboard/kamar');
     }
 
     /**
@@ -74,8 +75,8 @@ class KamarController extends Controller
     public function show($id)
     {
        $kamar = Kamar::find($id);
-
-       return view('dashboard.home pages.kamar.show' , compact('kamar'));
+       $category = CategoryKamar::where('id', $kamar->category_id)->first();
+       return view('dashboard.home pages.kamar.show' , compact('kamar', 'category'));
 
     }
 

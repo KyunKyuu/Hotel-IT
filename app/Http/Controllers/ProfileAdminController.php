@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\{User,Profile};
+
 
 class ProfileAdminController extends Controller
 {
@@ -13,7 +15,7 @@ class ProfileAdminController extends Controller
      */
     public function index()
     {
-       $profile = auth()->user()->tamu;
+       $profile = auth()->user()->profile;
        $admin = auth()->user();
        return view('dashboard.profile.profile', compact('profile', 'admin'));
     }
@@ -56,9 +58,11 @@ class ProfileAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($email)
     {
-        //
+        $admin = User::where('email',$email)->first();
+
+        return view('dashboard.profile.edit', compact('admin'));
     }
 
     /**
@@ -70,7 +74,37 @@ class ProfileAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'no_telpon' =>  'required|numeric',
+            'gambar' => 'image|mimes:png,jpg,jpeg,svg|max:1048',
+
+        ]);
+
+        $attr = $request->all();
+        $user = User::find($id);
+        $user->update($attr);
+
+        $admin = Profile::where('user_id', $user->id)->first();
+         
+         if ($request->file('gambar')) {
+            
+         \Storage::delete($admin->gambar);
+        $gambar = $request->file('gambar');
+        $gambarUrl = $gambar->storeAs("images/profile", "{$user->name}.{$gambar->extension()}");
+
+       }else{
+
+        $gambarUrl = $admin->gambar;
+
+       }   
+
+       $attr['gambar'] = $gambarUrl;
+       $admin->update($attr);
+
+       return redirect(route('profile_admin'));
+
+
     }
 
     /**

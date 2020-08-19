@@ -13,7 +13,7 @@
          </div>
      <div class="col-md">
       <div class="card-body">
-            <form action="{{route('store_category_hotel')}}" method="post" ncetype="multipart/form-data">
+            <form action="{{route('store_category_hotel')}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('post')
         <div class="row">

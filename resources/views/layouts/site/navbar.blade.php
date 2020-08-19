@@ -76,11 +76,11 @@
                         @auth
                          @if (auth()->user()->role == 'tamu')
 
-                                <li><img src="{{auth()->user()->tamu->gambar()}}" class="rounded-circle" width="45"> {{auth()->user()->name}}
+                                <li><img src="{{auth()->user()->profile->gambar()}}" class="rounded-circle" width="45"> {{auth()->user()->name}}
                                     <ul class="dropdown">
                                         <li><b>&nbsp;&nbsp;&nbsp;Sunting</b></li>
                                          <li><a href="{{ route('profile_tamu') }}">Profile Saya</a><li>
-                                            <li><a href="{{ route('edit_profile_tamu', auth()->user()->id ) }}">Edit Profile</a><li>
+                                            <li><a href="{{ route('edit_profile_tamu', auth()->user()->email ) }}">Edit Profile</a><li>
                                         <li>
                                            <br>
                                         <a  class="btn btn-info" href="{{ route('logout') }}"

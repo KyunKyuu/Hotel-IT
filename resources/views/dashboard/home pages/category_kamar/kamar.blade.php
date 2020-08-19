@@ -24,7 +24,7 @@
                       <th>Nama Hotel</th>
                       <th>Category Kamar</th>
                       <th>Harga Kamar</th>
-                      <th>Ukuran Kamar</th>
+                     
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -34,7 +34,6 @@
                       <th>Nama Hotel</th>
                       <th>Category Kamar</th>
                       <th>Harga Kamar</th>
-                      <th>Ukuran Kamar</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -45,7 +44,7 @@
                       <td>{{$ct->hotels->nama_hotel}}</td>
                       <td>{{$ct->nama_category}}</td>
                       <td>{{$ct->harga}} </td>
-                      <td>{{$ct->ukuran}}</td>
+                     
                       <td>
                     <a href="{{route('edit_category_kamar', $ct->id)}}" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-pen"></i>

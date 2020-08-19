@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Tamu,User};
+use App\{Profile,User};
 class ProfileTamuController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class ProfileTamuController extends Controller
      */
     public function index()
     {
-       $profile = auth()->user()->tamu;
+       $profile = auth()->user()->profile;
        $tamu = auth()->user();
        return view('site.profile.profile', compact('profile', 'tamu'));
     }
@@ -56,10 +56,10 @@ class ProfileTamuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($email)
     {
-        $user = User::find($id);
-        $profile = auth()->user()->tamu;
+        $user = User::where('email', $email)->first();
+        $profile = auth()->user()->profile;
         
         return view('site.profile.edit', compact('user', 'profile'));
 
@@ -76,16 +76,16 @@ class ProfileTamuController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'no_telpon' =>  'numeric',
+            'no_telpon' =>  'required|numeric',
             'gambar' => 'image|mimes:png,jpg,jpeg,svg|max:1048',
+
         ]);
 
+        $attr = $request->all();
         $user = User::find($id);
-        User::where('id',$user->id)
-                ->update([
-                    'name' => $request->name,
-                ]);
-        $tamu = Tamu::where('user_id', $user->id)->first();
+        $user->update($attr);
+
+        $tamu = Profile::where('user_id', $user->id)->first();
          
          if ($request->file('gambar')) {
             
@@ -97,17 +97,10 @@ class ProfileTamuController extends Controller
 
         $gambarUrl = $tamu->gambar;
 
-       }        
-      
+       }   
 
-        Tamu::where('user_id', $user->id)
-                ->update([
-                    'alamat' => $request->alamat,
-                     'no_telpon' => $request->no_telpon,
-                     'jenis_kelamin' => $request->jenis_kelamin,
-                     'negara' => $request->negara,
-                    'gambar' => $gambarUrl,
-                ]);
+       $attr['gambar'] = $gambarUrl;
+       $tamu->update($attr);
 
         return redirect('/profile');
     }

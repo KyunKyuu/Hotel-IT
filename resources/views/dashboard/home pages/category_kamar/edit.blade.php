@@ -13,7 +13,7 @@
          </div>
      <div class="col-md">
       <div class="card-body">
-            <form action="{{route('update_category_kamar', $kamar->id)}}" method="post" ncetype="multipart/form-data">
+            <form action="{{route('update_category_kamar', $kamar->id)}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('patch')
         
@@ -41,14 +41,7 @@
             <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
           @enderror
           </div>
-        
-          <div class="form-group">
-          <label for="ukuran">Ukuran Kamar</label>
-          <input type="text" class="form-control @error('ukuran') is-invalid @enderror"  name="ukuran" placeholder="Masukan Ukuran  Kamar" value="{{$kamar->ukuran}}">
-          @error('ukuran')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
-          @enderror
-          </div>
+       
           
 
 

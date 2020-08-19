@@ -39,7 +39,7 @@
   </div>
   <hr><br>
   <div class="form-group">
-  	<a href="" class="btn btn-primary">Edit Profile</a>
+  	<a href="{{route('edit_profile_admin', $admin->email)}}" class="btn btn-primary">Edit Profile</a>
   </div>
   </div>
 

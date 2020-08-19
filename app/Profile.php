@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tamu extends Model
+class Profile extends Model
 {
-    protected $table = 'tamu';
-    protected $guarded = ['id'];
+    protected $table = 'profile';
+    protected $fillable = ['user_id', 'negara', 'alamat', 'no_telpon', 'gambar', 'jenis_kelamin',
+
+    ];
     public $timestamps = false;
 
      public function gambar()

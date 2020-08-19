@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes([ 'verify' => true ]);
 Route::get('/', 'SiteController@home')->name('home');
-Route::get('/site/hotel', 'SiteController@hotel')->name('hotel');
+Route::post('/site/hotel', 'SiteController@hotel')->name('hotel');
 Route::get('/site/hotel/{slug:slug}', 'SiteController@detail_hotel')->name('detail_hotel');
 
 
@@ -27,8 +27,10 @@ Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function
 	
 	// Dashboard Profile
 	Route::get('/dasboard/profile', 'ProfileAdminController@index')->name('profile_admin');
+	Route::get('/dasboard/profile/{email:email}', 'ProfileAdminController@edit')->name('edit_profile_admin');
+	Route::patch('/dasboard/profile/{id}', 'ProfileAdminController@update')->name('update_profile_admin');
 
-	// Dashboard Tamu
+	// Dashboard Tabel Tamu
 	Route::get('/dasboard/tamu/', 'TamuController@index')->name('daftar_tamu');
 	Route::get('/dasboard/tamu/{id}', 'TamuController@show')->name('show_tamu');
 	Route::delete('/dasboard/tamu/{id}', 'TamuController@destroy')->name('delete_tamu');
@@ -61,8 +63,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function
 
 	// Dashboard Kamar
 	Route::get('/dasboard/kamar', 'KamarController@index')->name('dashboard_kamar');
-	Route::get('/dasboard/kamar/create', 'KamarController@create')->name('create_kamar');
-	Route::post('/dasboard/kamar/store', 'KamarController@store')->name('store_kamar');
+	
 	Route::get('/dasboard/kamar/{id}', 'KamarController@edit')->name('edit_kamar');
 	Route::patch('/dasboard/kamar/{id}', 'KamarController@update')->name('update_kamar');
 	Route::delete('/dasboard/kamar/{id}', 'KamarController@destroy')->name('destroy_kamar');
@@ -74,7 +75,8 @@ Route::group(['middleware' => ['auth', 'checkRole:tamu', 'verified']], function(
 	
 	// Profile
 	Route::get('/profile', 'ProfileTamuController@index')->name('profile_tamu');
-	Route::get('/profile/{id}', 'ProfileTamuController@edit')->name('edit_profile_tamu');
+	Route::get('/profile/{email:email}', 'ProfileTamuController@edit')->name('edit_profile_tamu');
 	Route::patch('/profile/{id}', 'ProfileTamuController@update')->name('update_profile_tamu');
+
 
 });

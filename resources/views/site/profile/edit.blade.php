@@ -35,15 +35,12 @@
   </div>
   <div class="form-group">
     <label>Jenis Kelamin</label>
-    <select class="form-control" name="jenis_kelamin">
-    @if($profile->jenis_kelamin == false )
-      <option disabled selected="">Pilih Jenis Kelamin</option>
-    @else
-      <option  selected="" value="{{$profile->jenis_kelamin}}">{{$profile->jenis_kelamin}}</option>
-    @endif
-      <option value="pria">Pria</option>
-      <option value="wanita">Wania</option>
-    </select>
+    <select  class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" >
+            <option disabled selected="" value="{{$profile->profile->jenis_kelamin ? $profile->profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}">{{$profile->profile->jenis_kelamin ? $profile->profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}</option>
+              
+              <option value="L">Laki-Laki</option>
+              <option value="P">Perempuan</option>
+          </select>
   </div>
   
   <div class="form-group">

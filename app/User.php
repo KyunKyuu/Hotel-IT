@@ -16,8 +16,8 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $guarded = [
-        'id','created_at'
+    protected $fillable = [
+        'name', 'role', 'email_verified_at', 'email', 'password', 'last_login', 'remember_token',
     ];
 
     /**
@@ -39,9 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function tamu()
+    public function profile()
     {
-        return $this->hasOne(Tamu::class);
+        return $this->hasOne(Profile::class);
     }
 
    public function not_verified()

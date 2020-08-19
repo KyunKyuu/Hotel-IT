@@ -14,7 +14,7 @@
          </div>
      <div class="col-md">
       <div class="card-body">
-            <form action="{{route('update_category_hotel', $hotel->id)}}" method="post" ncetype="multipart/form-data">
+            <form action="{{route('update_category_hotel', $hotel->id)}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('patch')
         

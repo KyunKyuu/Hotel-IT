@@ -12,7 +12,7 @@
       <div class="col-md-6">
   <div class="form-group" >
     <h6>Category Kamar</h6>
-    <strong>{{$kamar->categories->nama_category}}</strong>
+    <strong>{{$category->nama_category}}</strong>
   </div>
   <hr>
   <div class="form-group" >
@@ -22,12 +22,17 @@
   <hr>
   <div class="form-group" >
     <h6>Fasilitas Kamar</h6>
-    <strong>{{$kamar->fasilitas_kamar}}</strong>
+    <i class={{$kamar->fasilitas_kamar}}></i>
   </div>
   <hr>
   <div class="form-group" >
     <h6>Kapasitas Kamar</h6>
     <strong>{{$kamar->kapasitas_kamar}}</strong>
+  </div>
+  <hr>
+  <div class="form-group" >
+    <h6>Jumlah Kamar</h6>
+    <strong>{{$kamar->jumlah_kamar}}</strong>
   </div>
   <hr>
    <div class="form-group" >
@@ -42,7 +47,7 @@
   <hr>
   <div class="form-group" >
     <h6>Created Akun</h6>
-    <strong>{{$kamar->created_at->format('d, M Y')}}</strong>
+    <strong>{{$category->created_at->format('d, M Y')}}</strong>
   </div>
   </div>
   <div class="col-md-6">

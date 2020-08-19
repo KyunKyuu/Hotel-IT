@@ -39,16 +39,40 @@ class CategoryKamarController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $request->validate([
             'hotel_id' => 'required',
             'nama_category' => 'required',
-            'ukuran' => 'required',
             'harga' => 'required',
+            'kode_kamar' => 'required',
+            'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+            'fasilitas_kamar' => 'required',
+            'status_kamar' => 'required',
+            'kapasitas_kamar' => 'required',
+            'jumlah_kamar' => 'required',
+            'content' => 'required',
+        
         ]);
 
-        $kamar = $request->all();
+        $kamar = [$request->fasilitas_kamar, $request->fasilitas_kamar2, $request->fasilitas_kamar3];
 
-        CategoryKamar::create($kamar);
+           
+        $attr = $request->all();
+
+
+        $category = CategoryKamar::create($attr);
+
+
+        $slug = \Str::slug(request('nama_category'));
+        $gambar = $request->file('gambar_kamar');
+        $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
+        $attr['gambar_kamar'] = $gambarUrl;
+        $attr['slug'] = $slug;
+        $attr['category_id'] = $category->id;
+        $attr['fasilitas_kamar'] = json_encode($kamar);
+
+        $kamar = Kamar::create($attr);
 
         return redirect('/dasboard/category_kamar');
     }

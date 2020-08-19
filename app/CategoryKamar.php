@@ -8,12 +8,12 @@ class CategoryKamar extends Model
 {
     protected $table = 'category_kamar';
 
-    protected $guarded = ['id'];
-    public $timestamps = false;
+    protected $fillable = ['hotel_id', 'nama_category', 'harga'];
+    
 
     public function kamar()
     {
-    	return $this->hasMany(Kamar::class, 'id');
+    	return $this->hasOne(Kamar::class, 'category_id');
     }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Agu 2020 pada 19.32
+-- Waktu pembuatan: 19 Agu 2020 pada 02.13
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -68,16 +68,21 @@ CREATE TABLE `category_kamar` (
   `hotel_id` int(11) NOT NULL,
   `nama_category` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga` char(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ukuran` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `category_kamar`
 --
 
-INSERT INTO `category_kamar` (`id`, `hotel_id`, `nama_category`, `harga`, `ukuran`) VALUES
-(1, 1, 'Deluxe King', '1000', '1x1'),
-(2, 2, 'Small Sweet', '2000', '1x2');
+INSERT INTO `category_kamar` (`id`, `hotel_id`, `nama_category`, `harga`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Deluxe King', '1000', '2020-08-14 05:44:38', '2020-08-14 12:44:38'),
+(2, 2, 'Small Sweet', '2000', '2020-08-14 05:44:38', '2020-08-14 12:44:38'),
+(4, 1, 'Vanillaa Delux', '5000', '2020-08-14 13:17:58', '2020-08-14 15:01:15'),
+(6, 1, 'King Hotel', '5000', '2020-08-15 23:42:17', '2020-08-16 06:42:17'),
+(14, 1, 'Joker Hotel', '5000', '2020-08-18 14:25:35', '2020-08-18 07:25:35'),
+(15, 2, 'Ploriddaa class', '57', '2020-08-18 14:45:46', '2020-08-18 07:45:46');
 
 -- --------------------------------------------------------
 
@@ -137,8 +142,9 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`id`, `category_hotel_id`, `nama_hotel`, `kota`, `alamat`, `fasilitas`, `check_in`, `check_out`, `gambar_hotel`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Teguh Hotel', 'Bandung', '', 'Spaa', '2020-08-05 00:00:00', '2020-08-14 00:00:00', '', '', '2020-08-09 09:47:09', '2020-08-10 06:31:17'),
-(2, 2, 'Anjay Hotel broo', 'Bandung', 'Jalan Taman Hewan', 'warner', NULL, NULL, 'images/hotel/anjay-hotel-slug.png', 'anjay-hotel-broo', '2020-08-10 10:56:10', '2020-08-10 23:38:31');
+(1, 1, 'Teguh Hotel', 'Bandung', '', 'Spaa', '2020-08-05 00:00:00', '2020-08-14 00:00:00', '', 'teguh-hotel', '2020-08-09 09:47:09', '2020-08-14 12:36:29'),
+(2, 2, 'Anjay Hotel broo', 'Tokyo', 'Jalan Taman Hewan', 'warner', NULL, NULL, 'images/hotel/anjay-hotel-slug.png', 'anjay-hotel-broo', '2020-08-10 10:56:10', '2020-08-12 17:36:50'),
+(3, 1, 'Florida Hotel', 'Solo', 'Jln. cempaka solo', 'warnettt', '0052-04-02 05:02:00', '0025-02-05 23:02:00', 'images/hotel/florida-hotel.png', 'florida-hotel', '2020-08-14 13:12:03', '2020-08-14 20:12:03');
 
 -- --------------------------------------------------------
 
@@ -151,23 +157,26 @@ CREATE TABLE `kamar` (
   `kode_kamar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fasilitas_kamar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_kamar` enum('tersedia','tidak tersedia') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gambar_kamar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gambar_kamar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kapasitas_kamar` int(11) NOT NULL,
+  `jumlah_kamar` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jumlah_kamar_terisi` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` int(11) UNSIGNED NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `kamar`
 --
 
-INSERT INTO `kamar` (`id`, `kode_kamar`, `fasilitas_kamar`, `status_kamar`, `gambar_kamar`, `kapasitas_kamar`, `category_id`, `slug`, `content`, `created_at`, `updated_at`) VALUES
-(1, '12 12', '124', 'tersedia', 'images/kamar/12.png', 0, 2, 'bdsg-askas', 'test jam segini', '2020-08-07 20:54:44', '2020-08-10 02:21:00'),
-(6, 'sdf sdgs', '124', 'tersedia', '', 0, 1, 'sdf-sdgs', 'we', '2020-08-07 20:54:44', '2020-08-08 03:54:44'),
-(7, 'Bdsg ASkas', '124', 'tersedia', 'images/kamar/bdsg-askas.png', 1, 2, 'bdsg-askas', 'qwe', '2020-08-09 15:41:19', '2020-08-09 22:43:35');
+INSERT INTO `kamar` (`id`, `kode_kamar`, `fasilitas_kamar`, `status_kamar`, `gambar_kamar`, `kapasitas_kamar`, `jumlah_kamar`, `jumlah_kamar_terisi`, `category_id`, `slug`, `content`) VALUES
+(1, '12 12', '124', 'tersedia', 'images/kamar/12.png', 0, '', '', 2, 'bdsg-askas', ''),
+(6, 'sdf sdgs', '124', 'tersedia', '', 0, '', '', 1, 'sdf-sdgs', ''),
+(10, 'Test Test', 'kolan renang', 'tidak tersedia', '', 26, '6', '0', 4, 'Test-test', ''),
+(11, 'king-01', 'warnet gaming', 'tersedia', 'images/kamar/king-hotel.jpeg', 5, '4', NULL, 6, 'king-hotel', 'Kamar untuk raja, rakyat minggir duluu'),
+(14, '22', '[\"fas fa-align-center\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/joker-hotel.png', 4, '2', NULL, 14, 'joker-hotel', '<p><strong>11144</strong>44 ggg</p>'),
+(15, '63 3', '\"fas fa-address-book\"', 'tersedia', 'images/kamar/ploriddaa-class.png', 6, '3', NULL, 15, 'ploriddaa-class', '<p>23</p>');
 
 -- --------------------------------------------------------
 
@@ -229,6 +238,34 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('41@gmail.com', '$2y$10$RKd93eIJtNMTla56S4SxAOwF/.awz4ygrABeb3y5l5D.Rqf7w2TIG', '2020-08-09 12:08:44');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `profile`
+--
+
+CREATE TABLE `profile` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `negara` varchar(50) DEFAULT NULL,
+  `no_telpon` varchar(15) DEFAULT NULL,
+  `jenis_kelamin` enum('L','P') DEFAULT NULL,
+  `alamat` text,
+  `gambar` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `profile`
+--
+
+INSERT INTO `profile` (`id`, `user_id`, `negara`, `no_telpon`, `jenis_kelamin`, `alamat`, `gambar`) VALUES
+(1, 2, NULL, '123', NULL, 'Bandung', 'images/profile/Rifqi njir.jpeg'),
+(12, 20, NULL, '123456744', NULL, NULL, NULL),
+(13, 1, NULL, '86545', 'L', NULL, 'images/profile/Teguh Iqbal Prayoga.png'),
+(16, 24, NULL, '1241421414', NULL, NULL, NULL),
+(17, 25, NULL, '1234567', NULL, NULL, NULL),
+(18, 26, NULL, '124124', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,31 +342,6 @@ CREATE TABLE `saran` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tamu`
---
-
-CREATE TABLE `tamu` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `negara` varchar(50) DEFAULT NULL,
-  `no_telpon` varchar(15) DEFAULT NULL,
-  `jenis_kelamin` enum('pria','wanita') DEFAULT NULL,
-  `alamat` text,
-  `gambar` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `tamu`
---
-
-INSERT INTO `tamu` (`id`, `user_id`, `negara`, `no_telpon`, `jenis_kelamin`, `alamat`, `gambar`) VALUES
-(1, 2, NULL, '123', NULL, 'Bandung', 'images/profile/Rifqi njir.jpeg'),
-(12, 20, NULL, '123456744', NULL, NULL, NULL),
-(13, 1, NULL, '86545', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `users`
 --
 
@@ -340,7 +352,6 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` datetime DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('aktif','tidak aktif') COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -350,10 +361,13 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `role`, `email`, `email_verified_at`, `password`, `status`, `last_login`, `remember_token`, `created_at`) VALUES
-(1, 'Teguh', 'admin', 'iqbal.teguh782@gmail.com', '2020-08-09 14:36:59', '$2y$10$yfC8h.OKQhXgN6QssOnE/ufwsPQOwEBVQa.GtT55rBNI9YDIhzIMi', 'aktif', '2020-08-09 14:36:59', 'rw8jPiDbEbrPWhbXc7XLognn1lydHDuZMteTfqr94vawMChTprE6wwYd0uFo', '2020-07-31 06:43:52'),
-(2, 'qinub', 'tamu', '41@gmail.com', '2020-08-09 05:02:03', '$2y$10$IyUHrCNYw2ZxAhptyAQ7Bu1bDqLbKXQbyk0rOARvPf3y9/TiAoVsq', 'aktif', '2020-08-10 05:48:57', '4hQPX52KcKMZf4I2I6LTkgnNW0a3RdATrxxWDKgowyEbKRSZPtwt7WA37kTt', '2020-08-02 03:19:57'),
-(20, 'Teguh Iqbal Prayoga', 'tamu', 'teguh.iqbal782@gmail.com', NULL, '$2y$10$r4XKatDf5js7.7V6OpFGI.3fBHu/YJVEaXx55KnG2E0U1d2w5A/GS', 'aktif', '2020-08-08 23:39:18', '', '2020-08-09 05:56:36');
+INSERT INTO `users` (`id`, `name`, `role`, `email`, `email_verified_at`, `password`, `last_login`, `remember_token`, `created_at`) VALUES
+(1, 'Teguh Iqbal Prayoga', 'admin', 'iqbal.teguh782@gmail.com', '2020-08-09 14:36:59', '$2y$10$yfC8h.OKQhXgN6QssOnE/ufwsPQOwEBVQa.GtT55rBNI9YDIhzIMi', '2020-08-16 16:56:06', 'MVEUxqmWL8xx800E2mazk4m86revXKJBXOHGfFMaKCgn5TLA1YttpkH4S1I7', '2020-07-31 06:43:52'),
+(2, 'qinub', 'tamu', '41@gmail.com', '2020-08-09 05:02:03', '$2y$10$IyUHrCNYw2ZxAhptyAQ7Bu1bDqLbKXQbyk0rOARvPf3y9/TiAoVsq', '2020-08-10 05:48:57', 'ziL41Rl4wPzQMKmF2ILQaBWcqWFZFwYo3pD6DQgaGG4illZZxmeHCsMbZbHE', '2020-08-02 03:19:57'),
+(20, 'Teguh Iqbal Prayoga', 'tamu', 'teguh.iqbal782@gmail.com', NULL, '$2y$10$r4XKatDf5js7.7V6OpFGI.3fBHu/YJVEaXx55KnG2E0U1d2w5A/GS', '2020-08-08 23:39:18', '', '2020-08-09 05:56:36'),
+(24, 'Coba akun', 'tamu', '12345@gmail.com', NULL, '$2y$10$lAOSqbOj4eJjqSfFx2NBNusQZW.F1hz/v374txkGaxTm8Ib7N7m3m', '2020-08-16 00:39:39', 'Z9vo60S5OwtLciaN1bDMNnHW1VOc8hY3I6jpw9Gza5NhaTqUjfCnMuYOXYCa', '2020-08-16 07:39:39'),
+(25, 'Adam', 'tamu', 'sulthonadammaulana@gmail.com', NULL, '$2y$10$dSrwa5avQfvBqVUBic/UyudeKWPc2UQ2sUDlOUFqB8EL0w1yfUF2m', '2020-08-16 05:18:42', 'ic98RhNvf4RmA3DULbtSb0rYyqIkt4njZtxFQJa36OGDbj3tXRKa1OBp1kNq', '2020-08-16 12:18:42'),
+(26, 'teguhh', 'tamu', 'teguh.iqbal69@gmail.com', NULL, '$2y$10$ZtwI7K6ABq2Wo5KCPAQFlucstXkYE8Poha2ySDHD.kNVDuHIYP19G', '2020-08-16 05:23:49', 'xYvqYdqJdIDOgFV44LTMSBTGMDyxiZRjZMwcpwuNuDdGWvg6chlsRIAM2HBl', '2020-08-16 12:23:49');
 
 --
 -- Indexes for dumped tables
@@ -420,6 +434,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indeks untuk tabel `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `reservasi`
 --
 ALTER TABLE `reservasi`
@@ -441,12 +461,6 @@ ALTER TABLE `review`
 -- Indeks untuk tabel `saran`
 --
 ALTER TABLE `saran`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `tamu`
---
-ALTER TABLE `tamu`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -476,7 +490,7 @@ ALTER TABLE `category_hotel`
 -- AUTO_INCREMENT untuk tabel `category_kamar`
 --
 ALTER TABLE `category_kamar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `diskon_kamar`
@@ -494,13 +508,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `login_access`
@@ -513,6 +527,12 @@ ALTER TABLE `login_access`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `profile`
+--
+ALTER TABLE `profile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `reservasi`
@@ -539,16 +559,10 @@ ALTER TABLE `saran`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tamu`
---
-ALTER TABLE `tamu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

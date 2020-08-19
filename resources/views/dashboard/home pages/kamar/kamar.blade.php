@@ -10,7 +10,7 @@
           </div>
           
             <div class="card-body">
-            	<a href="{{route('create_kamar')}}" class="btn btn-primary btn-icon-split btn-sm">
+            	<a href="{{route('create_category_kamar')}}" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-100">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -40,19 +40,19 @@
                   	 @foreach($kamar as $tm)
                     <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$tm->categories->nama_category}} </td>
-                      <td>{{$tm->kode_kamar}}</td>
-                      <td>{{$tm->status_kamar}}</td>
+                      <td>{{$tm->nama_category}} </td>
+                      <td>{{$tm->kamar->kode_kamar}}</td>
+                      <td>{{$tm->kamar->status_kamar}}</td>
                       <td>
-                      	 <a href="{{route('edit_kamar', $tm->id)}}" class="btn btn-info btn-circle btn-sm">
+                      	 <a href="{{route('edit_kamar', $tm->kamar->id)}}" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-pen"></i>
 					         	</a> 
 
-                     <a href="{{route('show_kamar', $tm->id)}}" class="btn btn-success btn-circle btn-sm">
+                     <a href="{{route('show_kamar', $tm->kamar->id)}}" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i>
                     </a>
                       	 
-                  		<form action="{{route('destroy_kamar', $tm->id)}}" method="post">
+                  		<form action="{{route('destroy_kamar', $tm->kamar->id)}}" method="post">
                   			@csrf
                   			@method('delete')
                   		<button type="submit" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin Dihapus?')">

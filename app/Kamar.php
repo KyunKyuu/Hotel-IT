@@ -10,8 +10,8 @@ class Kamar extends Model
 	use Sluggable;
 
     protected $table = 'kamar';
-    protected $guarded= ['id', 'created_at', 'updated_at'];
-
+    protected $fillable = ['kode_kamar', 'fasilitas_kamar', 'status_kamar', 'gambar_kamar','kapasitas_kamar', 'jumlah_kamar', 'jumlah_kamar_terisi', 'category_id', 'slug', 'content'];
+    public $timestamps = false;
       public function sluggable()
     {
         return [
@@ -28,9 +28,5 @@ class Kamar extends Model
 
 
 
-    public function categories()
-    {
-    	return $this->belongsTo(CategoryKamar::class, 'category_id');
     }
-}
 

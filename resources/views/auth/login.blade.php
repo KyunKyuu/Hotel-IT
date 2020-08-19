@@ -12,6 +12,12 @@
                     </div>
 
                     <div class="signin-form">
+                         @if ($message = Session::get('success'))
+                                 <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert">×</button> 
+                                     <h3>{{ $message }}</h3>
+                     </div>
+                         @endif
                         <h2 class="form-title">Login</h2>
                         <form method="POST" class="register-form" id="login-form" action="{{ route('login')}}">
                             @csrf

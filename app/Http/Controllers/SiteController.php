@@ -13,18 +13,22 @@ class SiteController extends Controller
    	return view('site.home', compact('negara', 'hotel'));
    }
 
-   public function hotel()
+   public function hotel(Request $request)
    {
-   	$hotel = Hotel::latest()->paginate(6);
-   	return view('site.hotel', compact('hotel'));
+      // if ($request == null) {
+      //       return redirect()->back();
+      //    } else {
+      $category = CategoryHotel::where('negara', $request->negara)->first();
+   	$hotel = Hotel::where('category_hotel_id', $category->id)->paginate(5);
+   	return view('site.hotel', compact('hotel', 'category'));
+       // } 
+
    }
    
    public function detail_hotel($slug)
    {
-   	 $hotel = Hotel::where('slug', $slug)->first();
+   	   $hotel = Hotel::where('slug', $slug)->first();
        $category = CategoryKamar::where('hotel_id', $hotel->id)->get();
-       $kamar = Kamar::where('category_id', $category->id)->get();
-       dd($kamar);
-       // return view('site.detail_hotel', compact('hotel', 'category_kamar', 'kamar'));
+       return view('site.detail_hotel', compact('hotel', 'category'));
    }
 }

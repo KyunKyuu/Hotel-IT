@@ -85,7 +85,12 @@
             <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
           @enderror
           </div>
-
+          
+        <div class="form-group">
+          <label for="jumlah_kamar">Jumlah Kamar</label>
+          <input type="number" class="form-control @error('jumlah_kamar') is-invalid @enderror"  name="jumlah_kamar" placeholder="Masukan Jumlah Kamar" value="{{$kamar->jumlah_kamar}}">
+         
+          </div>
           
           <div class="form-group">
           <label for="status_kamar">Status Kamar</label>
