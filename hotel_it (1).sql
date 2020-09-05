@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Agu 2020 pada 02.13
+-- Waktu pembuatan: 27 Agu 2020 pada 01.06
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -68,6 +68,7 @@ CREATE TABLE `category_kamar` (
   `hotel_id` int(11) NOT NULL,
   `nama_category` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga` char(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -76,13 +77,13 @@ CREATE TABLE `category_kamar` (
 -- Dumping data untuk tabel `category_kamar`
 --
 
-INSERT INTO `category_kamar` (`id`, `hotel_id`, `nama_category`, `harga`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Deluxe King', '1000', '2020-08-14 05:44:38', '2020-08-14 12:44:38'),
-(2, 2, 'Small Sweet', '2000', '2020-08-14 05:44:38', '2020-08-14 12:44:38'),
-(4, 1, 'Vanillaa Delux', '5000', '2020-08-14 13:17:58', '2020-08-14 15:01:15'),
-(6, 1, 'King Hotel', '5000', '2020-08-15 23:42:17', '2020-08-16 06:42:17'),
-(14, 1, 'Joker Hotel', '5000', '2020-08-18 14:25:35', '2020-08-18 07:25:35'),
-(15, 2, 'Ploriddaa class', '57', '2020-08-18 14:45:46', '2020-08-18 07:45:46');
+INSERT INTO `category_kamar` (`id`, `hotel_id`, `nama_category`, `harga`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Deluxe King', '1000', 'deluxe-king', '2020-08-14 05:44:38', '2020-08-20 07:45:09'),
+(2, 2, 'Small Sweet', '2000', '', '2020-08-14 05:44:38', '2020-08-14 12:44:38'),
+(4, 1, 'Vanillaa Delux', '5000', '', '2020-08-14 13:17:58', '2020-08-14 15:01:15'),
+(6, 1, 'King Room', '5000', '', '2020-08-15 23:42:17', '2020-08-25 14:56:38'),
+(14, 1, 'Joker Room', '5000', '', '2020-08-18 14:25:35', '2020-08-25 14:56:44'),
+(15, 3, 'Ploriddaa class', '57', '', '2020-08-18 14:45:46', '2020-08-25 06:53:19');
 
 -- --------------------------------------------------------
 
@@ -132,6 +133,7 @@ CREATE TABLE `hotel` (
   `check_in` datetime DEFAULT CURRENT_TIMESTAMP,
   `check_out` datetime DEFAULT CURRENT_TIMESTAMP,
   `gambar_hotel` varchar(100) NOT NULL,
+  `content` text NOT NULL,
   `slug` varchar(191) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -141,10 +143,10 @@ CREATE TABLE `hotel` (
 -- Dumping data untuk tabel `hotel`
 --
 
-INSERT INTO `hotel` (`id`, `category_hotel_id`, `nama_hotel`, `kota`, `alamat`, `fasilitas`, `check_in`, `check_out`, `gambar_hotel`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Teguh Hotel', 'Bandung', '', 'Spaa', '2020-08-05 00:00:00', '2020-08-14 00:00:00', '', 'teguh-hotel', '2020-08-09 09:47:09', '2020-08-14 12:36:29'),
-(2, 2, 'Anjay Hotel broo', 'Tokyo', 'Jalan Taman Hewan', 'warner', NULL, NULL, 'images/hotel/anjay-hotel-slug.png', 'anjay-hotel-broo', '2020-08-10 10:56:10', '2020-08-12 17:36:50'),
-(3, 1, 'Florida Hotel', 'Solo', 'Jln. cempaka solo', 'warnettt', '0052-04-02 05:02:00', '0025-02-05 23:02:00', 'images/hotel/florida-hotel.png', 'florida-hotel', '2020-08-14 13:12:03', '2020-08-14 20:12:03');
+INSERT INTO `hotel` (`id`, `category_hotel_id`, `nama_hotel`, `kota`, `alamat`, `fasilitas`, `check_in`, `check_out`, `gambar_hotel`, `content`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Teguh Hotel', 'Bandung', 'Jalan Kebun Binatang ', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', '2020-08-05 00:00:00', '2020-08-14 00:00:00', '', '<b>Testttt Deskripsi Hotel</b><br><h3>Hotel ini adalah hotel tterbaikkkkk</h3>', 'teguh-hotel', '2020-08-09 09:47:09', '2020-08-25 04:14:42'),
+(2, 2, 'Anjay Hotel broo', 'Tokyo', 'Jalan Taman Hewan', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', NULL, NULL, 'images/hotel/anjay-hotel-slug.png', '', 'anjay-hotel-broo', '2020-08-10 10:56:10', '2020-08-25 04:14:50'),
+(3, 1, 'Florida Hotel', 'Solo', 'Jln. cempaka solo', '[\"fas fa-user\",\"fab fa-500px\",\"far fa-address-card\"]', '0052-04-02 05:02:00', '0025-02-05 23:02:00', 'images/hotel/florida-hotel.png', '', 'florida-hotel', '2020-08-14 13:12:03', '2020-08-25 14:57:35');
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,6 @@ CREATE TABLE `kamar` (
   `jumlah_kamar` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jumlah_kamar_terisi` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` int(11) UNSIGNED NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -170,13 +171,13 @@ CREATE TABLE `kamar` (
 -- Dumping data untuk tabel `kamar`
 --
 
-INSERT INTO `kamar` (`id`, `kode_kamar`, `fasilitas_kamar`, `status_kamar`, `gambar_kamar`, `kapasitas_kamar`, `jumlah_kamar`, `jumlah_kamar_terisi`, `category_id`, `slug`, `content`) VALUES
-(1, '12 12', '124', 'tersedia', 'images/kamar/12.png', 0, '', '', 2, 'bdsg-askas', ''),
-(6, 'sdf sdgs', '124', 'tersedia', '', 0, '', '', 1, 'sdf-sdgs', ''),
-(10, 'Test Test', 'kolan renang', 'tidak tersedia', '', 26, '6', '0', 4, 'Test-test', ''),
-(11, 'king-01', 'warnet gaming', 'tersedia', 'images/kamar/king-hotel.jpeg', 5, '4', NULL, 6, 'king-hotel', 'Kamar untuk raja, rakyat minggir duluu'),
-(14, '22', '[\"fas fa-align-center\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/joker-hotel.png', 4, '2', NULL, 14, 'joker-hotel', '<p><strong>11144</strong>44 ggg</p>'),
-(15, '63 3', '\"fas fa-address-book\"', 'tersedia', 'images/kamar/ploriddaa-class.png', 6, '3', NULL, 15, 'ploriddaa-class', '<p>23</p>');
+INSERT INTO `kamar` (`id`, `kode_kamar`, `fasilitas_kamar`, `status_kamar`, `gambar_kamar`, `kapasitas_kamar`, `jumlah_kamar`, `jumlah_kamar_terisi`, `category_id`, `content`) VALUES
+(1, '12 12', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/12.png', 0, '', '', 2, 'Kamar untuk raja, rakyat minggir duluu'),
+(6, 'sdf sdgs', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', '', 0, '', '', 1, 'Kamar untuk raja, rakyat minggir duluu'),
+(10, 'Test Test', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tidak tersedia', '', 26, '6', '0', 4, 'Kamar untuk raja, rakyat minggir duluu'),
+(11, 'king-01', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/king-hotel.jpeg', 5, '4', NULL, 6, 'Kamar untuk raja, rakyat minggir duluu'),
+(14, '22', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/joker-hotel.png', 4, '2', NULL, 14, '<p><strong>11144</strong>44 ggg</p>'),
+(15, '63 3', '[\"fas fa-code\",\"fab fa-500px\",\"far fa-address-card\"]', 'tersedia', 'images/kamar/ploriddaa-class.png', 6, '3', NULL, 15, '<p>23</p>');
 
 -- --------------------------------------------------------
 
@@ -278,7 +279,7 @@ CREATE TABLE `reservasi` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `check_in` date NOT NULL,
   `check_out` date NOT NULL,
-  `kamar_id` bigint(20) UNSIGNED NOT NULL,
+  `category_kamar_id` bigint(20) UNSIGNED NOT NULL,
   `no_telpon` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pembayaran_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -362,8 +363,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `role`, `email`, `email_verified_at`, `password`, `last_login`, `remember_token`, `created_at`) VALUES
-(1, 'Teguh Iqbal Prayoga', 'admin', 'iqbal.teguh782@gmail.com', '2020-08-09 14:36:59', '$2y$10$yfC8h.OKQhXgN6QssOnE/ufwsPQOwEBVQa.GtT55rBNI9YDIhzIMi', '2020-08-16 16:56:06', 'MVEUxqmWL8xx800E2mazk4m86revXKJBXOHGfFMaKCgn5TLA1YttpkH4S1I7', '2020-07-31 06:43:52'),
-(2, 'qinub', 'tamu', '41@gmail.com', '2020-08-09 05:02:03', '$2y$10$IyUHrCNYw2ZxAhptyAQ7Bu1bDqLbKXQbyk0rOARvPf3y9/TiAoVsq', '2020-08-10 05:48:57', 'ziL41Rl4wPzQMKmF2ILQaBWcqWFZFwYo3pD6DQgaGG4illZZxmeHCsMbZbHE', '2020-08-02 03:19:57'),
+(1, 'Teguh Iqbal Prayoga', 'admin', 'iqbal.teguh782@gmail.com', '2020-08-09 14:36:59', '$2y$10$yfC8h.OKQhXgN6QssOnE/ufwsPQOwEBVQa.GtT55rBNI9YDIhzIMi', '2020-08-16 16:56:06', 'Bvs7UMmPTgwNxLB5mqmjEyYofmhFv8XH9LKViuTtH0DJbAthuLOsLghcljjG', '2020-07-31 06:43:52'),
+(2, 'qinub', 'tamu', '41@gmail.com', '2020-08-09 05:02:03', '$2y$10$Gagejn3.5NjZZPou5mqgpO9pstxfIqdCeMFE.eR1dlatGBuWVQ/QK', '2020-08-27 00:21:04', 'JqwHdgOFbyQNEgxa39LzTsb86ITA3m6dd9zgPqLman0fPPKmpdvmogJEfE7g', '2020-08-02 03:19:57'),
 (20, 'Teguh Iqbal Prayoga', 'tamu', 'teguh.iqbal782@gmail.com', NULL, '$2y$10$r4XKatDf5js7.7V6OpFGI.3fBHu/YJVEaXx55KnG2E0U1d2w5A/GS', '2020-08-08 23:39:18', '', '2020-08-09 05:56:36'),
 (24, 'Coba akun', 'tamu', '12345@gmail.com', NULL, '$2y$10$lAOSqbOj4eJjqSfFx2NBNusQZW.F1hz/v374txkGaxTm8Ib7N7m3m', '2020-08-16 00:39:39', 'Z9vo60S5OwtLciaN1bDMNnHW1VOc8hY3I6jpw9Gza5NhaTqUjfCnMuYOXYCa', '2020-08-16 07:39:39'),
 (25, 'Adam', 'tamu', 'sulthonadammaulana@gmail.com', NULL, '$2y$10$dSrwa5avQfvBqVUBic/UyudeKWPc2UQ2sUDlOUFqB8EL0w1yfUF2m', '2020-08-16 05:18:42', 'ic98RhNvf4RmA3DULbtSb0rYyqIkt4njZtxFQJa36OGDbj3tXRKa1OBp1kNq', '2020-08-16 12:18:42'),

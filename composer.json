@@ -14,7 +14,9 @@
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "unisharp/laravel-filemanager": "^2.1"
+        "nesbot/carbon": "^2.38",
+        "unisharp/laravel-filemanager": "^2.1",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

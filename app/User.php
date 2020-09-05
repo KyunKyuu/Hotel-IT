@@ -44,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
+   public function reservasi()
+    {
+        return $this->hasMany(Reservasi::class, 'id');
+    }
+
    public function not_verified()
    {
      return  $this->email_verified_at == null ? true : false;

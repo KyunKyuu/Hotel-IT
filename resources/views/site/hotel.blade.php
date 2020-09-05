@@ -26,6 +26,7 @@
     <!-- Breadcrumb Area End -->
 
     <!-- Rooms Area Start -->
+    {{$no = 0}}
     <div class="roberto-rooms-area section-padding-100-0">
         <div class="container">
             <div class="row">
@@ -41,17 +42,18 @@
                         <div class="room-content">
                             <h2>{{$ht->nama_hotel}}</h2>
                             <h6 style="color: black;">{{$ht->CategoriesHotel->negara}} - {{$ht->kota}}</h6>
-                            <h4>200 Rp<span>/ Day</span></h4>
+                            <h4>{{$harga[$no]['harga']}}<span>.RP/ Day</span></h4>
                             <div class="room-feature">
-                                <h6>Fasilitas: <span>{{ Str::limit($ht->fasilitas, 30, '..') }}</span></h6>
-                               
-                               
                                 
+                            <i class="{{implode(" ",json_decode($ht->fasilitas, TRUE))}}"></i>
+                               
                             </div>
                             <a href="{{route('detail_hotel', $ht->slug)}}" class="btn view-detail-btn">View Details <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                            }
+                            }
                         </div>
                     </div>
-
+                    {{$no++}}
                     @endforeach
 
                     <!-- Pagination -->
@@ -61,7 +63,6 @@
 
 
                            
-                        </form>
                     </div>
                 </div>
             </div>

@@ -40,7 +40,9 @@
             <div class="form-group">
           <label for="nama_category">Nama Categrory Kamar</label>
           <input type="text" class="form-control @error('nama_category') is-invalid @enderror"  name="nama_category" placeholder="Masukan Nama Category Kamar" value="{{old('nama_category')}}">
-         
+           @error('nama_category')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
           </div>
         
                     
@@ -49,12 +51,17 @@
           <div class="form-group">
           <label for="harga">Harga Kamar</label>
           <input type="number" class="form-control @error('harga') is-invalid @enderror"  name="harga" placeholder="Masukan Harga Kamar" value="{{old('harga')}}">
+            @error('harga')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
           </div>
 
-        <div class="form-group">
+         <div class="form-group">
             <label for="content">Deskrisi Kamar</label>
-            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="my-editor" value="{{old('content')}}"></textarea>
-            
+            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="my-editor" value="{!!old('content')!!}"></textarea>
+            @error('content')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
           </div>
 
 
@@ -65,7 +72,7 @@
                <label for="gambar_kamar">Upload Gambar Thumbnail</label>
            <input type="file" class="form-control @error('gambar_kamar') is-invalid @enderror" name="gambar_kamar" id="gambar_kamar">
            @error('gambar_kamar')
-              <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+              <div class="invalid-feedback">{{ $message }}</div>
              @enderror
              </div>
 
@@ -74,7 +81,7 @@
           <label for="kode_kamar">Kode kamar</label>
           <input type="text" class="form-control @error('kode_kamar') is-invalid @enderror"  name="kode_kamar" placeholder="Masukan Kode" value="{{old('kode_kamar')}}">
           @error('kode_kamar')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+           <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
 
@@ -84,19 +91,26 @@
           <button class="btn btn-secondary @error('fasilitas_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_kamar" value="{{old('fasilitas_kamar')}}">Icon</button >&nbsp;
            <button class="btn btn-secondary @error('fasilitas_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_kamar2" value="{{old('fasilitas_kamar')}}">Icon</button >&nbsp;
             <button class="btn btn-secondary @error('fasilitas_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_kamar3" value="{{old('fasilitas_kamar')}}">Icon</button >
+            <button class="btn btn-secondary @error('fasilitas_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_kamar4" value="{{old('fasilitas_kamar')}}">Icon</button >
+            <button class="btn btn-secondary @error('fasilitas_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_kamar5" value="{{old('fasilitas_kamar')}}">Icon</button >
+
+
           </div>
 
            <div class="form-group">
           <label for="kapasitas_kamar">Kapasitas kamar</label>
           <input type="number" class="form-control @error('kapasitas_kamar') is-invalid @enderror"  name="kapasitas_kamar" placeholder="Masukan Kapasitas Kamar" value="{{old('kapasitas_kamar')}}">
           @error('kapasitas_kamar')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
 
            <div class="form-group">
           <label for="jumlah_kamar">Jumlah kamar</label>
           <input type="number" class="form-control @error('jumlah_kamar') is-invalid @enderror"  name="jumlah_kamar" placeholder="Masukan Jumlah Kamar" value="{{old('kapasitas_kamar')}}">
+            @error('jumlah_kamar')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
           </div>
 
           

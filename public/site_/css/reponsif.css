@@ -1,0 +1,407 @@
+/*
+##Device = Desktop large
+##Screen = 1600px higher resolution desktops
+*/
+
+@media(min-width: 1600px) {
+  .booking{
+    margin-top: 7%;
+  }
+  .py-6{
+    padding-top: 12.4vw;
+  }
+  .top-destination{
+    width: 63%;
+  }
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) and (max-width: 1599px) {
+  .cover .cover-text{
+    /*padding-top: 55%;*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 29%;
+  }
+  .select{
+    padding-left: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+  .booking{
+    margin-top: 7%;
+  }
+  .button-search {
+    padding-right: 0rem;
+    padding-left: 0.7rem;
+  }
+  .pt-costum{
+    padding-top: 0rem;
+  }
+  .py-6{
+    padding-top: 13.5vw;
+  }
+  h3, .h3 {
+    font-size: 1.45rem;
+  }
+  .carousel-item{
+    margin-left: 8.6em;
+  }
+  .carousell-title{
+    margin-left: 49px;
+  }
+  .ml-6{
+    margin-left: 2rem;
+  }
+  .card{
+    left: 59%;
+  }
+  .icon-client{
+    transform: translate(7.5em , -1.5em);
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .cover .cover-text{
+    margin-top: 39%;
+  }
+  .cover img{
+    width: 100%;
+    height: 500px;
+  }
+  .select{
+    padding-left: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+  .input{
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+  .form-select-lg {
+    height: calc(1.5em + 1rem + 0px);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+  }
+  .form-control-lg {
+    min-height: calc(1em + 1rem + 0px);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+  }
+  .cover h1{
+    font-size: 2em;
+  }
+  .button-search {
+    padding-right: 0rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.1rem;
+    width: 100%;
+  }
+  .pt-costum{
+    padding-top: 0rem;
+  }
+  .booking{
+    margin-top: 1em;
+  }
+  .top-destination {
+    width: 63%;
+    margin-top: 10%;
+    margin-left: 4%;
+  }
+  .top-destination-button{
+    float: none;
+  }
+  .hr {
+    border: 1px solid #00A790;
+    width: 25%;
+    margin-left: -10%;
+    transform: translateY(-15px);
+  }
+
+  .card{
+    left: 7%;
+  }
+  .card-img-overlay{
+    padding: 1rem !important;
+  }
+  h3, .h3 {
+    font-size: calc(1.3rem + -1vw);
+  }
+  h5, .h5 {
+    font-size: 1rem;
+  }
+  .py-6{
+    padding-top: 3em;
+  }
+  .btn-4{
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .card p{
+    margin-bottom: 0rem;
+  }
+  .carousel-item {
+    width: 100%;
+    margin-left: 0em;
+  }
+  .carousell-title{
+    top: 25%;
+    margin-left: 35px;
+  }
+  .ml-6{
+    margin-left: 1rem;
+  }
+  .my-6{
+    top: 48%;
+  }
+  .ml-7{
+    margin-left: 3.5rem;
+  }
+  .network img{
+    width: 100%;
+  }
+  .client-item{
+    transform: translateX(0%);
+  }
+  .accommodations .col-sm-12{
+    width: 50%;
+    transform: translateX(50%);
+    margin-top: 2%;
+  }
+  .control-next, .control-prev{
+    top: 0px;
+    width: max-content;
+  }
+  .client h2 {
+    margin-left: 0%;
+  }
+  .hr-2{
+    width: 25%;
+    margin-left: 0%;
+  }
+  .accommodations h2 {
+    margin-left: 0%;
+  }
+  .footer-item{
+    margin-bottom: 2%;
+  }
+  .icon-client{
+    transform: translate(7.8em , -1em);
+  }
+  .name {
+    font-size: calc(1.9rem + -1vw);
+  }
+  .button-navbar {
+    margin-left: -2%;
+  }
+  .navbar-collapse {
+    width: inherit;
+  }
+  .navbar-left {
+    transform: translateX(5%);
+  }
+  .nav-kanan{
+    padding-left: 0%;
+  }
+  .control-prev{
+    left: -10%;
+  }
+  .control-next{
+    right: -10%;
+  }
+  .card-img-overlay img {
+    display: none;
+  }
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .button-navbar {
+    margin-left: -2%;
+  }
+  .navbar-collapse {
+    width: inherit;
+  }
+  .navbar-left {
+    transform: translateX(5%);
+  }
+  .nav-kanan{
+    padding-left: 0%;
+  }
+  .cover h1 {
+    font-size: 1.5em;
+  }
+  .cover .cover-text{
+    margin-top: 72vw;
+    width: 85%;
+  }
+  .pt-costum{
+    padding-top: 0rem;
+  }
+  .booking{
+    margin-top: 30px;
+  }
+  .select {
+    padding-left: 0.75rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0rem;
+    padding-right: 0.1rem;
+  }
+  .input {
+    padding-top: 0.5rem;
+    padding-bottom: 0rem;
+    padding-right: 0.1rem;
+  }
+  .button-search{
+    padding-top: 10px;
+    width: inherit;
+  }
+  .cover img{
+    height: 254px;
+    width: 100%;
+  }
+  .form-select-lg {
+    height: calc(1.5em + 0.5rem + 2px);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    font-size: 0.875rem;
+  }
+  .form-control-lg {
+    min-height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+  }
+  .btn-lg, .btn-group-lg > .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+  }
+  .top-destination{
+    margin-top: 65vw;
+    width: 100%;
+    margin-left: 0%;
+  }
+  .hr{
+    transform: translateY(-100px);
+    margin-left: 3%;
+    width: 30%
+  }
+  .top-destination-button{
+    margin-top: 3%;
+  }
+  .card {
+    left: 3.5%;
+    width: 80%;
+    display: inline-flex;
+  }
+  .top-hotel{
+    margin-top: -15px;
+  }
+  .accommodations .col-sm-6{
+    width: 50%;
+    transform: translateX(0%);
+  }
+  .carousell-title {
+    top: 50%;
+    margin-left: 29px;
+    font-size: 1.55em;
+  }
+  .ml-6{
+    margin-left: 0.7rem;
+  }
+  .py-6 {
+    padding-top: 7.5em;
+  }
+  .pemisah-kecil{
+    margin-top: 3%;
+  }
+  h3, .h3 {
+    font-size: calc(1.3rem + 0.5vw);
+  }
+  .card-img-overlay {
+    padding: 2rem !important;
+  }
+  .card-img{
+    height: 350px;
+  }
+  .mx-2{
+    margin-left: 0.4rem!important;
+  }
+  .client-item{
+    transform: translateX(0%);
+  }
+  .accommodations .col-sm-12 {
+    width: 50%;
+    transform: translateX(50%);
+    margin-top: 2%;
+  }
+  .carousel-item {
+    width: 90%;
+    margin-left: 1.5em;
+  }
+  .network img {
+    width: 75%;
+  }
+  .icon-client{
+    transform: translate(7.3em , -1.6em);
+  }
+  .footer-item{
+    margin-top: 5%;
+  }
+}

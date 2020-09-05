@@ -67,7 +67,7 @@
               </div>
             </div>
               <div class="card-footer py-3">
-              {{$categories->links()}}
+             
             
           </div>
           </div>
@@ -93,3 +93,10 @@
   </div>
 </div>
 @endsection
+@push('footer')
+  <script>
+    $(document).ready( function () {
+    $('#dataTable').DataTable();
+} );
+  </script>
+@endpush

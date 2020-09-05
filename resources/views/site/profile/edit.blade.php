@@ -1,4 +1,4 @@
-@extends('layouts/site/main')
+@extends('layouts/site_/main')
 
 @section('title')
 	{{$user->name}} - Profile
@@ -36,7 +36,7 @@
   <div class="form-group">
     <label>Jenis Kelamin</label>
     <select  class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" >
-            <option disabled selected="" value="{{$profile->profile->jenis_kelamin ? $profile->profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}">{{$profile->profile->jenis_kelamin ? $profile->profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}</option>
+            <option disabled selected="" value="{{$profile->jenis_kelamin ? $profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}">{{$profile->jenis_kelamin ? $profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}</option>
               
               <option value="L">Laki-Laki</option>
               <option value="P">Perempuan</option>

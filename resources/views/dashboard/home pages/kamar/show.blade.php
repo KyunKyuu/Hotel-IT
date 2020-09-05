@@ -20,10 +20,15 @@
     <strong>{{$kamar->kode_kamar}}</strong>
   </div>
   <hr>
+  
   <div class="form-group" >
     <h6>Fasilitas Kamar</h6>
-    <i class={{$kamar->fasilitas_kamar}}></i>
+    @foreach($icon as $ic)
+    <i class="{!! $ic !!}"></i>
+    @endforeach
+
   </div>
+
   <hr>
   <div class="form-group" >
     <h6>Kapasitas Kamar</h6>
@@ -42,7 +47,7 @@
   <hr>
    <div class="form-group" >
     <h6>Tentang Kamar</h6>
-    <strong>{{$kamar->content}}</strong>
+    <strong>{!! $kamar->content !!}</strong>
   </div>
   <hr>
   <div class="form-group" >

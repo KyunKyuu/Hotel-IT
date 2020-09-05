@@ -67,7 +67,6 @@
               </div>
             </div>
             <div class="card-footer py-3">
-              {{$kamar->links()}}
             
           </div>
           
@@ -94,3 +93,10 @@
   </div>
 </div>
 @endsection
+@push('footer')
+  <script>
+    $(document).ready( function () {
+    $('#dataTable').DataTable();
+} );
+  </script>
+@endpush

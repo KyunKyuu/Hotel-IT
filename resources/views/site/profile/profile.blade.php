@@ -1,4 +1,4 @@
-@extends('layouts/site/main')
+@extends('layouts/site_/main')
 
 @section('title')
 	{{$tamu->name}} - Profile

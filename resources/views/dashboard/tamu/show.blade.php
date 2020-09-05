@@ -54,7 +54,47 @@
 </div>
 </div>
 </div>
+
 </div>
 </div>
 
+<div class="container-fluid">
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Riwayat Reservasi</h6>
+           
+          </div>
+          
+            <div class="card-body">
+              
+              <div class="table-responsive"><br>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Hotel</th>
+                      <th>Nama Kamar</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      
+                      <td>{{$tamu->CategoryKamar->hotels->nama_hotel}}</td>
+                      <td>{{$tamu->CategoryKamar->nama_category}}</td>
+                      <td>{{$tamu->check_in}}</td>
+                      <td>{{$tamu->check_out}}</td>
+                    </tr>
+                  
+                    </tbody>
+                </table>
+              </div>
+            </div>
+              <div class="card-footer py-3">
+                {{$reservasi->links()}}
+            </div>
+          </div>
+        </div>
 @endsection

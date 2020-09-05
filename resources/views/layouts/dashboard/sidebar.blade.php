@@ -48,8 +48,8 @@
               <h6 class="collapse-header">Daftar Tamu:</h6>
             <a class="collapse-item" href="{{route('daftar_tamu')}}">Data Tamu</a>
 
-            <a class="collapse-item" href="#">Tamu Check In</a>
-            <a class="collapse-item" href="#">Tamu Check Out</a>
+            <a class="collapse-item" href="{{route('daftar_check_in')}}">Daftar Check In Today</a>
+            <a class="collapse-item" href="{{route('daftar_check_out')}}">Daftar Check Out Today</a>
           </div>
         </div>
       </li>

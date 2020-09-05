@@ -16,7 +16,7 @@ Auth::routes([ 'verify' => true ]);
 Route::get('/', 'SiteController@home')->name('home');
 Route::post('/site/hotel', 'SiteController@hotel')->name('hotel');
 Route::get('/site/hotel/{slug:slug}', 'SiteController@detail_hotel')->name('detail_hotel');
-
+Route::get('/site/kamar/{slug:slug}', 'SiteController@detail_kamar')->name('detail_kamar');
 
 
 
@@ -26,12 +26,14 @@ Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function
 	Route::get('/dasboard', 'DashboardController@index')->name('dashboard');
 	
 	// Dashboard Profile
-	Route::get('/dasboard/profile', 'ProfileAdminController@index')->name('profile_admin');
-	Route::get('/dasboard/profile/{email:email}', 'ProfileAdminController@edit')->name('edit_profile_admin');
-	Route::patch('/dasboard/profile/{id}', 'ProfileAdminController@update')->name('update_profile_admin');
+	Route::get('/dasboard/profile', 'Account\ProfileAdminController@index')->name('profile_admin');
+	Route::get('/dasboard/profile/{email:email}', 'Account\ProfileAdminController@edit')->name('edit_profile_admin');
+	Route::patch('/dasboard/profile/{id}', 'Account\ProfileAdminController@update')->name('update_profile_admin');
 
 	// Dashboard Tabel Tamu
 	Route::get('/dasboard/tamu/', 'TamuController@index')->name('daftar_tamu');
+	Route::get('/dasboard/tamu/check_in', 'TamuController@check_in_today')->name('daftar_check_in');
+	Route::get('/dasboard/tamu/check_out', 'TamuController@check_out_today')->name('daftar_check_out');
 	Route::get('/dasboard/tamu/{id}', 'TamuController@show')->name('show_tamu');
 	Route::delete('/dasboard/tamu/{id}', 'TamuController@destroy')->name('delete_tamu');
 	
@@ -74,9 +76,16 @@ Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function
 Route::group(['middleware' => ['auth', 'checkRole:tamu', 'verified']], function(){
 	
 	// Profile
-	Route::get('/profile', 'ProfileTamuController@index')->name('profile_tamu');
-	Route::get('/profile/{email:email}', 'ProfileTamuController@edit')->name('edit_profile_tamu');
-	Route::patch('/profile/{id}', 'ProfileTamuController@update')->name('update_profile_tamu');
+	Route::get('/profile', 'Account\ProfileTamuController@index')->name('profile_tamu');
+	Route::get('/profile/password', 'Account\PasswordController@edit_tamu')->name('edit_password_tamu');
+	Route::patch('/profile/password', 'Account\PasswordController@update_tamu')->name('update_password_tamu');
+	Route::get('/profile/{email:email}', 'Account\ProfileTamuController@edit')->name('edit_profile_tamu');
+	Route::patch('/profile/{id}', 'Account\ProfileTamuController@update')->name('update_profile_tamu');
+
+	// history reservasi
+	Route::get('/history/reservasi/{email:email}', 'ReservasiController@history_reservasi')->name('history_reservasi');
+	// proses reservasi kamar
+	Route::post('/reservasi/{id}', 'ReservasiController@create_reservasi')->name('reservasi');
 
 
 });

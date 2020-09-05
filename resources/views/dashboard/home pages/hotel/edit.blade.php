@@ -17,9 +17,10 @@
               @csrf
              @method('patch')
         <div class="row">
-          <div class="col-md-7">
 
-              <div class="form-group">
+          <div class="col-md-7">
+            
+                <div class="form-group">
                <label for="gambar_hotel">Upload Gambar Thumbnail</label>
            <input type="file" class="form-control @error('gambar_hotel') is-invalid @enderror" name="gambar_hotel" id="gambar_hotel" value="{{$hotel->gambar_hotel}}">
              </div>
@@ -32,8 +33,16 @@
               <option value="{{$ng->id}}">{{$ng->negara}}</option>
             @endforeach
           </select>
-         
           </div>
+
+          <div class="form-group">
+            <label for="content">Deskrisi Hotel</label>
+            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="my-editor" value="{!! $hotel->content !!}"></textarea>
+          </div>
+
+          </div>
+
+          <div class="col-md-5">
 
          
 
@@ -41,7 +50,7 @@
           <label for="nama_hotel">Nama Hotel</label>
           <input type="text" class="form-control @error('nama_hotel') is-invalid @enderror"  name="nama_hotel" placeholder="Masukan Nama Hotel" value="{{$hotel->nama_hotel}}">
           @error('nama_hotel')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
         
@@ -49,7 +58,7 @@
           <label for="kota">Kota</label>
           <input type="text" class="form-control @error('kota') is-invalid @enderror"  name="kota" placeholder="Masukan kota  Hotel" value="{{$hotel->kota}}">
           @error('kota')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
             
@@ -57,7 +66,7 @@
           <label for="alamat">Alamat Hotel</label>
           <input type="text" class="form-control @error('alamat') is-invalid @enderror"  name="alamat" placeholder="Masukan Alamat Hotel" value="{{$hotel->alamat}}">
           @error('alamat')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
 
@@ -65,7 +74,7 @@
           <label for="fasilitas">Fasilitas Hotel</label>
           <input type="text" class="form-control @error('fasilitas') is-invalid @enderror"  name="fasilitas" placeholder="Masukan fasilitas  Hotel" value="{{$hotel->fasilitas}}">
           @error('fasilitas')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
 
@@ -73,7 +82,7 @@
           <label for="check_in">Rata-Rata Check_in Hotel</label>
           <input type="datetime-local" class="form-control @error('check_in') is-invalid @enderror"  name="check_in" placeholder="Masukan check_in Hotel" value="{{$hotel->check_in}}">
           @error('check_in')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
 
@@ -81,7 +90,7 @@
           <label for="check_out">Rata-Rata check_out Hotel</label>
           <input type="datetime-local" class="form-control @error('check_out') is-invalid @enderror"  name="check_out" placeholder="Masukan check_out Hotel" value="{{$hotel->check_out}}">
           @error('check_out')
-            <small style="color: red;"><div class="invalid-feedback">{{ $message }}</div></small>
+            <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
       

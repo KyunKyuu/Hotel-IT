@@ -16,6 +16,7 @@
     <!-- Stylesheet -->
     @yield('header')
     <link rel="stylesheet" href="{{asset('site/style.css')}}">
+    <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     
 </head>
 

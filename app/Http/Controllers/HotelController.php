@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Hotel, CategoryHotel};
+use Carbon\Carbon;
 class HotelController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotel = Hotel::latest()->paginate(7);
+         //$hotel = Hotel::whereDate('created_at', Carbon::today())->get();
+        $hotel = Hotel::select('id','nama_hotel', 'category_hotel_id','kota')->get();
         return view('dashboard.home pages.hotel.hotel', compact('hotel'));
     }
 
@@ -43,22 +45,26 @@ class HotelController extends Controller
         $request->validate([
             'nama_hotel' => 'required',
             'gambar_hotel' => 'required|image|mimes:png,jpg,jpeg,svg|max:1048',
-            'fasilitas' => 'required',
+            'fasilitas_hotel' => 'required',
             'alamat' => 'required',
             'check_in' => 'required',
             'check_out' => 'required',
             'category_hotel_id' => 'required|int',
             'kota' => 'required',
+            'content' => 'required',
         ]);
 
-        $attr = $request->all(); 
+        $icon_hotel = [$request->fasilitas_hotel, $request->fasilitas_hotel2, $request->fasilitas_hotel3,$request->fasilitas_hotel4,$request->fasilitas_hotel5];
         $slug = \Str::slug(request('nama_hotel'));
+
+        $attr = $request->all(); 
 
         $gambar = $request->file('gambar_hotel');
         $gambarUrl = $gambar->storeAs("images/hotel", "{$slug}.{$gambar->extension()}");
+
         $attr['gambar_hotel'] = $gambarUrl;
         $attr['slug'] = $slug;
-
+        $attr['fasilitas'] = json_encode($icon_hotel);
         Hotel::create($attr);
         
 
@@ -74,8 +80,13 @@ class HotelController extends Controller
     public function show($id)
     {
         $hotel = Hotel::find($id);
+        $icon = [];
+       $icon_array = json_decode($hotel->fasilitas , TRUE); 
+       foreach ($icon_array as $ic) {
+             $icon[] = $ic;
+         }
 
-        return view('dashboard.home pages.hotel.show', compact('hotel'));
+        return view('dashboard.home pages.hotel.show', compact('hotel', 'icon'));
     }
 
     /**

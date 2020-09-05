@@ -27,7 +27,9 @@
   <hr>
   <div class="form-group" >
     <h6>Fasilitas</h6>
-    <strong>{{$hotel->fasilitas}}</strong>
+    @foreach($icon as $ic)
+    <i class="{{$ic}}"></i>
+    @endforeach
   </div>
   <hr>
    <div class="form-group" >

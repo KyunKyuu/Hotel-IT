@@ -13,7 +13,7 @@ class KamarController extends Controller
      */
     public function index()
     {
-        $kamar = CategoryKamar::latest()->paginate(7);
+        $kamar = CategoryKamar::select('id','nama_category')->get();
        
         return view('dashboard.home pages.kamar.kamar', compact('kamar'));
     }
@@ -75,8 +75,15 @@ class KamarController extends Controller
     public function show($id)
     {
        $kamar = Kamar::find($id);
+
+       $icon = [];
+       $icon_array = json_decode($kamar->fasilitas_kamar , TRUE); 
+       foreach ($icon_array as $ic) {
+             $icon[] = $ic;
+         }
+
        $category = CategoryKamar::where('id', $kamar->category_id)->first();
-       return view('dashboard.home pages.kamar.show' , compact('kamar', 'category'));
+       return view('dashboard.home pages.kamar.show' , compact('kamar', 'category', 'icon'));
 
     }
 
@@ -89,8 +96,15 @@ class KamarController extends Controller
     public function edit($id)
     {
         $kamar = Kamar::find($id);
-        $categories = CategoryKamar::get();
-        return view('dashboard.home pages.kamar.edit', compact('kamar', 'categories'));
+
+       
+       
+       $icon = json_decode($kamar->fasilitas_kamar , TRUE); 
+       
+      
+        $category_kamar = CategoryKamar::where('id', $kamar->category_id)->first();
+        $categories = CategoryKamar::select('id', 'nama_category')->get();
+        return view('dashboard.home pages.kamar.edit', compact('kamar', 'categories', 'category_kamar','icon'));
     }
 
     /**
@@ -102,8 +116,11 @@ class KamarController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $icon = [$request->fasilitas_kamar,$request->fasilitas_kamar2,$request->fasilitas_kamar3,$request->fasilitas_kamar4,$request->fasilitas_kamar5];
+        
         $kamar = Kamar::find($id);
-        $slug = \Str::slug(request('kode_kamar'));
+        
 
        if ($request->file('gambar_kamar')) {
 
@@ -120,7 +137,6 @@ class KamarController extends Controller
         $attr = $request->all();
     
         $attr['gambar_kamar'] = $gambarUrl;
-        $attr['slug'] = $slug;
         $kamar->update($attr);
 
         return redirect('/dasboard/kamar');

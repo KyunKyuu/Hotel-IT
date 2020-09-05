@@ -13,7 +13,7 @@ class CategoryHotelController extends Controller
      */
     public function index()
     {
-        $hotel = CategoryHotel::paginate(7);
+        $hotel = CategoryHotel::all();
         return view('dashboard.home pages.category_hotel.hotel', compact('hotel'));
     }
 

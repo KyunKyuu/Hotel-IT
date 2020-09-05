@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\{User, Reservasi};
+use Carbon\Carbon;
 class TamuController extends Controller
 {
     /**
@@ -13,9 +14,26 @@ class TamuController extends Controller
      */
     public function index()
     {
-       $tamu = User::where('role', 'tamu')->latest()->paginate(7);
+        
+       $tamu = User::where('role', 'tamu')->select('name','email','id',)->get();
         
         return view('dashboard.tamu.lengkap', compact('tamu'));
+    }
+
+    public function check_in_today()
+    {
+
+        $reservasi = Reservasi::whereDate('check_in', Carbon::today())->paginate(8);
+        $count = Reservasi::whereDate('check_in', Carbon::today())->count();
+        return view('dashboard.tamu.check_in', compact('reservasi', 'count'));
+    }
+
+     public function check_out_today()
+    {
+
+        $reservasi = Reservasi::whereDate('check_out', Carbon::today())->paginate(8);
+        $count = Reservasi::whereDate('check_out', Carbon::today())->count();
+        return view('dashboard.tamu.check_out', compact('reservasi', 'count'));
     }
 
     /**
@@ -48,7 +66,8 @@ class TamuController extends Controller
     public function show($id)
     {
         $detail_tamu = User::findOrFail($id);
-        return view('dashboard.tamu.show', compact('detail_tamu'));
+        $reservasi = Reservasi::where('user_id', $id)->paginate(5);
+        return view('dashboard.tamu.show', compact('detail_tamu', 'reservasi'));
     }
 
     /**
@@ -87,4 +106,11 @@ class TamuController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    // public function getdata()
+    // {
+    //     $tamu = User::select('users.*')->where('role', 'tamu');
+
+    //     return \DataTables::eloquent($tamu)->toJson();
+    // }
 }

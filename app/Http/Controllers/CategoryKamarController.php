@@ -13,7 +13,7 @@ class CategoryKamarController extends Controller
      */
     public function index()
     {
-        $categories = CategoryKamar::paginate(7);
+        $categories = CategoryKamar::select('id','hotel_id','nama_category', 'harga')->get();
         $hotel = Hotel::get();
         return view('dashboard.home pages.category_kamar.kamar', compact('categories', 'hotel'));    
     }
@@ -44,33 +44,37 @@ class CategoryKamarController extends Controller
         $request->validate([
             'hotel_id' => 'required',
             'nama_category' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'kode_kamar' => 'required',
             'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
-            'fasilitas_kamar' => 'required',
             'status_kamar' => 'required',
-            'kapasitas_kamar' => 'required',
-            'jumlah_kamar' => 'required',
+            'kapasitas_kamar' => 'required|numeric',
+            'jumlah_kamar' => 'required|numeric',
             'content' => 'required',
+            'fasilitas_kamar' => 'required',
+            'fasilitas_kamar2' => 'required',
+            'fasilitas_kamar3' => 'required',
+            'fasilitas_kamar4' => 'required',
+            'fasilitas_kamar5' => 'required',
+            
         
         ]);
 
-        $kamar = [$request->fasilitas_kamar, $request->fasilitas_kamar2, $request->fasilitas_kamar3];
+        $icon_kamar = [$request->fasilitas_kamar, $request->fasilitas_kamar2, $request->fasilitas_kamar3,$request->fasilitas_kamar4,$request->fasilitas_kamar5];
 
            
+        $slug = \Str::slug(request('nama_category'));
         $attr = $request->all();
-
+        $attr['slug'] = $slug;
 
         $category = CategoryKamar::create($attr);
 
-
-        $slug = \Str::slug(request('nama_category'));
         $gambar = $request->file('gambar_kamar');
         $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
         $attr['gambar_kamar'] = $gambarUrl;
-        $attr['slug'] = $slug;
+       
         $attr['category_id'] = $category->id;
-        $attr['fasilitas_kamar'] = json_encode($kamar);
+        $attr['fasilitas_kamar'] = json_encode($icon_kamar);
 
         $kamar = Kamar::create($attr);
 
@@ -112,7 +116,9 @@ class CategoryKamarController extends Controller
     {
 
         $kamar = CategoryKamar::find($id);
+        $slug = \Str::slug(request('nama_category'));
         $data = $request->all();
+        $data['slug'] = $slug;
         $kamar->update($data);
 
         return redirect('/dasboard/category_kamar');

@@ -81,6 +81,7 @@
                                         <li><b>&nbsp;&nbsp;&nbsp;Sunting</b></li>
                                          <li><a href="{{ route('profile_tamu') }}">Profile Saya</a><li>
                                             <li><a href="{{ route('edit_profile_tamu', auth()->user()->email ) }}">Edit Profile</a><li>
+                                            <li><a href="{{ route('edit_password_tamu')}}">Ganti Password</a><li>
                                         <li>
                                            <br>
                                         <a  class="btn btn-info" href="{{ route('logout') }}"
