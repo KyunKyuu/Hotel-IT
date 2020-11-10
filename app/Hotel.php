@@ -35,4 +35,10 @@ class Hotel extends Model
    	{
    		return $this->belongsTo(CategoryHotel::class, 'category_hotel_id');
    	}
+
+    public function Whislist()
+    {
+      return $this->hasMany(Whislist::class, 'id');
+    }
+
 }

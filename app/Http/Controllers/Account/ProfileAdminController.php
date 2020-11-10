@@ -102,7 +102,7 @@ class ProfileAdminController extends Controller
        $attr['gambar'] = $gambarUrl;
        $admin->update($attr);
 
-       return redirect(route('profile_admin'));
+       return redirect()->route('profile_admin')->with('success', 'Profile Edit Successfully!');;
 
 
     }

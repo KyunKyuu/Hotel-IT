@@ -1,7 +1,11 @@
 @extends('layouts/site_/main')
 
 @section('title')
-	{{$user->name}} - Profile
+	{{$user->name}} - Edit Profile
+@endsection
+
+@section('navbar')
+@include('layouts.site_.navbar3')
 @endsection
 
 @section('content')
@@ -10,53 +14,80 @@
 	@csrf
 	@method('patch')
 
-	<div class="form-group">
-		<label for="gambar">Gambar Profile</label><br>
-		<img src="{{$profile->gambar()}}" class="rounded-circle" width="200"><br>
-		<input type="file" name="gambar" value="{{$profile->gambar}}">
-	</div>
-
-  <div class="form-group">
-    <label for="nama">Nama</label>
-    <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="name" placeholder="Masukan Nama" value="{{$user->name}}">
-  </div>
-
-   <div class="form-group">
-    <label>Negara</label>
-    <select class="form-control" name="negara">
-    @if($profile->negara == false)
-      <option disabled selected="">Pilih Negara</option>
-    @else
-      <option value="{{$profile->negara}}" selected="">{{$profile->negara}}</option>   
-    @endif
-      <option value="indonesia">Indonesia</option>
-      <option value="belanda">Belanda</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Jenis Kelamin</label>
-    <select  class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" >
-            <option disabled selected="" value="{{$profile->jenis_kelamin ? $profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}">{{$profile->jenis_kelamin ? $profile->jenis_kelamin : 'Pilih Jenis Kelamin' }}</option>
+  <h3 class="w-900 mt-5 px-5">Profile</h3>
+      <div class="row px-5">
+        <div class="col-md-3">
+          <div class="profil-jumbotron text-center bg-white p-3">
+            <img src="{{$user->profile->gambar()}}" class="rounded-circle p-4">
+            <h5 class="w-900 mt-3">{{$user->name}} {{$user->profile->last_name}}</h5>
+            <input type="file" class="active text-decoration-none mb-5" aria-label="deafult input example">Edit Gambar<i class="fas fa-pen ml-1 mb-4"></i></input>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="profil-jumbotron text-left p-3 bg-white">
+            <h5 class="w-900 mb-3">Details</h5>
+            <div class="row">
+              <div class="col-8">
+                <h6 class="text-black-50">First Name</h6>
+                <input class="form-control profil-input pl-2 mb-3" type="text" aria-label="deafult input example" name="name" value="{{$user->name}}">
+                <h6 class="text-black-50">Last Name</h6>
+                <input class="form-control profil-input pl-2 mb-3" type="text" aria-label="deafult input example" name="last_name" value="{{$user->profile->last_name}}">
+                <h6 class="text-black-50">Birth Day</h6>
+                <input class="form-control profil-input pl-2 mb-3" type="date" aria-label="deafult input example" value="{{$user->profile->tanggal_lahir}}">
+              </div>
+              <div class="col-4">
               
-              <option value="L">Laki-Laki</option>
-              <option value="P">Perempuan</option>
-          </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="no">Nomor Telepon</label>
-    <input type="text" class="form-control" id="no" aria-describedby="emailHelp" name="no_telpon" placeholder="Masukan nomor telepon" value="{{$profile->no_telpon}}">
-  </div>
-  <div class="form-group">
-    <label for="alamat">Alamat</label>
-    <input type="textarea" class="form-control" id="alamat" value="{{$profile->alamat}}" placeholder="Masukan Alamat" name="alamat">
-  </div>
+                <h6 class="text-black-50">Gender</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="Male" name="jenis_kelamin" id="flexRadioDefault1" {{$user->profile->jenis_kelamin == 'Male' ? 'checked' : ''}} >
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" value="Female" type="radio" name="jenis_kelamin" id="flexRadioDefault2" {{$user->profile->jenis_kelamin == 'Female' ? 'checked' : ''}}>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="profil-jumbotron text-left bg-white p-3">
+            <h5 class="w-900 mb-3">Contact</h5>
+            <h6 class="text-black-50">E-mail Address</h6>
+            <input class="form-control profil-input pl-2 mb-3" name="email" type="email" aria-label="deafult input example" value="{{$user->email}}">
+            <h6 class="text-black-50">Phone Number</h6>
+            <input class="form-control profil-input pl-2 mb-3" name="no_telpon" type="text" aria-label="deafult input example" value="{{$user->profile->no_telpon}}">
+            <h6 class="text-black-50">Location</h6>
+            <input class="form-control profil-input pl-2 mb-3" name="alamat" type="text" aria-label="deafult input example" value="{{$user->profile->alamat}}">
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-  
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="container mt-4">
+      <div class="row px-5">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5">
+          
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="row">
+            <div class="col-6 mt-5 pt-5">
+              <button class="btn btn-light border border-2 border-dark rounded-pill mx-1 px-5">Cancel</button>
+            </div>
+            <div class="col-6 mt-5 pt-5">
+              <button type="submit" class="btn btn-1 rounded-pill mx-1 px-4">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </form>
 </div>
-<br>
-<br>
+
 @endsection

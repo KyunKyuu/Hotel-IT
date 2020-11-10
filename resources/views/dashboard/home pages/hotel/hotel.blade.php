@@ -10,49 +10,63 @@
           </div>
           
             <div class="card-body">
-            	<a href="{{route('create_hotel')}}" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-100">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data</span>
+              @if(auth()->user()->role == "admin")
+                @if(!$hotel)
+                	<a href="{{route('create_hotel')}}" class="btn btn-primary btn-icon-split btn-sm">
+                        <span class="icon text-white-100">
+                          <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Tambah Data</span>
                   </a>
+                @endif
+              @endif
               <div class="table-responsive"><br>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>No</th>
+                     
                       <th>Nama Hotel</th>
                       <th>Negara</th>
                       <th>Kota</th>
+                       @if(auth()->user()->role == "superadmin")
+                      <th>Dibuat Oleh</th>
+                      @endif
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                       <th>No</th>
+                   
                       <th>Nama Hotel</th>
                       <th>Negara</th>
                       <th>Kota</th>
+                       @if(auth()->user()->role == "superadmin")
+                      <th>Dibuat Oleh</th>
+                      @endif
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  	 @foreach($hotel as $tm)
+                  
                     <tr>
-                      <td>{{$loop->iteration}}</td>
-                      <td>{{$tm->nama_hotel}}</td>
-                      <td>{{$tm->CategoriesHotel->negara}} </td>
-                      <td>{{$tm->kota}}</td>
+                     
+                      <td>{{$hotel->nama_hotel}}</td>
+                      <td>{{$hotel->CategoriesHotel->negara}} </td>
+                      <td>{{$hotel->kota}}</td>
+                       @if(auth()->user()->role == "superadmin")
+                      <td>{{$hotel->dibuat_oleh}}</td>
+                       @endif
                       <td>
-                      	 <a href="{{route('edit_hotel', $tm->id)}}" class="btn btn-info btn-circle btn-sm">
-                    <i class="fas fa-pen"></i>
-					         	</a> 
-
-                     <a href="{{route('show_hotel', $tm->id)}}" class="btn btn-success btn-circle btn-sm">
+                      @if(auth()->user()->role == "admin")
+                      	 <a href="{{route('edit_hotel', $hotel->slug)}}" class="btn btn-info btn-circle btn-sm">
+                         <i class="fas fa-pen"></i>
+					             	</a> 
+                      @endif
+                     <a href="{{route('show_hotel', $hotel->slug)}}" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i>
                     </a>
                       	 
-                  		<form action="{{route('destroy_hotel', $tm->id)}}" method="post">
+                  		<form action="{{route('destroy_hotel', $hotel->id)}}" method="post">
                   			@csrf
                   			@method('delete')
                   		<button type="submit" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin Dihapus?')">
@@ -61,7 +75,7 @@
                   		</form>
                       </td>
                     </tr>
-                    @endforeach
+                    
                     </tbody>
                 </table>
               </div>

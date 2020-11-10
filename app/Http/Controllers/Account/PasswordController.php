@@ -26,10 +26,10 @@ class PasswordController extends Controller
     			'password' => bcrypt(request('password')),
     		]);
 
-    		return back()->with('success', 'Password Berhasil Diubah');
+    		return back()->with('success', 'Password Change Successfully!');
 
     	} else {
-    		return back()->withErrors(['old_password' => 'Pastikan Password yang dimasukan sesuai']);
+    		return back()->with('error', 'Password Not Same');
     	}
     }
 }

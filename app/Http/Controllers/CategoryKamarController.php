@@ -13,9 +13,16 @@ class CategoryKamarController extends Controller
      */
     public function index()
     {
-        $categories = CategoryKamar::select('id','hotel_id','nama_category', 'harga')->get();
-        $hotel = Hotel::get();
-        return view('dashboard.home pages.category_kamar.kamar', compact('categories', 'hotel'));    
+        $user = auth()->user();
+
+        if ($user->role == "superadmin") {
+            $categories = CategoryKamar::with('hotels')->get();
+        }elseif ($user->role == "admin") {
+            $categories = CategoryKamar::with('hotels')->where('id_pembuat', $user->id)->get();
+        }
+       
+
+        return view('dashboard.home pages.category_kamar.kamar', compact('categories'));    
     }
 
     /**
@@ -25,10 +32,10 @@ class CategoryKamarController extends Controller
      */
     public function create()
     {
-        return view('dashboard.home pages.category_kamar.create',[
-           
-            'hotel' => Hotel::get(),
-        ]);
+        $user = auth()->user();
+        $hotel = Hotel::where('id_pembuat', $user->id)->first();
+
+        return view('dashboard.home pages.category_kamar.create',  compact('hotel'));
     }
 
     /**
@@ -40,45 +47,58 @@ class CategoryKamarController extends Controller
     public function store(Request $request)
     {
 
-
         $request->validate([
             'hotel_id' => 'required',
             'nama_category' => 'required',
             'harga' => 'required|numeric',
-            'kode_kamar' => 'required',
             'gambar_kamar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
             'status_kamar' => 'required',
             'kapasitas_kamar' => 'required|numeric',
             'jumlah_kamar' => 'required|numeric',
             'content' => 'required',
-            'fasilitas_kamar' => 'required',
-            'fasilitas_kamar2' => 'required',
-            'fasilitas_kamar3' => 'required',
-            'fasilitas_kamar4' => 'required',
-            'fasilitas_kamar5' => 'required',
+
+            'fasilitas_icon_kamar' => 'required',
+            'fasilitas_icon_kamar2' => 'required',
+            'fasilitas_icon_kamar3' => 'required',
+            'fasilitas_icon_kamar3' => 'required',
+           
+            'fasilitas_text_kamar' => 'required',
+            'fasilitas_text_kamar2' => 'required',
+            'fasilitas_text_kamar3' => 'required',
+            'fasilitas_text_kamar3' => 'required',
             
-        
+            
+            
         ]);
 
-        $icon_kamar = [$request->fasilitas_kamar, $request->fasilitas_kamar2, $request->fasilitas_kamar3,$request->fasilitas_kamar4,$request->fasilitas_kamar5];
+        $fasilitas_icon_kamar = [$request->fasilitas_icon_kamar, $request->fasilitas_icon_kamar1, $request->fasilitas_icon_kamar2, $request->fasilitas_icon_kamar3];
 
-           
-        $slug = \Str::slug(request('nama_category'));
+        $fasilitas_text_kamar = [$request->fasilitas_text_kamar, $request->fasilitas_text_kamar1, $request->fasilitas_text_kamar2, $request->fasilitas_text_kamar3];
+
+
+        $ug = \Str::slug(request('nama_category')); 
+        $cel = CategoryKamar::where('slug', $ug)->first();
+        if($cel != null){
+            $slug = \Str::slug(request('nama_category'.+1));
+        }elseif($cel == null){
+           $slug = \Str::slug(request('nama_category')); 
+        }
+        
         $attr = $request->all();
         $attr['slug'] = $slug;
-
+        $attr['id_pembuat'] = auth()->user()->id;
         $category = CategoryKamar::create($attr);
 
         $gambar = $request->file('gambar_kamar');
         $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
         $attr['gambar_kamar'] = $gambarUrl;
-       
         $attr['category_id'] = $category->id;
-        $attr['fasilitas_kamar'] = json_encode($icon_kamar);
-
+        $attr['fasilitas_icon_kamar'] = json_encode($fasilitas_icon_kamar);
+        $attr['fasilitas_text_kamar'] = json_encode($fasilitas_text_kamar);
+        $attr['kode_kamar'] = \Str::random(6);
         $kamar = Kamar::create($attr);
 
-        return redirect('/dasboard/category_kamar');
+        return redirect('/dasboard/category_kamar')->with('success', 'Room Created Successfully!');
     }
 
     /**
@@ -87,9 +107,14 @@ class CategoryKamarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $category= CategoryKamar::with('kamar','hotels')->where('slug', $slug)->first();
+
+        $icon = json_decode($category->kamar->fasilitas_icon_kamar , TRUE);    
+        $fasilitas =  json_decode($category->kamar->fasilitas_text_kamar , TRUE);
+
+       return view('dashboard.home pages.category_kamar.show' , compact('category', 'icon', 'fasilitas'));
     }
 
     /**
@@ -100,9 +125,19 @@ class CategoryKamarController extends Controller
      */
     public function edit($id)
     {
-         $kamar = CategoryKamar::find($id);
-         $hotel = Hotel::get();
-        return view('dashboard.home pages.category_kamar.edit', compact('kamar', 'hotel'));
+        $kamar = CategoryKamar::with('kamar','hotels')->find($id);
+
+
+        if(auth()->user()->role == 'admin'){
+        if (auth()->user()->id != $kamar->id_pembuat) {
+            return redirect()->back();
+         }
+       }
+
+        $icon = json_decode($kamar->kamar->fasilitas_icon_kamar , TRUE); 
+        $fasilitas = json_decode($kamar->kamar->fasilitas_text_kamar , TRUE);
+         $hotel = Hotel::where('id_pembuat', auth()->user()->id)->first();
+        return view('dashboard.home pages.category_kamar.edit', compact('kamar', 'hotel', 'icon', 'fasilitas'));
     }
 
     /**
@@ -114,14 +149,38 @@ class CategoryKamarController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $fasilitas_icon_kamar = [$request->fasilitas_icon_kamar, $request->fasilitas_icon_kamar1, $request->fasilitas_icon_kamar2, $request->fasilitas_icon_kamar3];
+
+        $fasilitas_text_kamar = [$request->fasilitas_text_kamar, $request->fasilitas_text_kamar1, $request->fasilitas_text_kamar2, $request->fasilitas_text_kamar3];
 
         $kamar = CategoryKamar::find($id);
-        $slug = \Str::slug(request('nama_category'));
+        $ug = \Str::slug(request('nama_category')); 
+        $cel = CategoryKamar::where('slug', $ug)->first();
+        if($cel != null){
+            $slug = \Str::slug(request('nama_category'.+1));
+        }elseif($cel == null){
+           $slug = \Str::slug(request('nama_category')); 
+        }
+
         $data = $request->all();
         $data['slug'] = $slug;
         $kamar->update($data);
 
-        return redirect('/dasboard/category_kamar');
+        if ($request->file('gambar_kamar')) {
+         \Storage::delete($kamar->kamar->gambar_kamar);
+        $gambar = $request->file('gambar_kamar');
+        $gambarUrl = $gambar->storeAs("images/kamar", "{$slug}.{$gambar->extension()}");
+       }else{
+        $gambarUrl = $kamar->kamar->gambar_kamar;
+       }
+        
+        $data['gambar_kamar'] = $gambarUrl;
+        $data['fasilitas_icon_kamar'] = json_encode($fasilitas_icon_kamar);
+        $data['fasilitas_text_kamar'] = json_encode($fasilitas_text_kamar);
+    
+        $kamar->kamar->update($data);
+
+        return redirect('/dasboard/category_kamar')->with('success', 'Room Updated Successfully!');
     }
 
     /**
@@ -132,8 +191,11 @@ class CategoryKamarController extends Controller
      */
     public function destroy($id)
     {
-        $kamar =CategoryKamar::find($id);
+        $ckamar = CategoryKamar::find($id);
+        $ckamar->delete();
+        $kamar = Kamar::where('category_id', $id)->first();
+        \Storage::delete($kamar->gambar_kamar);
         $kamar->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Room Deleted Successfully!');
     }
 }

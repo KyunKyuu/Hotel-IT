@@ -7,7 +7,7 @@
   <div class="col-xl-3 col-md-6 mb-4">
     <hr>
                     <div class="col mr-2">
-                      <div class="h2 mb-0 font-weight-bold text-gray-800">{{today()->format('D,d M Y')}}</div>
+                      <div class="h2 mb-0 font-weight-bold text-gray-800">{{today()->format('d,F Y')}}</div>
                     </div>
    </div>
             

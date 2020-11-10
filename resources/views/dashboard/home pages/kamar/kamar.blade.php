@@ -10,20 +10,23 @@
           </div>
           
             <div class="card-body">
+              @if(auth()->user()->role == "admin")
             	<a href="{{route('create_category_kamar')}}" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-100">
                       <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah Data</span>
                   </a>
+              @endif
               <div class="table-responsive"><br>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Category Kamar</th>
-                      <th>Kode Kamar</th>
+                      <th>Gambar Kamar</th>
                       <th>Status Kamar</th>
+                     
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -31,8 +34,9 @@
                     <tr>
                       <th>No</th>
                       <th>Category Kamar</th>
-                      <th>Kode Kamar</th>
+                      <th>Gambar Kamar</th>
                       <th>Status Kamar</th>
+                     
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -41,14 +45,16 @@
                     <tr>
                       <td>{{$loop->iteration}}</td>
                       <td>{{$tm->nama_category}} </td>
-                      <td>{{$tm->kamar->kode_kamar}}</td>
+                      <td><img src="{{$tm->kamar->gambar_kamar()}}" width="100"></td>
                       <td>{{$tm->kamar->status_kamar}}</td>
+
                       <td>
+                      @if(auth()->user()->role == "admin")
                       	 <a href="{{route('edit_kamar', $tm->kamar->id)}}" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-pen"></i>
 					         	</a> 
-
-                     <a href="{{route('show_kamar', $tm->kamar->id)}}" class="btn btn-success btn-circle btn-sm">
+                      @endif
+                     <a href="{{route('show_kamar', $tm->slug)}}" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i>
                     </a>
                       	 

@@ -82,13 +82,37 @@
           @enderror
           </div>
 
-        <div class="form-group">
-          <label>Fasilitas Kamar </label><br>
-          <button class="btn btn-primary @error('fasilitas_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_hotel" value="{{old('fasilitas_hotel')}}">Icon</button >&nbsp;
-           <button class="btn btn-primary @error('fasilitas_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_hotel2" value="{{old('fasilitas_hotel')}}">Icon</button >&nbsp;
-            <button class="btn btn-primary @error('fasilitas_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_hotel3" value="{{old('fasilitas_hotel')}}">Icon</button >
-            <button class="btn btn-primary @error('fasilitas_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_hotel4" value="{{old('fasilitas_hotel')}}">Icon</button >
-            <button class="btn btn-primary @error('fasilitas_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_hotel5" value="{{old('fasilitas_kamar')}}">Icon</button >
+         <div class="form-group">
+          <label>Fasilitas Hotel </label><br>
+          <button class="btn btn-secondary @error('fasilitas_icon_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel" value="{{old('fasilitas_icon_hotel')}}">Icon</button>&nbsp;
+          <input type="text" name="fasilitas_text_hotel"  class="form-control @error('fasilitas_text_hotel') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_hotel')}}">
+           @error('fasilitas_text_hotel')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
+          </div>
+
+           <div class="form-group">
+           <button class="btn btn-secondary @error('fasilitas_icon_hotel1') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel1" value="{{old('fasilitas_icon_hotel1')}}">Icon</button >&nbsp;
+          <input type="text" name="fasilitas_text_hotel1"  class="form-control @error('fasilitas_text_hotel1') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_hotel1')}}">
+           @error('fasilitas_text_hotel1')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
+          </div>
+
+            <div class="form-group">
+            <button class="btn btn-secondary @error('fasilitas_icon_hotel2') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel2" value="{{old('fasilitas_hotel2')}}">Icon</button>&nbsp;
+            <input type="text" name="fasilitas_text_hotel2"  class="form-control @error('fasilitas_text_hotel2') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_hotel2')}}">
+           @error('fasilitas_text_hotel2')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-secondary @error('fasilitas_icon_hotel3') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel3" value="{{old('fasilitas_hotel3')}}">Icon</button>&nbsp;
+            <input type="text" name="fasilitas_text_hotel3"  class="form-control @error('fasilitas_text_hotel3') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_hotel3')}}">
+           @error('fasilitas_text_hotel3')
+              <div class="invalid-feedback">{{ $message }}</div>
+             @enderror
           </div>
 
           <div class="form-group">
@@ -120,8 +144,6 @@
         
 
 @endsection
-@push('footer')
-<!-- jQuery CDN -->
 
 @push('footer')
 <!-- jQuery CDN -->

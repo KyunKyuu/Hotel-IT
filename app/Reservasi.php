@@ -8,8 +8,8 @@ class Reservasi extends Model
 {
     protected $table = 'reservasi';
     protected $guarded = ['id', 'created_at', 'updated_at'];
-
-   
+    protected $dates = ['check_in', 'check_out'];
+    
     public function CategoryKamar()
     {
     	return $this->belongsTo(CategoryKamar::class,'category_kamar_id');
@@ -24,4 +24,11 @@ class Reservasi extends Model
     {
         return $this->hasOne(ReservasiPembayaran::class,'reservasi_id');
     }
+
+    public function Request()
+    {
+        return $this->hasOne(ReservasiRequest::class, 'reservasi_id');
+    }
+
+  
 }

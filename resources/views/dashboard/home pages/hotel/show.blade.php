@@ -46,6 +46,11 @@
     <h6>Created Data Hotel</h6>
     <strong>{{$hotel->created_at->format('d, M Y')}}</strong>
   </div>
+  <hr>
+  <div class="form-group" >
+    <h6>About Hotel</h6>
+    <p>{!!$hotel->content!!}</p>
+  </div>
   </div>
   <div class="col-md-6">
     

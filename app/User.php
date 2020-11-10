@@ -49,8 +49,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reservasi::class, 'id');
     }
 
+    
    public function not_verified()
    {
      return  $this->email_verified_at == null ? true : false;
    }
+
+    public function Whislist()
+    {
+      return $this->hasMany(Whislist::class, 'id');
+    }
+
+  
 }

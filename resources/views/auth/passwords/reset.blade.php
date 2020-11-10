@@ -1,59 +1,49 @@
 @extends('layouts/auth')
-@section('title', 'Reset Password')
+@section('title', 'Login Page')
 @section('content')
-<div class="main"> 
-     <!-- Sing in  Form -->
-        <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                       <figure><img src="{{asset('auth/images/signin-image.jpg')}}" alt="Login Image Hotel IT"></figure>
-                        
-                    </div>
 
-                    <div class="signin-form">
-                        <h2 class="form-title">Reset Password</h2>
-                        <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+    <div class="login-register">
+      <div class="row mx-0 login">
+        <div class="col-md-6 p-5 z-index-1">
+          <div class="d-flex mb-5">
+            <img src="{{asset('site_/img/home.png')}}" class="icon mr-2">
+            <a href="{{route('home')}}" class="text-decoration-none mt-1 active">Home</a>
+          </div>
+          <h1 class="active mb-4">Login</h1>
+          <p class="mb-4">Hi there, welcome back !</p>
+          <form method="POST" action="{{ route('password.update') }}">
+          @csrf
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+          <h6 class="active mb-0">E-mail Address</h6>
+          <input class="form-control login-input pl-1 mb-3 @error('email') is-invalid @enderror" value="{{old('email')}}" type="email" name="email" aria-label="deafult input example">
+          @error('email')
+           <div class="invalid-feedback">{{ $message }}</div>
+          @enderror  
 
-                            <div class="form-group">
-                                <label><i class="zmdi zmdi-email material-icons-name"></i></label>
-                               <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus placeholder="Masukan Email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+          <h6 class="active mb-0">Password</h6>
+          <input class="form-control login-input pl-1 mb-3 @error('password') is-invalid @enderror" name="password" type="password" aria-label="deafult input example">  
+          @error('password')
+           <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
 
-                            <div class="form-group">
-                                <label for="password"><i class="zmdi zmdi-lock"></i>Password</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Masukan Password Baru">
+           <h6 class="active mb-0">Password</h6>
+          <input class="form-control login-input pl-1 mb-3 @error('password_confirmation') is-invalid @enderror" name="password_confirmation" type="password" aria-label="deafult input example">  
+          @error('password_confirmation')
+           <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+          
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
-                             <div class="form-group">
-                                <label for="password-confirm"><i class="zmdi zmdi-lock"></i>Confirm Password</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmasi Passwird Baru">    
-                            </div>
-                            
-
-                            <div class="form-group form-button">
-                                <button type="submit" name="signin" id="signin" class="form-submit">Reset Password</button>
-                            </div>
-
-                        </form>
-                    
-                    </div>
-                </div>
-            </div>
-        </section>
-</div>
+          <div class="d-flex">
+            
+            <button class="btn btn-1 ml-auto px-5" type="submit">Reset Passowrd</button>
+          </div>
+        </div>
+        <div class="col-md-6 px-0 md-img">
+          <img src="{{asset('site_/img/gambar.png')}}" class="bg-cover">
+        </div>
+      </form>
+      </div>
+    </div>
 @endsection
+
+ 

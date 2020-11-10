@@ -52,7 +52,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:10'],
+            'last_name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'no_telpon' => ['numeric'],
             'password' => ['required', 'string', 'min:6'],
@@ -81,10 +82,11 @@ class RegisterController extends Controller
        $tamu = Profile::create([
             'user_id' => $user->id,
             'no_telpon' => $data['no_telpon'],
+            'last_name' => $data['last_name'],
             ]);
        $tamu->save();
 
-       return redirect('/login')->with(['success' => 'Verifikasi telah dikirim, mohon cek email anda']);
+       return redirect()->route('login')->with('success','Verifikasi telah dikirim, mohon cek email anda');
         
 
 

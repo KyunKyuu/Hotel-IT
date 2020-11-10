@@ -15,9 +15,9 @@ class ProfileTamuController extends Controller
      */
     public function index()
     {
-       $profile = auth()->user()->profile;
-       $tamu = auth()->user();
-       return view('site.profile.profile', compact('profile', 'tamu'));
+       
+       $user = auth()->user();
+       return view('site.profile.profile', compact('user'));
     }
 
     /**
@@ -61,9 +61,8 @@ class ProfileTamuController extends Controller
     public function edit($email)
     {
         $user = User::where('email', $email)->first();
-        $profile = auth()->user()->profile;
         
-        return view('site.profile.edit', compact('user', 'profile'));
+        return view('site.profile.edit', compact('user'));
 
         }
 
@@ -76,12 +75,7 @@ class ProfileTamuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'no_telpon' =>  'required|numeric',
-            'gambar' => 'image|mimes:png,jpg,jpeg,svg|max:1048',
-
-        ]);
+        
 
         $attr = $request->all();
         $user = User::find($id);
@@ -101,10 +95,13 @@ class ProfileTamuController extends Controller
 
        }   
 
+      
+       $attr['tanggal_lahir'] = $request->tanggal_lahir;
        $attr['gambar'] = $gambarUrl;
+
        $tamu->update($attr);
 
-        return redirect('/profile');
+        return redirect('/profile')->with('success', 'Profile Edit Successfully!');;
     }
 
     /**

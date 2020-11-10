@@ -28,10 +28,21 @@
           <i class="fas fa-fw fa-user"></i>
           <span>Profile Saya</span></a>
       </li>
-
+@if(auth()->user()->role == "superadmin")
       <!-- Divider -->
       <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Daftar Admin
+      </div>
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('daftar_admin')}}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Daftar Admin</span></a>
+      </li>
+  @endif
 
+    <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
         Daftar Tamu
@@ -54,50 +65,58 @@
         </div>
       </li>
 
-
-      <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
       <div class="sidebar-heading">
-       Home Pages
+       History Reservasi
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Home Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-
-            <h6 class="collapse-header">Hotel:</h6>
-            <a class="collapse-item" href="{{route('dashboard_category_hotel')}}">Category Hotel</a>
-            <a class="collapse-item" href="{{route('dashboard_hotel')}}">Hotel</a>
-           <hr class="sidebar-divider">
-
-            <h6 class="collapse-header">Kamar:</h6>
-            <a class="collapse-item" href="{{route('dashboard_category_kamar')}}">Category Kamar</a>
-            <a class="collapse-item" href="{{route('dashboard_kamar')}}">Kamar</a>
-           
-          </div>
-        </div>
-      </li>
-
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+        <a class="nav-link" href="{{route('history_reservasi')}}">
+          <i class="fas fa-fw fa-time"></i>
+          <span>History Reservasi</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
+
+     <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Hotel
+      </div>
+
+
+      <!-- Nav Item - Charts -->
+      @if(auth()->user()->role == "superadmin")
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+        <a class="nav-link" href="{{route('dashboard_category_hotel')}}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>List Negara</span></a>
       </li>
+      @endif
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('dashboard_hotel')}}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>List Hotel</span></a>
+      </li>
+
+
+       <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Kamar
+      </div>
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('dashboard_category_kamar')}}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>List Kamar</span></a>
+      </li>
+  
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Diskon -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('diskon_kamar')}}">
+          <i class="fas fa-fw fa-voucher"></i>
+          <span>Diskon Kamar</span></a>
+      </li>
+      
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

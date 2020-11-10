@@ -42,7 +42,7 @@ class CategoryHotelController extends Controller
         $hotel = $request->all();
         CategoryHotel::create($hotel);
 
-        return redirect('/dasboard/category_hotel');
+        return redirect('/dasboard/category_hotel')->with('success', 'Country Created Successfully!');
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoryHotelController extends Controller
         $data = $request->all();
         $hotel->update($data);
 
-        return redirect('/dasboard/category_hotel');
+        return redirect('/dasboard/category_hotel')->with('success', 'Country Updated Successfully!');
     }
 
     /**
@@ -96,6 +96,5 @@ class CategoryHotelController extends Controller
         $hotel = CategoryHotel::find($id);
         $hotel->delete();
 
-        return redirect()->back();
-    }
+        return redirect()->back()->with('success', 'Country Deleted Successfully!');
 }

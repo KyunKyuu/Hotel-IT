@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{User, Reservasi};
+use App\{User, Reservasi, CategoryKamar, Hotel};
 use Carbon\Carbon;
 class TamuController extends Controller
 {
@@ -14,25 +14,67 @@ class TamuController extends Controller
      */
     public function index()
     {
+    
+        $user = auth()->user();
+        if($user->role == "superadmin"){
         
-       $tamu = User::where('role', 'tamu')->select('name','email','id',)->get();
+            $tamu[] = User::select('id','name','email')->latest()->get();
+
+        }elseif($user->role == "admin"){
+
+            $kamar = CategoryKamar::where('id_pembuat', $user->id)->get();
+
+            foreach($kamar as $km){
+              $tamu[] = Reservasi::where('category_kamar_id', $km->id)->get();
+            }
+            
+        }
+      
         
-        return view('dashboard.tamu.lengkap', compact('tamu'));
+        
+        return view('dashboard.tamu.lengkap', compact('tamu', 'user'));
     }
 
     public function check_in_today()
     {
+        $user = auth()->user();
+        if ($user->role == "superadmin") {
 
-        $reservasi = Reservasi::whereDate('check_in', Carbon::today())->paginate(8);
-        $count = Reservasi::whereDate('check_in', Carbon::today())->count();
-        return view('dashboard.tamu.check_in', compact('reservasi', 'count'));
+         $reservasi = Reservasi::with('categoryKamar')->whereDate('check_in', Carbon::today())->latest()->paginate(8);
+         $count = Reservasi::whereDate('check_in', Carbon::today())->count();
+
+        }elseif($user->role == "admin") {
+
+            $categoryKamar = CategoryKamar::where('id_pembuat', $user->id)->get();
+
+            foreach ($categoryKamar as $ct) {
+                $reservasi = Reservasi::with('categoryKamar')->whereDate('check_in', Carbon::today())->where('category_kamar_id', $ct->id)->latest()->paginate(8);
+                 $count = Reservasi::whereDate('check_in', Carbon::today())->where('category_kamar_id', $ct->id)->count();
+            }
+               
+
+        }
+        return view('dashboard.tamu.check_in', compact('reservasi', 'count','user'));
     }
 
      public function check_out_today()
     {
 
-        $reservasi = Reservasi::whereDate('check_out', Carbon::today())->paginate(8);
-        $count = Reservasi::whereDate('check_out', Carbon::today())->count();
+        $user = auth()->user();
+        if ($user->role == "superadmin") {
+
+         $reservasi = Reservasi::with('categoryKamar')->whereDate('check_out', Carbon::today())->paginate(8);
+         $count = Reservasi::whereDate('check_out', Carbon::today())->count();
+
+        }elseif($user->role == "admin") {
+
+        $kamar = CategoryKamar::where('id_pembuat', $user->id)->get();
+        foreach ($kamar as $km) {
+         $reservasi = Reservasi::with('categoryKamar')->whereDate('check_out', Carbon::today())->where('category_kamar_id', $km->id)->paginate(8);
+         $count = Reservasi::whereDate('check_out', Carbon::today())->where('category_kamar_id', $km->id)->count();   
+        }
+
+        }
         return view('dashboard.tamu.check_out', compact('reservasi', 'count'));
     }
 
@@ -65,8 +107,8 @@ class TamuController extends Controller
      */
     public function show($id)
     {
-        $detail_tamu = User::findOrFail($id);
-        $reservasi = Reservasi::where('user_id', $id)->paginate(5);
+        $detail_tamu = User::with('profile')->findOrFail($id);
+        $reservasi = Reservasi::with('categoryKamar')->where('user_id', $id)->paginate(5);
         return view('dashboard.tamu.show', compact('detail_tamu', 'reservasi'));
     }
 
@@ -104,7 +146,7 @@ class TamuController extends Controller
         $user = User::findOrFail($id);
 
         $user->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Tamu Deleted Successfully!');
     }
 
     // public function getdata()

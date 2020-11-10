@@ -6,8 +6,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Website Dreamss menyediakan berbagai macam pilihan hotel pilihan untuk anda" />
+    <meta name="keywords" content="Hotel">
+    <meta name="author" content="IT Club">
+    <link rel="icon" href="{{asset('site_/img/logo.png')}}" sizes="16x16 32x32" type="image/png">
+   
 
   <title>@yield('title')</title>
 
@@ -17,6 +20,7 @@
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
   <!-- Custom styles for this template-->
   <link href="{{asset('dashboard/css/sb-admin-2.min.css')}}" rel="stylesheet">
+  
   @stack('header')
 </head>
 
@@ -49,6 +53,7 @@
 
           <!-- Content Row -->
           <div class="row">
+            @include('sweetalert::alert')
           	@yield('content')
             
             </div>

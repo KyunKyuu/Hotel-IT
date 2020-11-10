@@ -10,30 +10,39 @@
           </div>
           
             <div class="card-body">
+              @if(auth()->user()->role == "admin")
             	<a href="{{route('create_category_kamar')}}" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-100">
                       <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah Data</span>
                   </a>
+              @endif
               <div class="table-responsive"><br>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama Hotel</th>
                       <th>Category Kamar</th>
+                      <th>Dari Hotel</th>
                       <th>Harga Kamar</th>
-                     
+                      <th>Gambar Kamar</th>
+                      @if(auth()->user()->role == "superadmin")
+                      <th>Dibuat Oleh</th>
+                      @endif
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                        <th>No</th>
-                      <th>Nama Hotel</th>
                       <th>Category Kamar</th>
+                      <th>Dari Hotel</th>
                       <th>Harga Kamar</th>
+                      <th>Gambar Kamar</th>
+                      @if(auth()->user()->role == "superadmin")
+                      <th>Dibuat Oleh</th>
+                      @endif
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -41,16 +50,22 @@
                   	 @foreach($categories as $ct)
                     <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$ct->hotels->nama_hotel}}</td>
                       <td>{{$ct->nama_category}}</td>
+                      <td>{{$ct->hotels->nama_hotel}}</td>
                       <td>{{$ct->harga}} </td>
-                     
+                      <td><img src="{{$ct->kamar->gambar_kamar()}}" width="100"></td>
+                      @if(auth()->user()->role == "superadmin")
+                      <td>{{$ct->dibuat_oleh}}</td>
+                      @endif
                       <td>
+                       @if(auth()->user()->role == "admin") 
                     <a href="{{route('edit_category_kamar', $ct->id)}}" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-pen"></i>
 					         	</a> 
-
-                     
+                      @endif
+                      <a href="{{route('show_kamar', $ct->slug)}}" class="btn btn-success btn-circle btn-sm">
+                    <i class="fas fa-eye"></i>
+                    </a>
                       	 
                   		<form action="{{route('destroy_category_kamar', $ct->id)}}" method="post">
                   			@csrf

@@ -42,13 +42,13 @@
     padding-top: 0rem;
   }
   .py-6{
-    padding-top: 13.5vw;
+    padding-top: 75%;
   }
   h3, .h3 {
     font-size: 1.45rem;
   }
-  .carousel-item{
-    margin-left: 8.6em;
+  .carousel-item {
+    margin-left: 10em;
   }
   .carousell-title{
     margin-left: 49px;
@@ -62,7 +62,165 @@
   .icon-client{
     transform: translate(7.5em , -1.5em);
   }
-  
+  .table-detail .table-img {
+    float: left;
+    width: 42%;
+    max-width: 42%;
+    max-height: 13rem;
+
+  }
+  .table-review .table-img {
+    float: left;
+    width: 21%;
+    max-width: 21%;
+    max-height: 11rem;
+
+  }
+  .chek-in{
+  transform: translateX(1.5%);
+  }
+  .hero-text h5{
+    line-height: 1.8;
+  }
+  .hero-text h4{
+    line-height: 1.5;
+  }
+  .booking-detail .button-search button {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+  .z-index-1{
+    padding-top: 9rem !important;
+    padding-bottom: 9rem !important;
+  }
+  .bg-cover {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+/*
+  ##Device = Laptop MD, Desktops
+  ##Screen = B/w 1025px to 1366px
+*/
+@media (min-width: 1025px) and (max-width: 1366px){
+  .jumbotron-kamar-img {
+    margin-right: 12px;
+  }
+  .order h5{
+    font-size: 1rem;
+  }
+  .order{
+    width: 88.4%
+  }
+  .btn-order {
+    padding-left: 8.85rem;
+    padding-right: 8.85rem;
+  }
+  .detail-kamar-header {
+    margin-left: 10%;
+  }
+  .detail-kamar p{
+    font-size: 0.65rem;
+  }
+  .table-detail-kamar h1 {
+    font-family: Assistant !important;
+    font-size: 2rem;
+  }
+  .table-detail-kamar .table-img {
+    float: left;
+    width: 48%;
+    max-height: 13.2rem;
+  }
+  .detail-kamar h4{
+    font-size: 1.2rem;
+  }
+  .detail-kamar-hotel p {
+    font-size: 0.75rem;
+  }
+  .breadcrumb-detail-kamar {
+    margin-top: -17%;
+    margin-left: 0%;
+  }
+  .table-text-2 p{
+    font-size: 0.9rem;
+  }
+  .detail-kamar p {
+    font-size: 1rem;
+  }
+  .breadcrumb-wishlist {
+    margin-left: 5rem;
+  }
+  .img-hotel-wishlist {
+    width: 22%;
+    max-height: 9.7rem;
+  }
+  .table-detail .table-img {
+    float: left;
+    width: 42%;
+    max-width: 42%;
+    max-height: 12rem;
+  }
+  .table-review .table-img {
+    float: left;
+    width: 23%;
+    max-width: 23%;
+    max-height: 11rem;
+  }
+  .table-detail-kamar .table-text-2 {
+    padding-top: 5.4rem;
+  }
+  .navbar-type-3 .navbar-brand {
+    padding-left: 10.2rem;
+  }
+  .navbar-type-3 .navbar-text {
+    padding-right: 11.3rem;
+  }
+  .carousel-item {
+    margin-left: 8.6em;
+  }
+  .jumbotron-review {
+    width: 95%;
+    margin-left: 2rem;
+  }
+  .popup .popuptext::after {
+    bottom: 100%;
+    left: 43%;
+  }
+  .popup .popuptext {
+    top: 8.5%;
+    left: 78%;
+  }
+  .popup2 .popuptext {
+    top: 15%;
+  }
+  .popup-detail .popuptext {
+    top: 15%;
+    left: 73%;
+  }
+  .popup-detail .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 4rem;
+  }
+  .header-popular {
+    margin-top: 13%;
+  }
+  .booking-detail .button-search button {
+    padding-left: 3.5rem !important;
+    padding-right: 3.5rem !important;
+  }
+  .z-index-1{
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .bg-cover {
+    width: 100%;
+    height: 100vh;
+  }
+  .card-img{
+    max-height: 23rem;
+    height: 26rem;
+  }
 }
 
 /* 
@@ -83,14 +241,655 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   
-  //CSS
-  
+  .btn-lg, .btn-group-lg > .btn {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+  }
+  .form-select-lg {
+    height: calc(1.5em + 1rem + 0px);
+    padding-top: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  .form-control-lg {
+    min-height: calc(1em + 1rem + 0px);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+  }
+  .button-search-index .px-5 {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0rem;
+    padding-left: 0rem;
+  }
+  .mx-2 {
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+  .table-detail .icon-star {
+    margin-top: 1%;
+    width: 23%;
+    float: none;
+  }
+  .table-mid img {
+    width: 20%;
+    margin-top: -2%;
+  }
+  .button-navbar{
+    margin: auto;
+  }
+  .button-search {
+    padding-right: 12px; 
+    padding-top: 1.3rem;
+    padding-bottom: 1.5rem;
+    width: auto;
+  }
+  .about-header .navbar-left {
+    transform: translateX(-5%);
+  }
+  .nav-width {
+    width: 100%;
+  }
+  .top-destination {
+    width: 69%;
+    margin-top: 10%;
+    margin-left: 15%;
+  }
+  .booking {
+    margin-top: 1em;
+  }
+  .pt-costum{
+    padding-top: 0rem;
+  }
+  .cover h1 {
+    font-size: 2.5em;
+  }
+  .navbar-left {
+    transform: translateX(-30%);
+  }
+  .card {
+    left: 61%;
+  }
+  .py-6 {
+    padding-top: 5em;
+  }
+  .card-text.h3 {
+    font-size: calc(0.9rem + 0.6vw);
+  }
+  .carousel-item {
+    margin-left: 7em;
+  }
+  .ml-6 {
+    margin-left: 0.1rem !important;
+  }
+  .carousell-title {
+    margin-left: 24px;
+  }
+  .icon-client {
+    transform: translate(6.3em , -0.7em);
+  }
+  .hr {
+    width: 46%;
+  }
+  .background-breadcrumb {
+    height: 40vh;
+  }
+  .nav-link img {
+    width: 24px;
+    height: 24px;
+  }
+  .jumbotron-kamar {
+    margin-left: 4%;
+  }
+  .jumbotron-kamar-img {
+    margin-right: 9px;
+  }
+  .detail-kamar-header .navbar-left {
+    transform: translateX(-2%);
+  }
+  .table-detail-kamar.table-text-2 p{
+    font-size: 0.9rem;
+  }
+  .table-detail-kamar .table-text-2 {
+    padding-top: 2rem;
+  }
+  .detail-kamar p {
+    font-size: 1rem;
+  }
+  .booking .form-control {
+    font-size: 0.8rem;
+  }
+  .booking .form-select {
+    border: 1px solid #00A790;
+    font-size: 0.8rem;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 15px;
+    height: 15px;
+    background-size: 20px;
+  }
+  .button-search .px-4 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  .button-search .btn-1.mt-4{
+    font-size: 12px;
+  }
+  .table-detail-kamar .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .table-detail .table-img {
+    float: left;
+    width: 40%;
+    max-width: 40%;
+    max-height: 9rem;
+  }
+  .table-review .table-img {
+    float: left;
+    width: 25%;
+    max-width: 25%;
+    max-height: 12rem;
+  }
+  .table-review .table-mid .icon-star-2{
+    margin-top: 1%;
+    width: 17%;
+    max-height: 24px;
+    float: right;
+  }
+  .table-review .table-mid img {
+    width: 9%;
+    margin-top: 0%;
+  }
+  .table-detail-kamar h1 {
+    font-family: Assistant !important;
+    margin-top: 70%;
+  }
+  .btn-order {
+    padding-left: 6.55rem !important;
+    padding-right: 6.55rem !important;
+    margin-top: 0px !important;
+  }
+  .order h5{
+    font-size: 0.67rem;
+    margin-top: 0.25rem;
+  }
+  .breadcrumb-detail-kamar {
+    margin-top: -17%;
+  }
+  .brand-whislist {
+    margin-left: -27%;
+  }
+  .breadcrumb-wishlist {
+    margin-left: 4rem;
+  }
+  .main-wishlist {
+    width: 80%;
+  }
+  .main-wishlist .left-side {
+    width: 89%;
+  }
+  .img-hotel-wishlist {
+    width: 26%;
+    max-height: 9.7rem;
+  }
+  .navbar-type-3 .navbar-brand {
+    padding-left: 4rem;
+  }
+  .navbar-type-3 .navbar-text {
+    padding-right: 7rem;
+  }
+  .navbar-type-3 .navbar-brand.type-2 {
+    padding-left: 2rem !important;
+  }
+  .navbar-type-3 .navbar-text.type-2 {
+    padding-right: 2rem !important;
+  }
+  .chek-in{
+    transform: translateX(0.8%);
+  }
+  .form-control{
+    width: 100%;
+  }
+  .jumbotron-review {
+    width: 93%;
+    margin-left: 2rem;
+  }
+  .popup .popuptext {
+    top: 7.5%;
+    left: 74%;
+    width: 25%;
+  }
+  .popup .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup2 .popuptext {
+    top: 13%;
+    width: 25%;
+  }
+  .popup2 .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup2 .popuptext::after {
+    left: 38%;
+  }
+  .popup-detail .popuptext {
+    top: 13%;
+    left: 70%;
+    width: 28%;
+  }
+  .popup-detail .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 4rem;
+  }
+  .popup-detail .popuptext::after {
+    left: 45%;
+  }
+  .final-payment  {
+    width: 50%;
+  }
+  .final-payment-button  {
+    width: 50%;
+  }
+  .final-payment .icon {
+    margin-top: -0.35rem;
+  }
+  .header-popular {
+    margin-left: 1rem !important;
+  }
+  .hero-text {
+    padding: 5%;
+  }
+  .contact-us textarea {
+    height: 100px;
+  }
+  .w-sm-100{
+    width: 100% !important;
+  }
+  .contact-icon {
+    width: 8%;
+  }
+  .alamat{
+    padding: 1rem;
+  }
+  .hero-text .col-md-6{
+    width: 50% !important;
+  }
+  .booking-detail .button-search button{
+    padding-left: 2.1rem !important;
+    padding-right: 2.1rem !important;
+  }
+  .z-index-1{
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+  .bg-cover {
+    width: 100%;
+    height: 100vh;
+  }
+  .card-img{
+    max-height: 19rem;
+  }
 }
 
 /* 
   ##Device = Tablets, Ipads (landscape)
   ##Screen = B/w 768px to 1024px
 */
+
+@media(min-width: 768px) and (max-width: 876px) {
+
+  .booking-detail .col-md-2 {
+    width: 49.666667%;
+  }
+  .navbar-collapse {
+    width: inherit;
+  }
+  .navbar-left , .about-header .navbar-left {
+    transform: translateX(4%);
+  }
+  .img-left{
+    width: 24px !important;
+  }
+  .breadcrumb-detail{
+    margin-top: -10%;
+  }
+  .booking-detail .select{
+    margin-top: 0rem !important;
+  }
+  .booking-detail .select-2{
+    margin-top: 1.5rem !important;
+  }
+  .col-sm-12.index-select {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .booking-detail .button-search{
+    margin-top: 0rem !important;
+    margin-left: 36%;
+  }
+  .table-detail .table-img {
+    width: 45%;
+    max-width: 45%;
+    max-height: 7rem;
+  }
+  .table-detail .icon-star {
+    width: 30%;
+  }
+  .table-review .table-img {
+    width: 26%;
+    max-width: 26%;
+    max-height: 8rem;
+  }
+  .table-review .icon-star {
+    width: 30%;
+  }
+  .table-review .table-mid img {
+    width: 13%;
+    margin-top: 0%;
+  }
+  .table-mid img {
+    width: 25%;
+    margin-top: 0%;
+  }
+  .chek-in .col-sm-6.index-select{
+    width: 50%;
+  }
+  .input , .button-search{
+    padding-top: 0rem;
+  }
+  .cover .cover-text {
+    margin-top: 40%;
+    width: 75%;
+  }
+  .nav-kanan {
+    padding-left: 1rem;
+  }
+  .top-destination {
+    width: 100%;
+    margin-top: 32%;
+    margin-left: 1rem;
+  }
+  .card-title{
+    font-size: 1rem;
+  }
+  .card-img-overlay {
+    padding: 1.5rem !important;
+  }
+  .card-text.h3 {
+    font-size: calc(0.6rem + 0.6vw);
+  }
+  .card-text {
+    font-size: 11px;
+    margin-bottom: 0px;
+  }
+  .card-img-overlay button{
+    font-size: 11px;
+  }
+  .card-img-overlay img {
+    margin-top: 0px;
+  }
+  .carousel-item {
+    margin-left: 5rem;
+  }
+  .carousell-title{
+    font-size: 19.2px;
+  }
+  .ml-6 {
+    margin-left: 0.9rem !important;
+  }
+  .client-item{
+    transform: translateX(0%);
+  }
+  .client .col-md-5{
+    width: 46%;
+  }
+  .client-item h5{
+    font-size: 1.1rem;
+  }
+  .icon-client {
+    transform: translate(5.3em , -0.8em);
+  }
+  .background-breadcrumb {
+    height: 30vh;
+  }
+  .breadcrumb-detail-kamar {
+    margin-top: -23%;
+  }
+  .background-breadcrumb {
+    height: 52vh;
+  }
+  .detail-kamar .input{
+    padding-top: 1.5rem;
+  }
+  .detail-kamar .button-search .mt-4{
+    margin-top: 3rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  .table-detail-kamar .table-img {
+    float: left;
+    width: 53%;
+    margin-bottom: 0.5rem;
+  }
+  .table-detail-kamar h1 {
+    margin-top: 0%;
+  }
+  .table-detail-kamar .table-text-2 {
+    padding-top: 5.7rem;
+  }
+  .table-detail-kamar .table-text-2 p {
+    font-size: 0.8rem;
+  }
+  .detail-kamar-hotel {
+    padding: 15px;
+    border: 1px solid #CEC9C9;
+    margin-top: 0px;
+  }
+  .detail-kamar-hotel p {
+    font-size: 13px;
+  }
+  .order h5 {
+    font-size: 1rem;
+    margin-top: 0.2rem;
+  }
+  .order img{
+    margin-right: 0.5rem;
+  }
+  .btn-order {
+    padding-left: 17.42rem !important;
+    padding-right: 17.42rem !important;
+    margin-top: 0px !important;
+  }
+  .detail-kamar .button-search .mt-4 {
+    margin-top: 0rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  .detail-kamar .button-search{
+    margin-left: 36%;
+  }
+  .detail-kamar .select{
+    padding-top: 0px;
+  }
+  .chek-in .col-sm-6 {
+    width: 46%;
+  }
+  .col-sm-12.jumbotron{
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .jumbotron.ml-5{
+    margin-left: 0px !important;
+  }
+  .jumbotron-kamar {
+    margin-left: 4%;
+  }
+  .jumbotron-kamar-img {
+    margin-right: 12px;
+  }
+  .col-sm-12.grand-order{
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 3rem;
+    margin-left: 8.5%;
+  }
+  .booking .button-search-index {
+    margin-top: 0rem !important;
+    margin-left: 39%;
+  }
+  .navbar-type-3 .navbar-brand {
+    padding-left: 0rem;
+  }
+  .brand-whislist {
+    margin-left: -46%;
+    padding-left: 3rem !important;
+  }
+  .main-wishlist {
+    width: 100%;
+  }
+  .breadcrumb-wishlist {
+    margin-left: -1rem;
+  }
+  .main-wishlist .left-side {
+    width: 88%;
+  }
+  .link-right {
+    float: none;
+    display: block;
+  }
+  .img-hotel-wishlist {
+    width: 28%;
+    max-height: 9.5rem;
+  }
+  .jumbotron-review {
+    width: 100%;
+    margin-left: 0rem;
+  }
+  .sm-mt-2{
+    margin-top: 0.5rem;
+  }
+  .sm-pr-0{
+    padding-right: 0rem;
+  }
+  .table-review .table-mid .icon-star-2 {
+    margin-top: 1%;
+    width: 20%;
+    max-height: 20px;
+    float: right;
+  }
+  .popup2 .popuptext {
+    top: 64%;
+    width: 35%;
+    left: 2%;
+  }
+  .popup2 .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup2 .popuptext::after {
+    left: 38%;
+  }
+  .popup .popuptext {
+    top: 10%;
+    left: 66%;
+    width: 34%;
+  }
+  .popup-detail .popuptext {
+    top: 73%;
+    width: 35%;
+    left: 4%;
+  }
+  .popup-detail .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup-detail .popuptext::after {
+    left: 50%;
+  }
+  .final-payment  {
+    width: 70%;
+  }
+  .final-payment-button {
+    width: 70%;
+  }
+  .final-payment .icon {
+    margin-top: -0.35rem;
+  }
+  .header-popular {
+    margin-top: 1%;
+    width: 50%;
+  }
+  .header-popular button{
+    margin-top: 1rem !important;
+  }
+  .navbar-type-4 .navbar-brand {
+    padding-left: 0rem;
+  }
+  .navbar-type-4 .navbar-left{
+    transform: translateX(0px);
+  }
+  .hero-text {
+    padding: 5%;
+  }
+  .contact-us textarea {
+    height: 100px;
+  }
+  .w-sm-100{
+    width: 100% !important;
+  }
+  .contact-icon {
+    width: 8%;
+  }
+  .hero-text .col-md-6{
+    width: 100% !important;
+  }
+  .contact-support {
+    margin-top: 70%;
+  }
+  .contact-us .pt-5{
+    padding-top: 0rem !important;
+  }
+  .contact-us {
+    background-color: #00000029;
+    margin-top: 1rem;
+    max-width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .contact-us.p-5{
+    padding: 2rem !important;
+  }
+  .contact-us .w-75{
+    float: none !important;
+    width: 100% !important;
+  }
+  .detail-kamar .select-3{
+    margin-top: 1.5rem;
+  }
+  .login{
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+  }
+  .bg-cover {
+    width: 100%;
+    height: 100vh;
+  }
+  .card-img{
+    max-height: 13rem;
+  }
+  .verify{
+    width: 75% !important;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   
@@ -104,21 +903,19 @@
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
-  
-  .cover .cover-text{
-    margin-top: 39%;
-  }
+
   .cover img{
     width: 100%;
-    height: 500px;
+    height: 301px;
   }
   .select{
     padding-left: 0.8rem;
-    padding-bottom: 0.5rem;
-  }
-  .input{
-    padding-top: 0rem;
     padding-bottom: 0rem;
+  }
+  .input {
+    padding-top: 0.5rem;
+    padding-bottom: 0rem;
+    padding-right: 0.1rem;
   }
   .form-select-lg {
     height: calc(1.5em + 1rem + 0px);
@@ -160,24 +957,22 @@
   .hr {
     border: 1px solid #00A790;
     width: 25%;
-    margin-left: -10%;
-    transform: translateY(-15px);
   }
 
   .card{
     left: 7%;
   }
   .card-img-overlay{
-    padding: 1rem !important;
+    padding: 2rem !important;
   }
   h3, .h3 {
-    font-size: calc(1.3rem + -1vw);
+    font-size: calc(1.3rem + 0.5vw);
   }
   h5, .h5 {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
-  .py-6{
-    padding-top: 3em;
+  .py-6 {
+    padding-top: 7.5em;
   }
   .btn-4{
     padding-right: 10px;
@@ -192,18 +987,17 @@
     width: 100%;
     margin-left: 0em;
   }
-  .carousell-title{
-    top: 25%;
-    margin-left: 35px;
+  .carousell-title {
+    top: 50%;
+    margin-left: 0px;
+    width: 90%;
+    font-size: 1.55em;
   }
-  .ml-6{
-    margin-left: 1rem;
+  .ml-6 {
+    margin-left: 0rem;
   }
   .my-6{
     top: 48%;
-  }
-  .ml-7{
-    margin-left: 3.5rem;
   }
   .network img{
     width: 100%;
@@ -245,7 +1039,7 @@
   .navbar-collapse {
     width: inherit;
   }
-  .navbar-left {
+  .navbar-left , .about-header .navbar-left {
     transform: translateX(5%);
   }
   .nav-kanan{
@@ -258,9 +1052,318 @@
     right: -10%;
   }
   .card-img-overlay img {
+    width: 70%;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  .booking-detail .col-md-2 {
+    width: 49.666667%;
+  }
+  .table-detail .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 13rem;
+  }
+  .table-detail .icon-star {
+    width: 50%;
+    float: none;
+  }
+  .table-review .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 9rem;
+  }
+  .table-review .icon-star-2 {
+    margin-top: 1%;
+    width: 31%;
+    max-height: 19px;
+    margin-left: auto !important;
+  }
+  .table-mid img {
+    width: 40%;
+    margin-top: -5%;
+  }
+  .table-text-2 .pt-3 {
+    padding-top: 8rem !important;
+  }
+  .img-left{
+    width: 24px !important;
+  }
+  .booking-detail .col-md-2 {
+    width: 49.666667%;
+  }
+  .breadcrumb-detail{
+    margin-top: -15%;
+  }
+  .booking-detail .button-search {
+    margin-top: 1rem !important;
+    /*margin-left: 14%;*/
+    display: flex;
+  }
+  .booking.booking-detail {
+    width: 93%;
+    margin-top: 0px;
+  }
+  .breadcrumb-detail-kamar {
+    margin-top: -41%;
+  }
+  .jumbotron.ml-5{
+    margin-left: 0px !important;
+  }
+  .jumbotron-review {
+    width: 100%;
+    margin-left: 0rem;
+  }
+  .popup2 .popuptext {
+    top: 64%;
+    width: 35%;
+    left: 2%;
+  }
+  .popup .popuptext {
+    top: 10%;
+    left: 66%;
+    width: 34%;
+  }
+  .popup2 .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup2 .popuptext::after {
+    left: 38%;
+  }
+  .final-payment  {
+    width: 70%;
+  }
+  .final-payment-button {
+    width: 70%;
+  }
+  .final-payment .icon {
+    margin-top: -0.35rem;
+  }
+  .header-popular {
+    margin: 0% !important;
+    width: 100%;
+    padding-top: 1rem !important;
+  }
+  .header-popular button{
+    margin-top: 1rem !important;
+  }
+  .popular-hero img {
+    height: 20rem;
+  }
+  .popular .card {
+    width: 100%;
+  }
+  .navbar-type-4 .navbar-brand {
+    padding-left: 0rem;
+  }
+  .hero-text {
+    padding-top: 5%;
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+  .contact-us textarea {
+    height: 100px;
+  }
+  .w-sm-100{
+    width: 100% !important;
+  }
+  .contact-icon {
+    width: 8%;
+    margin-left: -27px;
+  }
+  .hero-text{
+    margin-top: 1rem;
+  }
+  .hero-text p{
+    font-size: 13px;
+  }
+  .hero-text h1{
+    font-size: 30px;
+  }
+  .hero-text h4{
+    font-size: 18px;
+  }
+  .hero-text .row{
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+  .navbar-type-3 .navbar-brand.type-2 {
+    padding-left: 0rem;
+  }
+  .contact-us .pt-5{
+    padding-top: 0rem !important;
+  }
+  .contact-us {
+    background-color: #00000029;
+    margin-top: 3rem;
+    max-width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .contact-us.p-5{
+    padding: 2rem !important;
+  }
+  .contact-us .w-75{
+    float: none !important;
+    width: 100% !important;
+  }
+  .contact.p-5{
+    padding: 0rem !important;
+  }
+  .contact h5{
+    font-size: 13px;
+  }
+  .contact h1{
+    font-size: 25px;
+  }
+  .contact .row{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .contact.px-5{
+    padding: 0px !important;
+    margin-top: 1.5rem;
+  }
+  .alamat{
+    padding: 1rem;
+  }
+  .navbar-expand-sm {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-sm .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-sm .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-sm .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-sm .navbar-collapse {
+    display: flex !important;
+  }
+  .navbar-expand-sm .navbar-toggler {
     display: none;
   }
-  
+
+  .navbar-review .nav-link{
+    font-size: 0.75rem;
+  }
+  .navbar-review .nav-link img {
+    width: 17px;
+  }
+  .navbar-review .nav-link .facebook{
+    width: 21px;
+  }
+  .table-review .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 20rem;
+  }
+  .table-mid .fasilitas {
+    width: 20%;
+    margin-top: 0%;
+  }
+  .table-responsive {
+    width: 100%;
+  }
+  .table-detail-kamar .table-img {
+    float: left;
+    width: 100%;
+    height: 13.5rem;
+    max-width: 100%;
+    max-height: 10.5rem;
+  }
+  .table-detail-kamar .table-text-2 {
+    padding-top: 9.7rem;
+  }
+  .date-kecil {
+    width: 46%;
+  }
+  .col-md-1.select-2 {
+    width: 46%;
+  }
+  .col-md-1.select {
+    width: 46%;
+  }
+  .detail-kamar .button-search {
+    margin-left: 26%;
+  }
+  .detail-kamar .button-search button {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  .jumbotron-kamar-img {
+    margin-right: 7px;
+  }
+  .grand-order{
+    padding: 3rem !important;
+  }
+  .order{
+    width: 108.5%;
+  }
+  .cover .cover-text {
+    margin-top: 63vw;
+    width: 85%;
+  }
+  .top-destination {
+    margin-top: 16rem;
+    width: 100%;
+    margin-left: 0%;
+  }
+  .top-destination-button{
+    margin-top: 3%;
+    left: 6.5%;
+  }
+  .card {
+    left: 3.5%;
+    width: 65%;
+    display: inline-flex;
+  }
+  .card-img {
+    height: 350px;
+  }
+  .accommodations .col-sm-6 {
+    width: 50%;
+    transform: translateX(0%);
+  }
+  .contact-support {
+    margin-top: 95%;
+    padding: 1rem;
+  }
+  .booking-detail .button-search button{
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .detail-kamar .select-3{
+    margin-top: 1.5rem;
+  }
+  .login{
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+  }
+  .bg-cover {
+    width: 47%;
+    float: right;
+  }
+  .z-index-1{
+    z-index: 1;
+  }
+  .md-img{
+    position: absolute;
+    z-index: 0;
+  }
+  .verify{
+    width: 75% !important;
+  }
 }
 
 /* 
@@ -276,7 +1379,7 @@
   .navbar-collapse {
     width: inherit;
   }
-  .navbar-left {
+  .navbar-left , .about-header .navbar-left {
     transform: translateX(5%);
   }
   .nav-kanan{
@@ -286,7 +1389,7 @@
     font-size: 1.5em;
   }
   .cover .cover-text{
-    margin-top: 72vw;
+    margin-top: 63vw;
     width: 85%;
   }
   .pt-costum{
@@ -295,6 +1398,16 @@
   .booking{
     margin-top: 30px;
   }
+
+  .top-hotel-about .card{
+    left: 2vw;
+  }
+  
+  .left-about{
+    margin-left: 4vw;
+    margin-top: 3vw;
+  }
+
   .select {
     padding-left: 0.75rem;
     padding-top: 1.5rem;
@@ -333,17 +1446,16 @@
     border-radius: 0.2rem;
   }
   .top-destination{
-    margin-top: 65vw;
+    margin-top: 16rem;
     width: 100%;
     margin-left: 0%;
   }
   .hr{
-    transform: translateY(-100px);
-    margin-left: 3%;
     width: 30%
   }
   .top-destination-button{
     margin-top: 3%;
+    left: 6.5%;
   }
   .card {
     left: 3.5%;
@@ -351,7 +1463,7 @@
     display: inline-flex;
   }
   .top-hotel{
-    margin-top: -15px;
+    margin-top: 0px;
   }
   .accommodations .col-sm-6{
     width: 50%;
@@ -359,11 +1471,11 @@
   }
   .carousell-title {
     top: 50%;
-    margin-left: 29px;
+    margin-left: 15px;
     font-size: 1.55em;
   }
   .ml-6{
-    margin-left: 0.7rem;
+    margin-left: 0rem;
   }
   .py-6 {
     padding-top: 7.5em;
@@ -398,10 +1510,435 @@
   .network img {
     width: 75%;
   }
-  .icon-client{
-    transform: translate(7.3em , -1.6em);
+  .icon-client {
+    transform: translate(6.5em , -0.8em);
   }
   .footer-item{
     margin-top: 5%;
+  }
+  .img-left{
+    width: 24px !important;
+  }
+  .booking-detail .col-md-2 {
+    width: 49.666667%;
+  }
+  .breadcrumb-detail{
+    margin-top: -20%;
+  }
+  .booking-detail .button-search{
+    margin-top: 1rem !important;
+    /*margin-left: 14%;*/
+    display: flex;
+  }
+  .booking.booking-detail {
+    width: 95%;
+    margin-top: 0px;
+  }
+  .table-responsive {
+    width: 100%;
+  }
+  .table-detail .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 9rem;
+  }
+  .table-detail .icon-star {
+    width: 50%;
+    float: none;
+  }
+  .table-review .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 15rem;
+    margin-top: 0.25rem;
+  }
+  .table-review .icon-star-2 {
+    margin-top: 1%;
+    width: 40%;
+    max-height: 20px;
+    float: none;
+    margin-left: auto !important;
+  }
+  .table-mid img {
+    width: 40%;
+    margin-top: -5%;
+  }
+  .table-text-2 .pt-3 {
+    padding-top: 5rem !important;
+  }
+  .breadcrumb-detail-kamar {
+    margin-top: -50%;
+  }
+  .jumbotron-kamar-img {
+    margin-right: 6px;
+  }
+  .detail-kamar .col-sd-2 {
+    flex: 0 0 auto;
+    width: 46%;
+  }
+  .jumbotron-kamar {
+    width: fit-content;
+    margin-left: 0%; 
+  }
+  .detail-kamar .button-search {
+    margin-left: 21%;
+  }
+  .detail-kamar .button-search button{
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  .table-detail-kamar .table-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 7rem;
+  }
+  .detail-kamar p {
+    font-size: 0.7rem;
+  }
+  .table-detail-kamar h1 {
+    margin-top: 40%;
+    font-size: 1.8rem;
+  }
+  .table-detail-kamar h1.px-4 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  .table-detail-kamar .table-text-2 p{
+    font-size: 0.7rem;
+  }
+  .detail-kamar-hotel p {
+    font-size: 12px;
+  }
+  .detail-kamar-hotel {
+    padding: 15px;
+  }
+  .order h5 {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+  .btn-order {
+    padding-left: 9.22rem !important;
+    padding-right: 9.22rem !important;
+    margin-top: 0px !important;
+  }
+  .order img{
+    margin-right: 0.5rem;
+  }
+  .order{
+    width: 100%;
+    padding-left: 1rem;
+    margin-top: 3rem;
+  }
+  .jumbotron.ml-5{
+    margin-left: 0.75rem !important;
+  }
+  
+  .detail-kamar .input {
+    padding-top: 1.5rem;
+  }
+  .grand-order{
+    margin-left: 1rem;
+  }
+  .col-sm-12.index-select {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .chek-in .col-sm-6.index-input{
+    width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 15px;
+    height: 15px;
+    background-size: 20px;
+    margin-right: -11px;
+  }
+  .booking .button-search-index {
+    margin-top: 0rem !important;
+    margin-left: 3%;
+  }
+  .navbar-type-3 .navbar-brand {
+    padding-left: 0rem;
+  }
+  .brand-whislist {
+    margin-left: -16%;
+    padding-left: 1.5rem !important;
+  }
+  .main-wishlist {
+    width: 100%;
+  }
+  .breadcrumb-wishlist {
+    margin-left: -1rem;
+  }
+  .main-wishlist .left-side {
+    width: 79%;
+  }
+  .link-right {
+    float: none;
+    display: block;
+  }
+  .img-hotel-wishlist {
+    width: 100%;
+    margin-bottom: 1rem;
+    float: none !important;
+    max-height: 20rem;
+  }
+  .icon-fasilitas {
+    width: 22%;
+    margin-bottom: 0.5rem;
+  }
+  .navbar-type-3 .ml-sm-4{
+    margin-left: 1rem;
+  }
+  .icon-star {
+    margin-top: -4%;
+    width: 30%;
+  }
+  .form-control{
+    width: 100%;
+  }
+  .jumbotron-review {
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  .navbar-expand-sm {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-sm .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-sm .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-sm .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-sm .navbar-collapse {
+    display: flex !important;
+  }
+  .navbar-expand-sm .navbar-toggler {
+    display: none;
+  }
+
+  .navbar-review .nav-link{
+    font-size: 0.75rem;
+  }
+  .navbar-review .nav-link img {
+    width: 17px;
+  }
+  .navbar-review .nav-link .facebook{
+    width: 21px;
+  }
+  .table-review img{
+    width: 26%;
+    margin-top: 1%;
+  }
+  .btn-review{
+    margin-right: 0px !important;
+  }
+  .popup .popuptext {
+    top: 10%;
+    left: 33%;
+    width: 65%;
+  }
+  .popup .popuptext::after {
+    left: 83%;
+  }
+  .popup2 .popuptext {
+    top: 64%;
+    width: 65%;
+    left: 2%;
+  }
+  .popup2 .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup2 .popuptext::after {
+    left: 38%;
+  }
+  .popup-detail .popuptext {
+    top: 70%;
+    width: 65%;
+    left: 2%;
+  }
+  .popup-detail .popuptext .icon-popup {
+    max-width: 28%;
+    max-height: 3.8rem;
+  }
+  .popup-detail .popuptext::after {
+    left: 38%;
+  }
+  .final-payment  {
+    width: 100%;
+  }
+  .final-payment-button  {
+    width: 100%;
+  }
+  .final-payment .card{
+    width: 100%;
+  }
+  .final-payment .icon {
+    margin-top: -0.35rem;
+  }
+  .header-popular {
+    margin-top: 2%;
+    padding: 0.5rem !important;
+    margin-left: 3rem !important;
+    width: 70%;
+  }
+  .header-popular button{
+    margin-top: 1rem !important;
+  }
+  .popular-hero img{
+    height: 20rem;
+  }
+  .popular .card{
+    width: 100%;
+  }
+  .page-link.ml-5{
+    margin-left: 1rem !important;
+  }
+  .page-link.mr-5{
+    margin-right: 1rem !important;
+  }
+  .navbar-type-4 .navbar-brand {
+    padding-left: 0rem;
+  }
+  .navbar-type-4 .navbar-left{
+    transform: translateX(5.5%);
+  }
+  .modal-body .modal-h5 {
+    margin-left: 3rem !important;
+  }
+  .hero-text {
+    padding-top: 5%;
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+  .contact-us textarea {
+    height: 100px;
+  }
+  .w-sm-100{
+    width: 100% !important;
+  }
+  .contact-icon {
+    width: 15%;
+    margin-left: -26px;
+  }
+  .hero-text{
+    margin-top: 1rem;
+  }
+  .hero-text p{
+    font-size: 13px;
+  }
+  .hero-text h1{
+    font-size: 30px;
+  }
+  .hero-text h4{
+    font-size: 18px;
+  }
+  .hero-text .row{
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+  .navbar-type-3 .navbar-brand.type-2 {
+    padding-left: 0rem;
+  }
+  .contact-support {
+    margin-top: 114%;
+    padding: 1rem;
+  }
+  .contact-us .pt-5{
+    padding-top: 0rem !important;
+  }
+  .contact-us {
+    background-color: #00000029;
+    margin-top: 1rem;
+    max-width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .contact-us.p-5{
+    padding: 2rem !important;
+  }
+  .contact-us .w-75{
+    float: none !important;
+    width: 100% !important;
+  }
+  .contact.p-5{
+    padding: 0rem !important;
+  }
+  .hero-text h5{
+    font-size: 16px;
+  }
+  .contact p{
+    font-size: 13px;
+  }
+  .contact h1{
+    font-size: 25px;
+  }
+  .contact .row{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .contact.px-5{
+    padding: 0px !important;
+    margin-top: 1.5rem;
+  }
+  .hero img{
+    height: 27rem;
+  }
+  .bg-gradient-local2 .y-5{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .alamat{
+    padding: 1rem;
+  }
+  .date-kecil {
+    width: 46%;
+  }
+  .col-md-1.select-2 {
+    width: 46%;
+  }
+  .col-md-1.select {
+    width: 46%;
+  }
+  .booking-detail .button-search button{
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .detail-kamar .select-3{
+    margin-top: 0rem;
+  }
+  .detail-kamar .col-md-2 {
+    width: 45.666667%;
+  }
+  .login{
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+  }
+  .bg-cover {
+    width: 50%;
+    float: right;
+  }
+  .z-index-1{
+    z-index: 1;
+  }
+  .md-img{
+    position: absolute;
+    z-index: 0;
+  }
+  .verify{
+    width: 100% !important;
   }
 }

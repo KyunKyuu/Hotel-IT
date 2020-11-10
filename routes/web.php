@@ -13,14 +13,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes([ 'verify' => true ]);
+
 Route::get('/', 'SiteController@home')->name('home');
-Route::post('/site/hotel', 'SiteController@hotel')->name('hotel');
-Route::get('/site/hotel/{slug:slug}', 'SiteController@detail_hotel')->name('detail_hotel');
-Route::get('/site/kamar/{slug:slug}', 'SiteController@detail_kamar')->name('detail_kamar');
+Route::get('/hotel/', 'SiteController@hotel')->name('hotel');
+Route::get('/hotel/city/', 'SiteController@hotel_city')->name('hotel_city');
+Route::get('/hotel/popular', 'SiteController@popular')->name('popular');
+Route::get('/hotel/{slug:slug}', 'SiteController@detail_hotel')->name('detail_hotel');
+Route::get('/about', 'SiteController@about')->name('about');
+Route::get('/contact', 'SiteController@contact_us')->name('contact');
+Route::post('/contact', 'ContactUsController@contact_send')->name('contact_send');
+
+Route::group(['middleware' => ['auth', 'checkRole:superadmin', 'verified']], function(){
 
 
+	Route::get('/dasboard/admin', 'AdminController@index')->name('daftar_admin');
+	Route::get('/dasboard/admin/create', 'AdminController@create')->name('create_admin');
+	Route::post('/dasboard/admin/store', 'AdminController@store')->name('store_admin');
+	// Route::get('/dasboard/admin/{id}', 'AdminController@edit')->name('edit_admin');
+	// Route::patch('/dasboard/admin/{id}', 'AdminController@update')->name('update_admin');
+	Route::get('/dasboard/admin/show/{id}', 'AdminController@show')->name('show_admin');
+	Route::delete('/dasboard/admin/{id}', 'AdminController@destroy')->name('destroy_admin');
+	Route::get('/dasboard/admin/remove/{id}', 'AdminController@remove')->name('remove_admin');
+
+	// Tamu
+	Route::delete('/dasboard/tamu/{id}', 'TamuController@destroy')->name('delete_tamu');
+
+	// Dashboard Category Hotel
+	Route::get('/dasboard/category_hotel', 'CategoryHotelController@index')->name('dashboard_category_hotel');
+	Route::get('/dasboard/category_hotel/create', 'CategoryHotelController@create')->name('create_category_hotel');
+	Route::post('/dasboard/category_hotel/store', 'CategoryHotelController@store')->name('store_category_hotel');
+	Route::get('/dasboard/category_hotel/{id}', 'CategoryHotelController@edit')->name('edit_category_hotel');
+	Route::patch('/dasboard/category_hotel/{id}', 'CategoryHotelController@update')->name('update_category_hotel');
+	Route::delete('/dasboard/category_hotel/{id}', 'CategoryHotelController@destroy')->name('destroy_category_hotel');
+	
+});
 
 Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function(){
+
+	// Dasboard Hotel
+	Route::get('/dasboard/hotel/create', 'HotelController@create')->name('create_hotel');
+	Route::post('/dasboard/hotel/store', 'HotelController@store')->name('store_hotel');
+	Route::get('/dasboard/hotel/{slug:slug}', 'HotelController@edit')->name('edit_hotel');
+	Route::patch('/dasboard/hotel/{id}', 'HotelController@update')->name('update_hotel');
+
+	// Dashboard Category Kamar
+	Route::get('/dasboard/category_kamar/create', 'CategoryKamarController@create')->name('create_category_kamar');
+	Route::post('/dasboard/category_kamar/store', 'CategoryKamarController@store')->name('store_category_kamar');
+	Route::get('/dasboard/category_kamar/{id}', 'CategoryKamarController@edit')->name('edit_category_kamar');
+	Route::patch('/dasboard/category_kamar/{id}', 'CategoryKamarController@update')->name('update_category_kamar');
+
+	// Dashboard Diskon
+	Route::post('/dasboard/diskon/create', 'DiskonController@store')->name('store_diskon');
+	Route::get('/dasboard/diskon/{id}', 'DiskonController@edit')->name('edit_diskon');
+	Route::patch('/dasboard/diskon/{id}', 'DiskonController@update')->name('update_diskon');
+
+
+
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:admin,superadmin', 'verified']], function(){
 
 	// Dashboard
 	Route::get('/dasboard', 'DashboardController@index')->name('dashboard');
@@ -35,41 +87,27 @@ Route::group(['middleware' => ['auth', 'checkRole:admin', 'verified']], function
 	Route::get('/dasboard/tamu/check_in', 'TamuController@check_in_today')->name('daftar_check_in');
 	Route::get('/dasboard/tamu/check_out', 'TamuController@check_out_today')->name('daftar_check_out');
 	Route::get('/dasboard/tamu/{id}', 'TamuController@show')->name('show_tamu');
-	Route::delete('/dasboard/tamu/{id}', 'TamuController@destroy')->name('delete_tamu');
 	
-	// Dashboard Category Hotel
-	Route::get('/dasboard/category_hotel', 'CategoryHotelController@index')->name('dashboard_category_hotel');
-	Route::get('/dasboard/category_hotel/create', 'CategoryHotelController@create')->name('create_category_hotel');
-	Route::post('/dasboard/category_hotel/store', 'CategoryHotelController@store')->name('store_category_hotel');
-	Route::get('/dasboard/category_hotel/{id}', 'CategoryHotelController@edit')->name('edit_category_hotel');
-	Route::patch('/dasboard/category_hotel/{id}', 'CategoryHotelController@update')->name('update_category_hotel');
-	Route::delete('/dasboard/category_hotel/{id}', 'CategoryHotelController@destroy')->name('destroy_category_hotel');
 
 	// Dashboard Hotel
 	Route::get('/dasboard/hotel', 'HotelController@index')->name('dashboard_hotel');
-	Route::get('/dasboard/hotel/create', 'HotelController@create')->name('create_hotel');
-	Route::post('/dasboard/hotel/store', 'HotelController@store')->name('store_hotel');
-	Route::get('/dasboard/hotel/{id}', 'HotelController@edit')->name('edit_hotel');
-	Route::patch('/dasboard/hotel/{id}', 'HotelController@update')->name('update_hotel');
+	Route::get('/dasboard/hotel/show/{slug:slug}', 'HotelController@show')->name('show_hotel');
 	Route::delete('/dasboard/hotel/{id}', 'HotelController@destroy')->name('destroy_hotel');
-	Route::get('/dasboard/hotel/show/{id}', 'HotelController@show')->name('show_hotel');
 
 
 	// Dashboard Category Kamar
 	Route::get('/dasboard/category_kamar', 'CategoryKamarController@index')->name('dashboard_category_kamar');
-	Route::get('/dasboard/category_kamar/create', 'CategoryKamarController@create')->name('create_category_kamar');
-	Route::post('/dasboard/category_kamar/store', 'CategoryKamarController@store')->name('store_category_kamar');
-	Route::get('/dasboard/category_kamar/{id}', 'CategoryKamarController@edit')->name('edit_category_kamar');
-	Route::patch('/dasboard/category_kamar/{id}', 'CategoryKamarController@update')->name('update_category_kamar');
 	Route::delete('/dasboard/category_kamar/{id}', 'CategoryKamarController@destroy')->name('destroy_category_kamar');
+	Route::get('/dasboard/category_kamar/show/{slug:slug}', 'CategoryKamarController@show')->name('show_kamar');
 
-	// Dashboard Kamar
-	Route::get('/dasboard/kamar', 'KamarController@index')->name('dashboard_kamar');
-	
-	Route::get('/dasboard/kamar/{id}', 'KamarController@edit')->name('edit_kamar');
-	Route::patch('/dasboard/kamar/{id}', 'KamarController@update')->name('update_kamar');
-	Route::delete('/dasboard/kamar/{id}', 'KamarController@destroy')->name('destroy_kamar');
-	Route::get('/dasboard/kamar/show/{id}', 'KamarController@show')->name('show_kamar');
+	// Dashboard Diskon Kamar
+	Route::get('/dasboard/diskon', 'DiskonController@index')->name('diskon_kamar');
+	Route::get('/dasboard/diskon/show/{id}', 'DiskonController@show')->name('show_diskon');
+	Route::delete('/dasboard/diskon/{id}', 'DiskonController@destroy')->name('destroy_diskon');
+
+	// Riwayat Reservasi
+	Route::get('/dasboard/history/reservasi', 'DashboardController@history_reservasi')->name('history_reservasi');
+
 
 });
 
@@ -83,9 +121,25 @@ Route::group(['middleware' => ['auth', 'checkRole:tamu', 'verified']], function(
 	Route::patch('/profile/{id}', 'Account\ProfileTamuController@update')->name('update_profile_tamu');
 
 	// history reservasi
-	Route::get('/history/reservasi/{email:email}', 'ReservasiController@history_reservasi')->name('history_reservasi');
+	Route::get('/review/{email:email}', 'ReviewController@index')->name('review');
+	Route::post('/hotel/review', 'ReviewController@review')->name('hotel_review');
 	// proses reservasi kamar
-	Route::post('/reservasi/{id}', 'ReservasiController@create_reservasi')->name('reservasi');
+	Route::get('/reservasi', 'ReservasiController@reservasi_awal')->name('reservasi');
+	Route::post('/reservasi/store', 'ReservasiController@reservasi_akhir')->name('reservasi_order');
 
+	// Reservasi Diskon
+	Route::get('/reservasi/order/diskon', 'ReservasiController@apply_diskon')->name('apply_diskon');
+	Route::delete('reservasi/order/diskon', 'ReservasiController@delete_diskon')->name('delete_diskon');
+	// whislist
+	Route::get('/whislist/{emai:email}','whislistController@show')->name('whislist');
+	Route::get('/create/whislist/{id}', 'whislistController@create')->name('create_whislist');
+	Route::delete('/whislist/{id}', 'whislistController@destroy')->name('destroy_whislist');
+	Route::delete('/whislist_all/{id}', 'whislistController@destroy_all')->name('destroy_all_whislist');
+
+	// midtrans
+	Route::post('/midtrans/callback', 'MidtransController@notificationHandler');
+	Route::get('/midtrans/finish', 'MidtransController@finishRedirect');
+	Route::get('/midtrans/unfinish', 'MidtransController@unfinishRedirect');
+	Route::get('/midtrans/error', 'MidtransController@errorRedirect');
 
 });

@@ -7,7 +7,7 @@
   <div class="col-xl-3 col-md-6 mb-4">
     <hr>
                     <div class="col mr-2">
-                      <div class="h2 mb-0 font-weight-bold text-gray-800">{{today()->format('D,d M Y')}}</div>
+                      <div class="h2 mb-0 font-weight-bold text-gray-800">{{today()->format('d,F Y')}}</div>
                     </div>
    </div>
             
@@ -17,8 +17,12 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Check Out hari ini</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Check In hari ini</div>
+                      @if($user->role == 'superadmin')
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$count}}</div>
+                      @elseif($user->role == 'admin')
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$count}}</div>
+                      @endif
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -49,10 +53,17 @@
                   <tbody>
                   	 @foreach($reservasi as $tm)
                     <tr>
+                      @if($user->role == 'superadmin')
                       <td>{{$loop->iteration}}</td>
                       <td>{{$tm->user->name}}</td>
                       <td>{{$tm->CategoryKamar->hotels->nama_hotel}}</td>
                       <td>{{$tm->CategoryKamar->nama_category}}</td>
+                      @elseif($user->role == 'admin')
+                      <td>{{$loop->iteration}}</td>
+                      <td>{{$tm->user->name}}</td>
+                      <td>{{$tm->CategoryKamar->hotels->nama_hotel}}</td>
+                      <td>{{$tm->CategoryKamar->nama_category}}</td>
+                      @endif 
                     </tr>
                     @endforeach
                     </tbody>
@@ -60,7 +71,7 @@
               </div>
             </div>
               <div class="card-footer py-3">
-              {{$reservasi->links()}}
+             
             
           </div>
           </div>
@@ -68,3 +79,10 @@
 
 @endsection
 
+@push('footer')
+  <script>
+    $(document).ready( function () {
+    $('#dataTable').DataTable();
+} );
+  </script>
+@endpush

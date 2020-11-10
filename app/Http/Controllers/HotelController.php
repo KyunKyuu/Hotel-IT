@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Hotel, CategoryHotel};
+use App\{Hotel, CategoryHotel, CategoryKamar, Kamar};
 use Carbon\Carbon;
 class HotelController extends Controller
 {
@@ -14,8 +14,15 @@ class HotelController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
          //$hotel = Hotel::whereDate('created_at', Carbon::today())->get();
-        $hotel = Hotel::select('id','nama_hotel', 'category_hotel_id','kota')->get();
+        if ($user->role == "superadmin") {
+         $hotel = Hotel::with('categoriesHotel')->select('id','nama_hotel', 'category_hotel_id','kota','slug')->get();
+        }elseif ($user->role == "admin") {
+         $hotel = Hotel::with('categoriesHotel')->select('id','nama_hotel', 'category_hotel_id','kota','slug')->where('id_pembuat', $user->id)->first();     
+        }
+
+
         return view('dashboard.home pages.hotel.hotel', compact('hotel'));
     }
 
@@ -26,6 +33,7 @@ class HotelController extends Controller
      */
     public function create()
     {
+
         return view('dashboard.home pages.hotel.create',[
             'hotel' => new Hotel(),
             'negara' => CategoryHotel::get(),
@@ -52,10 +60,31 @@ class HotelController extends Controller
             'category_hotel_id' => 'required|int',
             'kota' => 'required',
             'content' => 'required',
+            
+            'fasilitas_icon_hotel' => 'required',
+            'fasilitas_icon_hotel2' => 'required',
+            'fasilitas_icon_hotel3' => 'required',
+            'fasilitas_icon_hotel3' => 'required',
+           
+            'fasilitas_text_hotel' => 'required',
+            'fasilitas_text_hotel2' => 'required',
+            'fasilitas_text_hotel3' => 'required',
+            'fasilitas_text_hotel3' => 'required',
+
         ]);
 
-        $icon_hotel = [$request->fasilitas_hotel, $request->fasilitas_hotel2, $request->fasilitas_hotel3,$request->fasilitas_hotel4,$request->fasilitas_hotel5];
-        $slug = \Str::slug(request('nama_hotel'));
+        $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3];
+
+        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3];
+
+        $ug = \Str::slug(request('nama_hotel')); 
+        $cel = Hotel::where('slug', $ug)->first();
+        if($cel != null){
+            $slug = \Str::slug(request('nama_hotel'.+1));
+        }elseif($cel == null){
+           $slug = \Str::slug(request('nama_hotel')); 
+        }
+
 
         $attr = $request->all(); 
 
@@ -64,11 +93,13 @@ class HotelController extends Controller
 
         $attr['gambar_hotel'] = $gambarUrl;
         $attr['slug'] = $slug;
-        $attr['fasilitas'] = json_encode($icon_hotel);
+        $attr['fasilitas_icon_hotel'] = json_encode($fasilitas_icon_hotel);
+        $attr['fasilitas_text_hotel'] = json_encode($fasilitas_text_hotel);
+        $attr['id_pembuat'] = auth()->user()->id;
         Hotel::create($attr);
         
 
-        return redirect('/dasboard/hotel');
+        return redirect('/dasboard/hotel')->with('success', 'Hotel Created Successfully!');
     }
 
     /**
@@ -77,9 +108,9 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $hotel = Hotel::find($id);
+        $hotel = Hotel::where('slug', $slug)->first();
         $icon = [];
        $icon_array = json_decode($hotel->fasilitas , TRUE); 
        foreach ($icon_array as $ic) {
@@ -95,11 +126,19 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-         $hotel = Hotel::find($id);
+         $hotel = Hotel::where('slug', $slug)->first();
+         if(auth()->user()->role == 'admin'){
+         if (auth()->user()->id != $hotel->id_pembuat) {
+            return redirect()->back()->with('error', 'Its not your Hotel');
+           }
+         }
+
         $negara = CategoryHotel::get();
-        return view('dashboard.home pages.hotel.edit', compact('hotel', 'negara'));
+        $icon = json_decode($hotel->fasilitas_icon_hotel , TRUE); 
+        $fasilitas = json_decode($hotel->fasilitas_text_hotel , TRUE);
+        return view('dashboard.home pages.hotel.edit', compact('hotel', 'negara', 'icon', 'fasilitas'));
     }
 
     /**
@@ -111,8 +150,21 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3];
+
+        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3];
+
         $hotel = Hotel::find($id);
-        $slug = \Str::slug(request('nama_hotel'));
+
+        $ug = \Str::slug(request('nama_hotel')); 
+        $cel = Hotel::where('slug', $ug)->first();
+        if($cel != null){
+            $slug = \Str::slug(request('nama_hotel'.+1));
+        }elseif($cel == null){
+           $slug = \Str::slug(request('nama_hotel')); 
+        }
+       
 
        if ($request->file('gambar_hotel')) {
 
@@ -130,9 +182,11 @@ class HotelController extends Controller
     
         $attr['gambar_hotel'] = $gambarUrl;
         $attr['slug'] = $slug;
+        $attr['fasilitas_icon_hotel'] = json_encode($fasilitas_icon_hotel);
+        $attr['fasilitas_text_hotel'] = json_encode($fasilitas_text_hotel);
         $hotel->update($attr);
 
-        return redirect('/dasboard/hotel');
+        return redirect('/dasboard/hotel')->with('success', 'Hotel Updated Successfully!');
     }
 
     /**
@@ -144,8 +198,15 @@ class HotelController extends Controller
     public function destroy($id)
     {
         $hotel = Hotel::find($id);
-        \Storage::delete($hotel->gambar_hotel);
+        \Storage::delete($hotel->gambar_hotel());
         $hotel->delete();
-        return redirect()->back();
+
+        $ckamar = CategoryKamar::where('hotel_id', $id)->get();
+        foreach ($ckamar as $kamar) {
+        $kamar->delete();
+        \Storage::delete($kamar->kamar->gambar_kamar());
+        $kamar->kamar->delete();
+        }
+        return redirect()->back()->with('success', 'Hotel Deleted Successfully!');
     }
 }

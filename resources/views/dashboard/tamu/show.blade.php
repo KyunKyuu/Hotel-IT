@@ -25,11 +25,7 @@
     <h6>Email</h6>
     <strong>{{$detail_tamu->email}}</strong>
   </div>
-  <hr>
-  <div class="form-group" >
-    <h6>negara</h6>
-    <strong>{{$detail_tamu->profile->negara}}</strong>
-  </div>
+  
   <hr>
   <div class="form-group" >
     <h6>alamat</h6>
@@ -42,13 +38,13 @@
   </div>
   <hr>
   <div class="form-group" >
-    <h6>Alamat</h6>
-    <strong>{{$detail_tamu->profile->alamat}}</strong>
+    <h6>Jenis Kelamin</h6>
+    <strong>{{$detail_tamu->profile->jenis_kelamin}}</strong>
   </div>
   <hr>
   <div class="form-group" >
     <h6>Created Akun</h6>
-    <strong>{{$detail_tamu->created_at->format('d, M Y')}}</strong>
+    <strong>{{$detail_tamu->created_at->format('d,F Y H:i')}}</strong>
   </div>
 </div>
 </div>
@@ -81,13 +77,14 @@
                   <tbody>
                     
                     <tr>
-                      
-                      <td>{{$tamu->CategoryKamar->hotels->nama_hotel}}</td>
-                      <td>{{$tamu->CategoryKamar->nama_category}}</td>
-                      <td>{{$tamu->check_in}}</td>
-                      <td>{{$tamu->check_out}}</td>
+                      @foreach($reservasi as $rs)
+                      <td>{{$loop->iteration}}</td>
+                      <td>{{$rs->CategoryKamar->hotels->nama_hotel}}</td>
+                      <td>{{$rs->CategoryKamar->nama_category}}</td>
+                      <td>{{ date('d, F Y H:i', strtotime($rs->check_in)) }}</td>
+                      <td>{{date('d, F Y H:i', strtotime($rs->check_out))}}</td>
                     </tr>
-                  
+                    @endforeach
                     </tbody>
                 </table>
               </div>
