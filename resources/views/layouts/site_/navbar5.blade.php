@@ -10,7 +10,7 @@
             <a class="nav-link mx-2 text-white" href="{{route('home')}}">Home</a>
             <a class="nav-link mx-2 text-white" href="{{route('about')}}">About</a>
             <a class="nav-link mx-2 text-white" href="{{route('popular')}}">Popular</a>
-            <a class="nav-link nav-width mx-2 active" href="#">Contact Us</a>
+            <a class="nav-link mx-2 text-white" href="{{route('contact')}}">Contact Us</a>
             @guest
             <div class="container-fluid justify-content-start mx-2">
                   <a href="{{route('login')}}" class="btn btn-1 btn-md px-4 button-navbar">Sign In</a>

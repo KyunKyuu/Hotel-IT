@@ -51,6 +51,10 @@ html{
     box-shadow: #ffffff 0 0 0 2px;
 }
 
+.nav-width{
+	width: auto;
+}
+
 .button-navbar{
 	margin-left: 60%;
 }
@@ -125,26 +129,37 @@ a:hover{
 .header{
 	background: #F4FBFA;
 }
-
-.about-header{
-	background-color: #fff;
-	width: 75%;
-	margin-left: 13vw;
-	margin-right: 13vw;
-	position: absolute;
-	top: 0px;
-	z-index: 9999;
-	border: 2px #000;
+.cover-about{
+	background-image: url(../img/about.png);
+	background-size: cover;
 }
 
-.about-header .navbar-left{
-	transform: translateX(-13%);
+.about-text {
+    padding-left: 10rem;
+    padding-top: 9rem;
+    color: white;
+    padding-bottom: 9rem;
 }
 
-.about-header .nav-kanan{
-	padding-left: 2%;
+.about-img{
+	padding-top: 9rem;
 }
 
+.about-img img{
+	width: 50% !important;
+}
+
+.w-80{
+	width: 80% !important;
+}
+
+.mt-n6{
+	margin-top: -6rem;
+	z-index: 0;
+}
+.z-index-1{
+	z-index: 1;
+}
 .background-breadcrumb{
 	background: transparent linear-gradient(180deg, #116A52 0%, #093529 100%) 0% 0% no-repeat padding-box;
 	height: 19rem;
@@ -689,6 +704,10 @@ a:hover{
   background-image: url(../img/ic_next_back.png)!important;   /* Add custom arrow */
   background-size: 0.7rem;
 }
+
+.input .input-textbox {
+	background-image: url(../img/ic_profil.png)!important;   /* Add custom arrow */
+  }
 
 .col-md-1.select{
 	width: 15%;

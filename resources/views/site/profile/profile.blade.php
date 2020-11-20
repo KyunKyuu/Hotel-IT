@@ -31,7 +31,7 @@
                 <h4 class="form-control profil-input pl-2 mb-3">{{$user->profile->last_name}}</h4>
                 <h6 class="text-black-50">Birth Day</h6>
                 @if($user->profile->tanggal_lahir)
-                 <h4 class="form-control profil-input pl-2 mb-3">{{$user->profile->tanggal_lahir->format('d, F Y')}}</h4>
+                 <h4 class="form-control profil-input pl-2 mb-3">{{date('d, F Y',strtotime($user->profile->tanggal_lahir))  }}</h4>
                 @else
                  <h4 class="form-control profil-input pl-2 mb-3">{{$user->profile->tanggal_lahir}}</h4>
                 @endif

@@ -34,7 +34,7 @@ class ReservasiController extends Controller
 
 		    $category = CategoryKamar::with('kamar','hotels')->where('id', $request->kamar_id)->first();
         
-         $harga_awal = $category->harga * $request->durasi * $request->jumlah;
+         $harga_awal = $category->harga * $request->durasi * 1;
 
         if ($category->diskon) {
               if ($category->diskon->diskon_start <= Carbon::now() && $category->diskon->diskon_end >= Carbon::now()) {
@@ -51,21 +51,21 @@ class ReservasiController extends Controller
                   ]);
                  }
            }elseif($category->diskon->kode_diskon != null){
-                $harga = $category->harga * $request->durasi * $request->jumlah;
+                $harga = $category->harga * $request->durasi * 1;
                  session()->put('harga',[
                     'harga' => $harga,
                   ]);
           }   
               }else {
                   $harga = $category->harga * $request->durasi;
-                  $harga *= $request->jumlah;
+                  $harga *= 1;
                    session()->put('harga',[
                     'harga' => $harga,
                   ]);
               }
 
         }elseif (!$category->diskon) {
-          $harga = $category->harga * $request->durasi * $request->jumlah;
+          $harga = $category->harga * $request->durasi * 1;
            session()->put('harga',[
                     'harga' => $harga,
                   ]);
@@ -73,7 +73,7 @@ class ReservasiController extends Controller
 
 
         $durasi = $request->durasi;
-        $jumlah = $request->jumlah;
+        $jumlah = 1;
         $user = auth()->user();
 
     	return view('site/reservasi/order', compact('check_in', 'check_out', 'category', 'harga', 'durasi', 'jumlah', 'user', 'harga_awal', 'cek_in', 'cek_out'));
@@ -85,24 +85,26 @@ class ReservasiController extends Controller
     public function reservasi_akhir(Request $request)
     {
 
+     
 
     $category = CategoryKamar::with('kamar','hotels')->where('id', $request->id)->first();
     $kamar = $category->kamar;
 		$reservasi = Reservasi::where('category_kamar_id', $category->id)->where('check_in','<=', Carbon::now())->where('check_out','>=', Carbon::now())->count();
-    
+    $jumlah = 1;
     if ($reservasi == $kamar->jumlah_kamar) {
-        return redirect()->back();
+        return redirect('/hotel/'.$category->hotels->slug)->with('error', 'Room is full');
     }elseif ($reservasi <= $kamar->jumlah_kamar){
        
     	$reservasi = Reservasi::create([
     		'kode_reservasi' => \Str::random(10),
     		'user_id' => auth()->user()->id,
-    		'jumlah' => $request->jumlah,
+    		'jumlah' => 1,
     		'check_in' => $request->check_in,
     		'check_out' => $request->check_out,
     		'category_kamar_id' => $request->id,
         'durasi_reservasi' => $request->durasi,
     	]);
+
 
   // Diskon Id
   if ($category->harga != $request->harga) {
@@ -134,6 +136,7 @@ class ReservasiController extends Controller
 
     ]);
       
+
       // set konfigurasi Midtrans
     // set konfigurasi Midtrans
     Config::$serverKey = config('midtrans.serverKey');
@@ -156,7 +159,7 @@ class ReservasiController extends Controller
                     [
                         'id'       => (int)$category->id,
                         'price'    => (int)$request->harga,
-                        'quantity' => (int)$request->jumlah,
+                        'quantity' => 1,
                         'name'     => ucwords(str_replace('_', ' ', $category->nama_category))
                     ]
                 ],
@@ -206,7 +209,7 @@ class ReservasiController extends Controller
            
       }
      
-       return redirect()->route('reservasi');
+       return redirect()->back();
       
     }
 
@@ -214,7 +217,7 @@ class ReservasiController extends Controller
     {
       session()->forget('diskon');
 
-       return redirect()->route('reservasi');
+       return redirect()->back();
     }
 
 

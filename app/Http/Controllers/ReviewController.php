@@ -24,23 +24,17 @@ class ReviewController extends Controller
    public function review(Request $request)
     {
         
-        // //VALIDASI DATA YANG DITERIMA
-        $this->validate($request, [
-            'comment' => 'required',
-        ]);
-
-        $sum_rating = $request->rating_1+$request->rating_2+$request->rating_3+$request->rating_4+$request->rating_5;
+         $sum_rating = $request->rating+$request->rating2+$request->rating3+$request->rating4+$request->rating5;
         $rata_rating = $sum_rating / 5;
 
         Review::create([
-            'hotel_id' => $request->id,
-            'parent_id' => $request->parent_id != '' ? $request->parent_id:NULL,
+            'hotel_id' => $request->hotel_id,
             'user_id' => auth()->user()->id,
             'isi_review' => $request->comment,
             'rating' => $rata_rating
         ]);
 
-        return redirect()->back()->with('success','Comment Added Successfuly');
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
     }
 
 

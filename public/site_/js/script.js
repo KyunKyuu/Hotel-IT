@@ -213,7 +213,6 @@ function myProfil3() {
   popup.classList.toggle("show");
 }
 
-
 // Pas diClick keluar banyak?, apanya itunya :v
 $(document).ready(function(){
       var readMoreHTML = $(".read-more").html();
@@ -385,5 +384,13 @@ function myFunction() {
     $(".fixed-top").fadeOut(500);
   } else {
     $(".fixed-top").fadeIn(500);
+  }
+}
+
+function myFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    $(".bg-tranparent").fadeOut(500);
+  } else {
+    $(".bg-tranparent").fadeIn(500);
   }
 }

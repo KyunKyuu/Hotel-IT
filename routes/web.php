@@ -122,7 +122,7 @@ Route::group(['middleware' => ['auth', 'checkRole:tamu', 'verified']], function(
 
 	// history reservasi
 	Route::get('/review/{email:email}', 'ReviewController@index')->name('review');
-	Route::post('/hotel/review', 'ReviewController@review')->name('hotel_review');
+	Route::post('/hotel/review', 'ReviewController@review')->name('hotel.review');
 	// proses reservasi kamar
 	Route::get('/reservasi', 'ReservasiController@reservasi_awal')->name('reservasi');
 	Route::post('/reservasi/store', 'ReservasiController@reservasi_akhir')->name('reservasi_order');

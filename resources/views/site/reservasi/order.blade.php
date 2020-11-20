@@ -158,6 +158,10 @@
               @elseif($category->diskon->kode_diskon != null)
                @if(session()->has('diskon'))
                <div class="d-flex">
+                <h6>Harga Awal :</h6>
+                <h6 class="ml-auto price"><span style="text-decoration: line-through;">${{$harga_awal}}</span></h6>
+              </div>
+               <div class="d-flex">
                   <h6>Diskon({{session()->get('diskon')['name']}}) :</h6>
                   <h6 class="ml-auto price">${{session()->get('diskon')['diskon']}}</h6>
                 </div>

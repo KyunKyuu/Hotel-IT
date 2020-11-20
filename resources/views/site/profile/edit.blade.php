@@ -20,7 +20,7 @@
           <div class="profil-jumbotron text-center bg-white p-3">
             <img src="{{$user->profile->gambar()}}" class="rounded-circle p-4">
             <h5 class="w-900 mt-3">{{$user->name}} {{$user->profile->last_name}}</h5>
-            <input type="file" class="active text-decoration-none mb-5" aria-label="deafult input example">Edit Gambar<i class="fas fa-pen ml-1 mb-4"></i></input>
+            <input type="file" class="active text-decoration-none mb-5" aria-label="deafult input example" name="gambar">Edit Gambar<i class="fas fa-pen ml-1 mb-4"></i></input>
           </div>
         </div>
         <div class="col-md-5">
@@ -33,7 +33,8 @@
                 <h6 class="text-black-50">Last Name</h6>
                 <input class="form-control profil-input pl-2 mb-3" type="text" aria-label="deafult input example" name="last_name" value="{{$user->profile->last_name}}">
                 <h6 class="text-black-50">Birth Day</h6>
-                <input class="form-control profil-input pl-2 mb-3" type="date" aria-label="deafult input example" value="{{$user->profile->tanggal_lahir}}">
+                <input class="form-control profil-input pl-2 mb-3 input" type="date" aria-label="deafult input example" name="tanggal_lahir" value="{{$user->profile->tanggal_lahir}}">
+
               </div>
               <div class="col-4">
               

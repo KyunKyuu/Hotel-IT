@@ -62,115 +62,174 @@
       <div style="display: none;">{{$no++}}</div>
 
 		<!-- Modal -->
-      <form action="{{route('hotel_review')}}" method="POST">
-        @csrf
-        <input type="hidden" name="id" value="{{$review->categorykamar->hotels->id}}">
-      <div class="modal fade" id="exampleModal{{$review->categorykamar->hotels->id, $review->categorykamar->kamar->gambar_kamar(), $review->categorykamar->hotels->nama_hotel}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-          <div class="modal-content">
-            <div class="modal-body">
-              <div class="text-center mt-4">
-                <h3 class="w-400">Review Hotel</h3>
-                <h2 class="font-family-assistant w-900">{{$review->categorykamar->hotels->nama_hotel}}</h2>
-                <img src="{{$review->categorykamar->kamar->gambar_kamar()}}">
-              </div>
-                <div class="col-md-6 col-sm-6">
-                  <h5 class="text-left modal-h5">Cleanliness</h5>
+    <div class="modal fade" id="exampleModal{{$review->categorykamar->hotels->id, $review->categorykamar->kamar->gambar_kamar(), $review->categorykamar->hotels->nama_hotel}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-body">
+          <form method="POST" action="{{ route('hotel.review') }}">
+            @csrf
+                <div class="text-center mt-4">
+                  <h3 class="w-400">Review Hotel</h3>
+                  <h2 class="font-family-assistant w-900">{{$review->categorykamar->hotels->nama_hotel}}</h2>
+                  <img src="{{$review->categorykamar->kamar->gambar_kamar()}}">
                 </div>
-              <form id="rating" class="rating">
-                @csrf
-                <div class="col-md-6 col-sm-6">
-                  <div class="d-flex rating-clean">
-                    <div class="icon mr-2 1-star"></div>
-                    <div class="icon mr-2 2-star"></div>
-                    <div class="icon mr-2 3-star"></div>
-                    <div class="icon mr-2 4-star"></div>
-                    <div class="icon mr-2 5-star"></div>
-                    <div class="6-star"></div>
+                <div class="row mt-4">
+                  <div class="col-md-6 col-sm-6">
+                    <h5 class="text-left modal-h5">Cleanliness</h5>
                   </div>
-                </form>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <h5 class="text-left modal-h5">Comfort</h5>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="rateyo" id="rating">
+                      <input type="hidden" name="rating">
+                    </div>
+                  </div>  
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="d-flex rating-comfort">
-                    <div class="icon mr-2 1-star"></div>
-                    <div class="icon mr-2 2-star"></div>
-                    <div class="icon mr-2 3-star"></div>
-                    <div class="icon mr-2 4-star"></div>
-                    <div class="icon mr-2 5-star"></div>
-                    <div class="6-star"></div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <h5 class="text-left modal-h5">Comfort</h5>
                   </div>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <h5 class="text-left modal-h5">Service</h5>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="rateyo2" id="rating2">
+                      <input type="hidden" name="rating2">
+                    </div>
+                  </div>  
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="d-flex rating-service">
-                    <div class="icon mr-2 1-star"></div>
-                    <div class="icon mr-2 2-star"></div>
-                    <div class="icon mr-2 3-star"></div>
-                    <div class="icon mr-2 4-star"></div>
-                    <div class="icon mr-2 5-star"></div>
-                    <div class="6-star"></div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <h5 class="text-left modal-h5">Service</h5>
                   </div>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <h5 class="text-left modal-h5">Location</h5>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="rateyo3" id="rating3">
+                      <input type="hidden" name="rating3">
+                    </div>
+                  </div>  
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="d-flex rating-location">
-                    <div class="icon mr-2 1-star"></div>
-                    <div class="icon mr-2 2-star"></div>
-                    <div class="icon mr-2 3-star"></div>
-                    <div class="icon mr-2 4-star"></div>
-                    <div class="icon mr-2 5-star"></div>
-                    <div class="6-star"></div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <h5 class="text-left modal-h5">Location</h5>
                   </div>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <h5 class="text-left modal-h5">Price</h5>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="rateyo4" id="rating4">
+                      <input type="hidden" name="rating4">
+                    </div>
+                  </div>  
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="d-flex rating-price">
-                    <div class="icon mr-2 1-star"></div>
-                    <div class="icon mr-2 2-star"></div>
-                    <div class="icon mr-2 3-star"></div>
-                    <div class="icon mr-2 4-star"></div>
-                    <div class="icon mr-2 5-star"></div>
-                    <div class="6-star"></div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <h5 class="text-left modal-h5">Price</h5>
                   </div>
-                </div>  
-              </div>
-              <div class="mb-3 width-71 mt-3 mx-auto">
-                <label for="exampleFormControlTextarea1" class="form-label"><h5>Comment</h5></label>
-                <textarea name="comment" class="form-control pl-2" placeholder="Tell other users why you like this hotel so much" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-              <div class="row mb-4">
-                <div class="col-md-6 col-xs-6">
-                  <button type="button" class="btn btn-3 float-right px-5" data-dismiss="modal">Close</button>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="rateyo5" id="rating5">
+                    <input type="hidden" name="rating5">
+                  </div>
+                  </div>  
                 </div>
-                <div class="col-md-6 col-xs-6">
-                  <button type="submit" name="submit" class="btn btn-1 px-5">Submit</button>
-                </form>
+                <input type="hidden" name="hotel_id" value="{{$review->categorykamar->hotels->id}}">
+                <div class="mb-3 width-71 mt-3 mx-auto">
+                  <label for="exampleFormControlTextarea1" class="form-label"><h5>Comment</h5></label>
+                  <textarea name="comment" class="form-control pl-2" placeholder="Tell other users why you like this hotel so much" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="row mb-4">
+                  <div class="col-md-6 col-xs-6">
+                    <button type="button" class="btn btn-3 float-right px-5" data-dismiss="modal">Close</button>
+                  </div>
+                  <div class="col-md-6 col-xs-6">
+                    <button name="btn-submit" class="btn btn-1 px-5 btn-submit">Submit</button>
+                  </div>
                 </div>
               </div>
+            </form>
             </div>
           </div>
         </div>
-      </div>
-    
  @endforeach
 @endif
-</div>
+<script type="text/javascript">
+//   $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+
+
+$(function () {
+  // $(document).ready(function(){
+  //   $("btn-submit").click(function(){
+  //     $.post("{{ route('hotel.review') }}",
+  //     {
+  //       _method: 'POST',
+  //       rating: $('input#rating').val(),
+  //       rating2: $('input#rating2').val(),
+  //       rating3: $('input#rating3').val(),
+  //       rating4: $('input#rating4').val(),
+  //       rating5: $('input#rating5').val(),
+  //     },
+        $(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+            var rating = data.rating;
+            $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('rating :'+ rating);
+            $(this).parent().find("input[name=rating]").val(rating); //add rating value to input field
+        });
+
+        $(".rateyo2").rateYo().on("rateyo.change", function (e, data) {
+            var rating2 = data.rating2;
+            $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('rating2 :'+ rating2);
+            $(this).parent().find("input[name=rating2]").val(rating2); //add rating value to input field
+        });
+
+        $(".rateyo3").rateYo().on("rateyo.change", function (e, data) {
+            var rating3 = data.rating3;
+            $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('rating3 :'+ rating3);
+            $(this).parent().find("input[name=rating3]").val(rating3); //add rating value to input field
+        });
+
+        $(".rateyo4").rateYo().on("rateyo.change", function (e, data) {
+            var rating4 = data.rating4;
+            $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('rating4 :'+ rating4);
+            $(this).parent().find("input[name=rating4]").val(rating4); //add rating value to input field
+        });
+
+        $(".rateyo5").rateYo().on("rateyo.change", function (e, data) {
+            var rating5 = data.rating5;
+            $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('rating5 :'+ rating5);
+            $(this).parent().find("input[name=rating5]").val(rating5); //add rating value to input field
+        });
+
+      });
+
+      // $(".btn-submit").click(function(e){
+      
+      //     e.preventDefault();
+        
+      //     var comment = $("textarea[name=comment]").val();
+      //     var hotel_id = $("input[name=hotel_id]").val();
+      //     var rating = $("input[name=rating").val();
+      //     var rating2 = $("input[name=rating2").val();
+      //     var rating3 = $("input[name=rating3").val();
+      //     var rating4 = $("input[name=rating4").val();
+      //     var rating5 = $("input[name=rating5").val();
+          
+      //     $.ajax({
+      //         method:'POST',
+      //         url:"{{ route('hotel.review') }}",
+      //         data:{ 
+      //               comment:comment, 
+      //               hotel_id:hotel_id,
+      //               rating:rating,
+      //               rating2:rating2,
+      //               rating3:rating3,
+      //               rating4:rating4,
+      //               rating5:rating5
+      //             },
+      //         success:function(data){
+      //           alert(data.success);
+      //         }
+      //     });
+      // });
+
+</script>
 @endsection
 	

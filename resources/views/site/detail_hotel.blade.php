@@ -28,23 +28,30 @@ Detail {{$hotel->nama_hotel}}
             <div class="jumbotron-kamar">
               <h3 class="w-900">{{$hotel->nama_hotel}}</h3>
               <p class="w-200">{{$hotel->CategoriesHotel->negara}}, {{$hotel->kota}}</p>
-              <img src="{{asset('site_/img/imgnotfound.png')}}">
+               <div class="return">
+                <img src="{{$hotel->gambar_hotel()}}" id="return-1" class="active">
+                <img src="{{$hotel->gambar_hotel2()}}" id="return-2">
+                <img src="{{$hotel->gambar_hotel3()}}" id="return-3">
+                <img src="{{$hotel->gambar_hotel4()}}" id="return-4">
+                <img src="{{$hotel->gambar_hotel5()}}" id="return-5">
+              </div>
+
               <div class="row">
-                <div class="col-2 jumbotron-kamar-img mt-2">
-                  <img src="{{asset('site_/img/imgnotfound.png')}}">
-              </div> 
-              <div class="col-2 jumbotron-kamar-img mt-2">
-                  <img src="{{asset('site_/img/imgnotfound.png')}}">
-              </div> 
-              <div class="col-2 jumbotron-kamar-img mt-2">
-                  <img src="{{asset('site_/img/imgnotfound.png')}}">
-              </div> 
-              <div class="col-2 jumbotron-kamar-img mt-2">
-                  <img src="{{asset('site_/img/imgnotfound.png')}}">
-              </div> 
-              <div class="col-2 mt-2">
-                  <img src="{{asset('site_/img/imgnotfound.png')}}">
-              </div> 
+                <div class="col-2 jumbotron-kamar-img mt-2 jumbotron-img return-1 active">
+                  <img src="{{$hotel->gambar_hotel()}}">
+                </div> 
+                <div class="col-2 jumbotron-kamar-img jumbotron-img mt-2 return-2">
+                  <img src="{{$hotel->gambar_hotel2()}}">
+                </div> 
+                <div class="col-2 jumbotron-kamar-img jumbotron-img mt-2 return-3">
+                  <img src="{{$hotel->gambar_hotel3()}}">
+                </div> 
+                <div class="col-2 jumbotron-kamar-img jumbotron-img mt-2 return-4">
+                  <img src="{{$hotel->gambar_hotel4()}}">
+               </div> 
+               <div class="col-2 mt-2 jumbotron-kamar-img jumbotron-img mt-2 return-5">
+                  <img src="{{$hotel->gambar_hotel5()}}">
+                </div> 
               </div>
 
               <form action="{{route('reservasi')}}" method="get">
@@ -120,6 +127,7 @@ Detail {{$hotel->nama_hotel}}
                                 <i class="{{$icon[$no][3] }} icon mr-1 ml-3"></i>
                                 <p class="mt-1">{{ $fasilitas[$no][3] }}</p>
                               </div>
+
                             
                             </div>
                           </div>
@@ -216,16 +224,12 @@ Detail {{$hotel->nama_hotel}}
                   <h6 class="mt-1">{{$fasilitas_hotel[3]}}</h6>
                 </div>
                 <div class="col-6 d-flex mt-3">
-                  <img src="../img/ic_eat.png" class="icon mr-1">
-                  <h6>Restaurant</h6>
+                   <i class="{{$icon_hotel[4]}} icon mr-1"></i>
+                  <h6 class="mt-1">{{$fasilitas_hotel[4]}}</h6>
                 </div>
                 <div class="col-6 d-flex mt-3">
-                  <img src="../img/ic_smoking.png" class="icon mr-1">
-                  <h6>Smoking Area</h6>
-                </div>
-                <div class="col-6 d-flex mt-3">
-                  <img src="../img/ic_cleaning_service.png" class="icon mr-1">
-                  <h6 class="mt-1">Cleaning Service</h6>
+                   <i class="{{$icon_hotel[5]}} icon mr-1"></i>
+                  <h6 class="mt-1">{{$fasilitas_hotel[5]}}</h6>
                 </div>
               </div>
             </div>

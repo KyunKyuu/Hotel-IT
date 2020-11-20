@@ -53,7 +53,7 @@ class HotelController extends Controller
         $request->validate([
             'nama_hotel' => 'required',
             'gambar_hotel' => 'required|image|mimes:png,jpg,jpeg,svg|max:1048',
-            'fasilitas_hotel' => 'required',
+            
             'alamat' => 'required',
             'check_in' => 'required',
             'check_out' => 'required',
@@ -62,20 +62,26 @@ class HotelController extends Controller
             'content' => 'required',
             
             'fasilitas_icon_hotel' => 'required',
+            'fasilitas_icon_hotel1' => 'required',
             'fasilitas_icon_hotel2' => 'required',
             'fasilitas_icon_hotel3' => 'required',
-            'fasilitas_icon_hotel3' => 'required',
-           
+            'fasilitas_icon_hotel4' => 'required',
+            'fasilitas_icon_hotel5' => 'required',
+
+
             'fasilitas_text_hotel' => 'required',
+            'fasilitas_text_hotel1' => 'required',
             'fasilitas_text_hotel2' => 'required',
             'fasilitas_text_hotel3' => 'required',
-            'fasilitas_text_hotel3' => 'required',
+             'fasilitas_text_hotel4' => 'required',
+              'fasilitas_text_hotel5' => 'required',
+
 
         ]);
 
-        $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3];
+        $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3,$request->fasilitas_icon_hotel4,$request->fasilitas_icon_hotel5,];
 
-        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3];
+        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3,$request->fasilitas_text_hotel4,$request->fasilitas_text_hotel5,];
 
         $ug = \Str::slug(request('nama_hotel')); 
         $cel = Hotel::where('slug', $ug)->first();
@@ -90,8 +96,45 @@ class HotelController extends Controller
 
         $gambar = $request->file('gambar_hotel');
         $gambarUrl = $gambar->storeAs("images/hotel", "{$slug}.{$gambar->extension()}");
+        
+        if($request->file('gambar_hotel2') != null) {
+             $gambar2 = $request->file('gambar_hotel2');
+             $gambarUrl2 = $gambar2->storeAs("images/hotel", "{$slug}2.{$gambar2->extension()}");
+        }else{
+            $gambarUrl2 = null;
+        }
+
+        if($request->file('gambar_hotel3') != null) {
+        $gambar3 = $request->file('gambar_hotel3');
+        $gambarUrl3 = $gambar3->storeAs("images/hotel", "{$slug}3.{$gambar3->extension()}");
+        }else{
+            $gambarUrl3 = null;
+        }
+
+        if($request->file('gambar_hotel4') != null) {
+        $gambar4 = $request->file('gambar_hotel4');
+        $gambarUrl4 = $gambar4->storeAs("images/hotel", "{$slug}4.{$gambar4->extension()}");
+        }else{
+            $gambarUrl4 = null;
+        }
+
+        if($request->file('gambar_hotel5') != null) {
+        $gambar5 = $request->file('gambar_hotel5');
+        $gambarUrl5 = $gambar5->storeAs("images/hotel", "{$slug}5.{$gambar5->extension()}");
+        }else{
+            $gambarUrl5 = null;
+        }
+
+
+
 
         $attr['gambar_hotel'] = $gambarUrl;
+        $attr['gambar_hotel2'] = $gambarUrl2;
+        $attr['gambar_hotel3'] = $gambarUrl3;
+        $attr['gambar_hotel4'] = $gambarUrl4;
+        $attr['gambar_hotel5'] = $gambarUrl5;
+
+
         $attr['slug'] = $slug;
         $attr['fasilitas_icon_hotel'] = json_encode($fasilitas_icon_hotel);
         $attr['fasilitas_text_hotel'] = json_encode($fasilitas_text_hotel);
@@ -151,9 +194,11 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
 
-        $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3];
+         $fasilitas_icon_hotel = [$request->fasilitas_icon_hotel, $request->fasilitas_icon_hotel1, $request->fasilitas_icon_hotel2, $request->fasilitas_icon_hotel3,$request->fasilitas_icon_hotel4,$request->fasilitas_icon_hotel5,];
 
-        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3];
+        $fasilitas_text_hotel = [$request->fasilitas_text_hotel, $request->fasilitas_text_hotel1, $request->fasilitas_text_hotel2, $request->fasilitas_text_hotel3,$request->fasilitas_text_hotel4,$request->fasilitas_text_hotel5,];
+
+
 
         $hotel = Hotel::find($id);
 
@@ -167,20 +212,52 @@ class HotelController extends Controller
        
 
        if ($request->file('gambar_hotel')) {
-
          \Storage::delete($hotel->gambar_hotel);
         $gambar = $request->file('gambar_hotel');
         $gambarUrl = $gambar->storeAs("images/hotel", "{$slug}.{$gambar->extension()}");
-
        }else{
-
         $gambarUrl = $hotel->gambar_hotel;
+       }
 
+       if ($request->file('gambar_hotel2')) {
+         \Storage::delete($hotel->gambar_hotel2);
+        $gambar2 = $request->file('gambar_hotel2');
+        $gambarUrl2 = $gambar2->storeAs("images/hotel", "{$slug}2.{$gambar2->extension()}");
+       }else{
+        $gambarUrl2 = $hotel->gambar_hotel2;
+       }
+
+        if ($request->file('gambar_hotel3')) {
+         \Storage::delete($hotel->gambar_hotel3);
+        $gambar3 = $request->file('gambar_hotel3');
+        $gambarUrl3 = $gambar3->storeAs("images/hotel", "{$slug}3.{$gambar3->extension()}");
+       }else{
+        $gambarUrl3 = $hotel->gambar_hotel3;
+       }
+
+        if ($request->file('gambar_hotel4')) {
+         \Storage::delete($hotel->gambar_hotel4);
+        $gambar4 = $request->file('gambar_hotel4');
+        $gambarUrl4 = $gambar4->storeAs("images/hotel", "{$slug}4.{$gambar4->extension()}");
+       }else{
+        $gambarUrl4 = $hotel->gambar_hotel4;
        }
      
+        if ($request->file('gambar_hotel5')) {
+         \Storage::delete($hotel->gambar_hotel5);
+        $gambar5 = $request->file('gambar_hotel5');
+        $gambarUrl5 = $gambar5->storeAs("images/hotel", "{$slug}5.{$gambar5->extension()}");
+       }else{
+        $gambarUrl5 = $hotel->gambar_hotel5;
+       }
+
         $attr = $request->all();
     
         $attr['gambar_hotel'] = $gambarUrl;
+        $attr['gambar_hotel2'] = $gambarUrl2;
+        $attr['gambar_hotel3'] = $gambarUrl3;
+        $attr['gambar_hotel4'] = $gambarUrl4;
+        $attr['gambar_hotel5'] = $gambarUrl5;
         $attr['slug'] = $slug;
         $attr['fasilitas_icon_hotel'] = json_encode($fasilitas_icon_hotel);
         $attr['fasilitas_text_hotel'] = json_encode($fasilitas_text_hotel);
