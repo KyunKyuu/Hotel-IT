@@ -40,7 +40,7 @@
            <div class="form-group">
           <label for="category_hotel_id">Negara</label>
           <select  class="form-control @error('category_hotel_id') is-invalid @enderror" id="category_hotel_id" name="category_hotel_id" >
-            <option disabled selected="" value="{{$hotel->category_hotel_id}}">{{$hotel->CategoriesHotel->negara}}</option>
+            <option selected="" value="{{$hotel->category_hotel_id}}">{{$hotel->CategoriesHotel->negara}}</option>
             @foreach($negara as $ng)
               <option value="{{$ng->id}}">{{$ng->negara}}</option>
             @endforeach
@@ -91,59 +91,59 @@
             <div class="input-group-prepend">
            
             <button class="btn btn-secondary @error('fasilitas_icon_hotel') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel" value="{{$icon[0]}}">{{$icon[0]}}</button>
-          
+           </div>
           <input type="text" name="fasilitas_text_hotel"  class="form-control @error('fasilitas_text_hotel') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[0]}}">
            @error('fasilitas_text_hotel')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+         
         </div>
         <br>
           <div class="input-group">
             <div class="input-group-prepend">
             <button class="btn btn-secondary @error('fasilitas_icon_hotel1') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel1" value="{{$icon[1]}}">{{$icon[1]}}</button>
-           
+           </div>
           <input type="text" name="fasilitas_text_hotel1"  class="form-control @error('fasilitas_text_hotel1') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[1]}}">
            @error('fasilitas_text_hotel1')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
          <br>
               <div class="input-group">
             <div class="input-group-prepend">
           
             <button class="btn btn-secondary @error('fasilitas_icon_hotel2') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel2" value="{{$icon[2]}}">{{$icon[2]}}</button>
-          
+          </div>
           <input type="text" name="fasilitas_text_hotel2"  class="form-control @error('fasilitas_text_hotel2') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[2]}}">
            @error('fasilitas_text_hotel2')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
          <br>
          <div class="input-group">
             <div class="input-group-prepend">
            
             <button class="btn btn-secondary @error('fasilitas_icon_hotel3') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel3" value="{{$icon[3]}}">{{$icon[3]}}</button>
-           
+            </div>
           <input type="text" name="fasilitas_text_hotel3"  class="form-control @error('fasilitas_text_hotel3') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[3]}}">
            @error('fasilitas_text_hotel3')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+         
         </div>
         <br>
         <div class="input-group">
             <div class="input-group-prepend">
            
             <button class="btn btn-secondary @error('fasilitas_icon_hotel4') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel4" value="{{$icon[4]}}">{{$icon[4]}}</button>
-           
+           </div>
           <input type="text" name="fasilitas_text_hotel4"  class="form-control @error('fasilitas_text_hotel4') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[4]}}">
            @error('fasilitas_text_hotel4')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
         <br>
 
@@ -151,12 +151,12 @@
             <div class="input-group-prepend">
            
             <button class="btn btn-secondary @error('fasilitas_icon_hotel5') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_hotel5" value="{{$icon[5]}}">{{$icon[5]}}</button>
-           
+           </div>
           <input type="text" name="fasilitas_text_hotel5"  class="form-control @error('fasilitas_text_hotel5') is-invalid @enderror"  placeholder="Fasilitas hotel" value="{{$fasilitas[5]}}">
            @error('fasilitas_text_hotel5')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
         <br>
 

@@ -67,13 +67,13 @@
 
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-       History Reservasi
+       Laporan Reservasi
       </div>
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="{{route('history_reservasi')}}">
+        <a class="nav-link" href="{{route('laporan_reservasi')}}">
           <i class="fas fa-fw fa-time"></i>
-          <span>History Reservasi</span></a>
+          <span>Laporan Reservasi</span></a>
       </li>
 
 

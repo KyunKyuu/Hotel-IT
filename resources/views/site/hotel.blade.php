@@ -66,7 +66,7 @@ Hotel {{$category->negara}}
                         <i class="{{$icon[$no][3]}}"></i>
                       </div>
                       <p>9.0 The best</p>
-                      <p class="mb-0">Terletak di {{$ht->alamat}}</p>
+                      <p class="mb-0" style="word-wrap: break-word;white-space:pre-wrap;">Terletak di {{$ht->alamat}}</p>
                     </div>
                   </div>
                 </td>

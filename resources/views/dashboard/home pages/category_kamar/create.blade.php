@@ -29,7 +29,7 @@
 
          <div class="form-group">
           <label for="hotel_id">Dari Hotel</label>
-              <input type="hidden" disabled="" name="hotel_id" value="{{$hotel->id}}" class="form-control">
+              <input type="hidden" name="hotel_id" value="{{$hotel->id}}" class="form-control">
               <span class="form-control"> {{$hotel->nama_hotel}}</span>
           </div>
 
@@ -42,19 +42,26 @@
           </div>
         
                     
-
-
           <div class="form-group">
-          <label for="harga">Harga Kamar</label>
-          <input type="number" class="form-control @error('harga') is-invalid @enderror"  name="harga" placeholder="Masukan Harga Kamar" value="{{old('harga')}}">
-            @error('harga')
-              <div class="invalid-feedback">{{ $message }}</div>
-             @enderror
+            <label>Harga Kamar</label>
+             <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+               </div>
+              <input type="number" class="form-control @error('harga') is-invalid @enderror"  name="harga" placeholder="Masukan Harga Kamar" value="{{old('harga')}}">
+             <div class="input-group-append">
+             <span class="input-group-text">.00</span>
+            </div>
           </div>
+          @error('harga')
+          <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+       </div>
+          
 
          <div class="form-group">
             <label for="content">Deskrisi Kamar</label>
-            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="my-editor" value="{!!old('content')!!}"></textarea>
+            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="my-editor" value="{!!old('content')!!}">{!!old('content')!!}</textarea>
             @error('content')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
@@ -77,52 +84,48 @@
         <div class="form-group">
           <label>Fasilitas Kamar </label><br>
           
-           <div class="input-group">
+           <div class="input-group ">
             <div class="input-group-prepend">
-           
-            <button class="btn btn-secondary @error('fasilitas_icon_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_kamar" value="{{old('fasilitas_icon_kamar')}}">Icon</button>
-          
+            <button class=" btn btn-secondary @error('fasilitas_icon_kamar') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_kamar" value="{{old('fasilitas_icon_kamar')}}">Icon</button>
+            </div>
           <input type="text" name="fasilitas_text_kamar"  class="form-control @error('fasilitas_text_kamar') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_kamar')}}">
            @error('fasilitas_text_kamar')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
         <br>
           <div class="input-group">
             <div class="input-group-prepend">
-         
             <button class="btn btn-secondary @error('fasilitas_icon_kamar1') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_kamar1" value="{{old('fasilitas_icon_kamar1')}}">Icon</button>
-           
+             </div>
           <input type="text" name="fasilitas_text_kamar1"  class="form-control @error('fasilitas_text_kamar1') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_kamar1')}}">
            @error('fasilitas_text_kamar')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
          <br>
               <div class="input-group">
             <div class="input-group-prepend">
-          
             <button class="btn btn-secondary @error('fasilitas_icon_kamar2') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_kamar2" value="{{old('fasilitas_icon_kamar2')}}">Icon</button>
-          
+             </div>
           <input type="text" name="fasilitas_text_kamar2"  class="form-control @error('fasilitas_text_kamar2') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_kamar2')}}">
            @error('fasilitas_text_kamar')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
         </div>
          <br>
               <div class="input-group">
             <div class="input-group-prepend">
            
             <button class="btn btn-secondary @error('fasilitas_icon_kamar3') is-invalid @enderror" role="iconpicker" name="fasilitas_icon_kamar3" value="{{old('fasilitas_icon_kamar3')}}">Icon</button>
-           
+           </div>
           <input type="text" name="fasilitas_text_kamar3"  class="form-control @error('fasilitas_text_kamar3') is-invalid @enderror"  placeholder="Fasilitas Kamar" value="{{old('fasilitas_text_kamar3')}}">
            @error('fasilitas_text_kamar')
               <div class="invalid-feedback">{{ $message }}</div>
              @enderror
-          </div>
+          
         </div>
         <br>
 

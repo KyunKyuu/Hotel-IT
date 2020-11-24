@@ -105,9 +105,9 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,superadmin', 'verified']
 	Route::get('/dasboard/diskon/show/{id}', 'DiskonController@show')->name('show_diskon');
 	Route::delete('/dasboard/diskon/{id}', 'DiskonController@destroy')->name('destroy_diskon');
 
-	// Riwayat Reservasi
-	Route::get('/dasboard/history/reservasi', 'DashboardController@history_reservasi')->name('history_reservasi');
-
+	// Laporan Reservasi
+	Route::get('/dasboard/laporan/reservasi', 'LaporanReservasiConrtoller@laporan_reservasi')->name('laporan_reservasi');
+	 Route::get('/dasboard/laporan/reservasi/pdf/{daterange}', 'LaporanReservasiConrtoller@laporan_reservasi_pdf')->name('laporan_reservasi_pdf');
 
 });
 

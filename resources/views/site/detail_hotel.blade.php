@@ -49,7 +49,7 @@ Detail {{$hotel->nama_hotel}}
                 <div class="col-2 jumbotron-kamar-img jumbotron-img mt-2 return-4">
                   <img src="{{$hotel->gambar_hotel4()}}">
                </div> 
-               <div class="col-2 mt-2 jumbotron-kamar-img jumbotron-img mt-2 return-5">
+               <div class="col-2  jumbotron-kamar-img jumbotron-img mt-2 return-5">
                   <img src="{{$hotel->gambar_hotel5()}}">
                 </div> 
               </div>

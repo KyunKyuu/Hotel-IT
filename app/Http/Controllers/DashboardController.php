@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{User,Hotel,Kamar, CategoryKamar, Reservasi};
+
 class DashboardController extends Controller
 {
      
@@ -67,22 +68,5 @@ class DashboardController extends Controller
     	
     }
 
-    public function history_reservasi()
-    {  
-        $user = auth()->user();
-        $kamars = CategoryKamar::where('id_pembuat', $user->id)->get();
-
-        foreach($kamars as $kamar){
-            if($user->role == 'admin') {
-                $histories[] = Reservasi::where('category_kamar_id', $kamar->id)->latest()->get();
-            }elseif($user->role == 'superadmin'){
-                $histories[] = Reservasi::latest()->get();
-            }
-        }
-
-            
-        return view('dashboard.history reservasi.history', compact('histories'));
-
-    }
     
 }
