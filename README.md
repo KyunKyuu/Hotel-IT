@@ -2,6 +2,6 @@
 
 ## Tengtang Website
 
-Web hotel It club dibangun dengan framework laravel
+Website Hotel dibangun dengan framework laravel, dibuat oleh IT Club
 
 
